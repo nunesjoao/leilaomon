@@ -1,0 +1,46 @@
+db: leiloes.db
+fontes: [rogeriomenezes]
+
+# Onde você vai receber o veículo (frete é calculado até aqui)
+destino: {lat: -22.9068, lon: -43.1729}   # AJUSTE
+
+frete:
+  fator_rodoviario: 1.3      # distância em linha reta -> estrada
+  raio_local_km: 80
+  sem_local: 1500
+  carro: {local: 400, rs_km: 4.5, minimo: 600}   # guincho plataforma
+  moto:  {local: 250, rs_km: 2.5, minimo: 400}
+
+custos:
+  comissao_pct: 5            # confirmar no edital de cada leilão
+  taxa_adm: 0                # idem (algumas seguradoras cobram taxa fixa)
+  transferencia: 400         # vistoria + taxas Detran (média)
+  regularizacao:             # além da transferência
+    media: 1500              # CSV Inmetro + vistoria de sinistro
+    pequena: 300
+    nao_informada: 300
+  desagio_mercado:           # quanto o mercado desconta da FIPE pelo histórico
+    conservado: 0.00
+    nao_informada: 0.10
+    pequena: 0.15
+    media: 0.30
+    grande: 1.00
+
+whatsapp:
+  desconto_min: 0.35         # WhatsApp imediato se desconto >= 35%
+  lembrete_horas: 24         # lembrete antes do pregão para lotes nos filtros
+
+filtros:
+  - nome: motos-geral
+    tipos: [moto]
+    montas: [conservado, nao_informada, pequena, media]
+    excluir_flags: [remarcado, sem_documento, incendio, enchente]
+    ano_min: 2018
+    desconto_min: 0.20
+  - nome: carros-geral
+    tipos: [carro]
+    montas: [conservado, nao_informada, pequena, media]
+    excluir_flags: [remarcado, sem_documento, incendio, enchente]
+    ano_min: 2016
+    custo_max: 120000
+    desconto_min: 0.25
