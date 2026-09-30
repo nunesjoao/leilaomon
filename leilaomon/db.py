@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS lotes (
   tipo TEXT, marca TEXT, modelo TEXT, ano_fab INT, ano_mod INT, combustivel TEXT, km INT,
   descricao TEXT, observacoes TEXT, monta TEXT, flags TEXT,
   lance_inicial REAL, lance_atual REAL, tem_lance INT,
-  cidade TEXT, uf TEXT, lat REAL, lon REAL,
+  foto TEXT, cidade TEXT, uf TEXT, lat REAL, lon REAL,
   fipe_tentado INT DEFAULT 0, fipe_valor REAL, fipe_codigo TEXT, fipe_modelo TEXT, fipe_score REAL,
   frete REAL, custo_total REAL, preco_ref REAL, desconto REAL,
   detalhe_ok INT DEFAULT 0, primeira_vez TEXT, atualizado TEXT
@@ -30,6 +30,9 @@ class DB:
         self.con = sqlite3.connect(path)
         self.con.row_factory = sqlite3.Row
         self.con.executescript(SCHEMA)
+        cols = {r[1] for r in self.con.execute("PRAGMA table_info(lotes)")}
+        if "foto" not in cols:
+            self.con.execute("ALTER TABLE lotes ADD COLUMN foto TEXT")
 
     def get(self, lote_id: str):
         return self.con.execute("SELECT * FROM lotes WHERE id=?", (lote_id,)).fetchone()

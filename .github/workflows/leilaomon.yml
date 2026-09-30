@@ -11,12 +11,17 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency: leilaomon
 
 jobs:
   run:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
@@ -42,6 +47,7 @@ jobs:
           python -m leilaomon avaliar
           if [ "${{ inputs.seco }}" = "true" ]; then python -m leilaomon notificar --seco; else python -m leilaomon notificar; fi
           python -m leilaomon top -n 15
+          python -m leilaomon exportar
       - name: Persistir banco
         if: always()
         run: |
@@ -51,3 +57,13 @@ jobs:
           git diff --cached --quiet || git commit -m "db $(date -u +%F_%H%M)"
           git pull --rebase -X theirs || true
           git push
+      - name: Preparar página
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Publicar página
+        id: deploy
+        if: always()
+        continue-on-error: true
+        uses: actions/deploy-pages@v4

@@ -98,12 +98,14 @@ class RogerioMenezes:
             valor = brl(preco.get_text() if preco else card.get_text())
             tem_lance = quem.startswith("Por")
             texto = card.get_text(" ", strip=True)
+            img = card.find("img")
+            foto = (img.get("data-src") or img.get("src")) if img else None
             monta, flags = classificar(f"{selo} {titulo}", leilao["origem"])
             d = {
                 "id": f"rm:{lote_id}", "fonte": self.nome, "leilao_id": leilao["id"],
                 "leilao_titulo": leilao["texto"][:200], "origem": leilao["origem"],
                 "leilao_data": leilao["data"], "url": BASE + a["href"].replace(BASE, ""),
-                "titulo": titulo, "km": parse_km(texto), "tem_lance": int(tem_lance),
+                "titulo": titulo, "km": parse_km(texto), "tem_lance": int(tem_lance), "foto": foto,
                 "lance_inicial": valor, "lance_atual": valor,
                 **PATIO, **parse_titulo(titulo),
             }

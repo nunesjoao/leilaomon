@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Leilões</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔨</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E6E9EC; --surface:#F7F8F9; --ink:#1B2430; --muted:#55606D; --line:#C9CFD6;
+  --blue:#0A3A8C; --good:#177245; --warn:#9A6414; --bad:#A33A2B;
+  --font:"Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161B22; --surface:#1E252E; --ink:#E6EAEE; --muted:#9AA5B1; --line:#333D49;
+    --blue:#3E6FD1; --good:#3FA36F; --warn:#D39B3F; --bad:#D9695A; color-scheme: dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{background:var(--bg);color:var(--ink);font:17px/1.4 var(--font);-webkit-text-size-adjust:100%}
+button,input,select{font:inherit;color:inherit}
+a{color:var(--blue)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:12px;padding:12px 16px 4px;max-width:760px;margin:0 auto}
+.bar h1{font-size:26px;font-weight:700;margin:0;letter-spacing:-.01em}
+.bar .upd{color:var(--muted);font-size:14px;margin-left:auto;text-align:right}
+nav{display:flex;max-width:760px;margin:0 auto;padding:0 8px}
+nav button{flex:1;background:none;border:0;padding:10px 4px 12px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer}
+nav button[aria-selected=true]{color:var(--ink);border-color:var(--blue)}
+main{max-width:760px;margin:0 auto;padding:8px 16px 48px}
+section[hidden]{display:none}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+select,input[type=text],input[type=number],input[type=password]{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 10px;min-height:42px;width:100%}
+.controls select{width:auto;flex:1 1 140px}
+.count{color:var(--muted);font-size:15px;margin:6px 0 2px}
+
+/* lista de lotes */
+.lote{display:grid;grid-template-columns:92px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.lote img{width:92px;height:69px;object-fit:cover;border-radius:4px;background:var(--line)}
+.lote h2{font-size:17px;font-weight:600;margin:0 0 2px;line-height:1.2}
+.meta{color:var(--muted);font-size:15px}
+.nums{font-size:15px;margin-top:2px;font-variant-numeric:tabular-nums}
+.tag{font-weight:600}
+.tag.media{color:var(--warn)} .tag.grande{color:var(--bad)} .tag.pequena,.tag.conservado{color:var(--good)}
+.mon{color:var(--blue);font-size:14px;font-weight:600}
+
+/* placa Mercosul: o desconto */
+.placa{align-self:start;width:78px;border:2px solid var(--ink);border-radius:5px;background:#fff;color:#111;text-align:center;overflow:hidden;font-variant-numeric:tabular-nums}
+.placa i{display:block;background:#0A3A8C;color:#fff;font-style:normal;font-size:10px;font-weight:600;letter-spacing:.08em;padding:1px 0}
+.placa b{display:block;font-size:24px;font-weight:700;line-height:1.25;padding:1px 0 2px}
+.placa.sem b{font-size:16px;color:#666;padding:5px 0 5px}
+.placa.fraco b{color:#666}
+
+.det{grid-column:1/-1;display:none;font-size:15px;padding-top:4px}
+.lote.aberto .det{display:block}
+.det dl{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;margin:0 0 8px}
+.det dt{color:var(--muted)} .det dd{margin:0;font-variant-numeric:tabular-nums}
+
+/* monitoramentos */
+.mf{border-bottom:1px solid var(--line);padding:16px 0}
+.mf-head{display:flex;gap:10px;align-items:center}
+.mf-head input{font-weight:600;font-size:19px}
+div.f,label.f{display:block;margin:12px 0 0}
+div.f>span,label.f>span{display:block;color:var(--muted);font-size:15px;margin-bottom:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.checks{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:4px}
+.checks label{display:flex;align-items:center;gap:6px;min-height:32px}
+.checks input,.sw input{width:20px;height:20px;accent-color:var(--blue)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--blue);color:var(--blue);border-radius:999px;padding:3px 4px 3px 12px;font-weight:600;font-size:15px}
+.chip button{border:0;background:none;color:inherit;width:28px;height:28px;cursor:pointer;font-size:18px;line-height:1}
+.addrow{display:flex;gap:8px}
+.addrow input{flex:1}
+.btn{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:6px;padding:10px 16px;min-height:44px;font-weight:600;cursor:pointer}
+.btn.ghost{background:none;color:var(--blue)}
+.btn.danger{background:none;border-color:var(--bad);color:var(--bad)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.sw{display:flex;align-items:center;gap:8px;white-space:nowrap;color:var(--muted);font-size:15px}
+.note{color:var(--muted);font-size:15px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:6px;font-weight:600;max-width:92vw;z-index:9}
+.toast[hidden]{display:none}
+h3{font-size:20px;margin:22px 0 4px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>Leilões</h1>
+    <div class="upd" id="upd">carregando…</div>
+  </div>
+  <nav role="tablist">
+    <button role="tab" aria-selected="true" data-tab="lotes">Lotes</button>
+    <button role="tab" aria-selected="false" data-tab="mon">Monitoramentos</button>
+    <button role="tab" aria-selected="false" data-tab="aj">Ajustes</button>
+  </nav>
+</header>
+
+<main>
+<section id="tab-lotes">
+  <div class="controls">
+    <select id="fMostrar">
+      <option value="mon">Nos meus monitoramentos</option>
+      <option value="todos">Todos os lotes</option>
+    </select>
+    <select id="fOrdem">
+      <option value="desc">Maior desconto</option>
+      <option value="custo">Menor custo</option>
+      <option value="data">Pregão mais próximo</option>
+      <option value="novo">Mais recentes</option>
+    </select>
+    <select id="fTipo">
+      <option value="">Carros e motos</option>
+      <option value="moto">Só motos</option>
+      <option value="carro">Só carros</option>
+    </select>
+  </div>
+  <input type="text" id="fBusca" placeholder="Buscar modelo, marca…" autocomplete="off">
+  <div class="count" id="count"></div>
+  <div id="lista"></div>
+</section>
+
+<section id="tab-mon" hidden>
+  <p class="note">Cada monitoramento define o que chega por e-mail e WhatsApp. Um lote entra se atender a todos os campos preenchidos; campo vazio não restringe.</p>
+  <div id="mons"></div>
+  <div class="actions">
+    <button class="btn ghost" id="addMon">Adicionar monitoramento</button>
+    <button class="btn" id="salvarMon">Salvar monitoramentos</button>
+  </div>
+  <p class="note" id="semToken1" hidden>Para salvar, informe o token do GitHub em Ajustes.</p>
+</section>
+
+<section id="tab-aj" hidden>
+  <h3>Destino do frete</h3>
+  <p class="note">O frete de cada lote é estimado do pátio até aqui. Mudanças valem a partir da próxima execução.</p>
+  <label class="f"><span>Nome do local</span><input type="text" id="dNome"></label>
+  <div class="grid2">
+    <label class="f"><span>Latitude</span><input type="number" step="any" id="dLat"></label>
+    <label class="f"><span>Longitude</span><input type="number" step="any" id="dLon"></label>
+  </div>
+  <div class="actions"><button class="btn ghost" id="geo">Usar minha localização</button></div>
+
+  <h3>Alertas no WhatsApp</h3>
+  <div class="grid2">
+    <label class="f"><span>Alertar com desconto a partir de (%)</span><input type="number" id="wDesc" min="0" max="100"></label>
+    <label class="f"><span>Lembrete antes do pregão (horas)</span><input type="number" id="wHoras" min="1" max="168"></label>
+  </div>
+  <div class="actions"><button class="btn" id="salvarAj">Salvar ajustes</button></div>
+
+  <h3>Execução</h3>
+  <p class="note">O sistema roda sozinho a cada 3 horas. Use o botão para rodar agora; os dados aparecem aqui em cerca de 5 minutos.</p>
+  <div class="actions"><button class="btn" id="rodar">Rodar agora</button></div>
+
+  <h3>Token do GitHub</h3>
+  <p class="note">Necessário para salvar e rodar. Fica guardado só neste aparelho.</p>
+  <label class="f"><span>Token (github_pat_…)</span><input type="password" id="tok" autocomplete="off"></label>
+  <div class="actions">
+    <button class="btn" id="salvarTok">Guardar token</button>
+    <button class="btn danger" id="apagarTok">Apagar</button>
+  </div>
+</section>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+const REPO = "nunesjoao/leilaomon";
+const API = `https://api.github.com/repos/${REPO}`;
+const MONTAS = [["conservado","Conservado"],["nao_informada","Não informada"],["pequena","Pequena monta"],["media","Média monta"]];
+const FLAGS = [["remarcado","Chassi remarcado"],["sem_documento","Sem documento"],["sem_chave","Sem chave"],["nao_funciona","Não funciona"],["enchente","Enchente"],["incendio","Incêndio"],["roubo_furto","Roubo/furto"]];
+const NOME_MONTA = Object.fromEntries([...MONTAS,["grande","Grande monta"]]);
+const $ = s => document.querySelector(s);
+const brl = v => v == null ? "—" : v.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
+const norm = s => (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase();
+const esc = s => String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store = { get(k){try{return localStorage.getItem(k)}catch{return null}}, set(k,v){try{localStorage.setItem(k,v)}catch{}}, del(k){try{localStorage.removeItem(k)}catch{}} };
+
+let DADOS = {lotes:[]}, PAINEL = null, painelSha = null, abertos = new Set();
+
+function toast(msg, ms=3200){ const t=$("#toast"); t.textContent=msg; t.hidden=false; clearTimeout(t._h); t._h=setTimeout(()=>t.hidden=true, ms); }
+function token(){ return store.get("gh_token") || ""; }
+async function gh(path, opts={}){
+  const r = await fetch(API+path,{...opts,headers:{"Accept":"application/vnd.github+json","Authorization":`Bearer ${token()}`,...(opts.headers||{})}});
+  if(!r.ok) throw new Error(`GitHub respondeu ${r.status}${r.status===401||r.status===403?": token inválido ou sem permissão":""}`);
+  return r.status===204 ? null : r.json();
+}
+const b64dec = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g,"")),c=>c.charCodeAt(0)));
+const b64enc = s => { const b=new TextEncoder().encode(s); let bin=""; b.forEach(x=>bin+=String.fromCharCode(x)); return btoa(bin); };
+
+async function carregarPainel(){
+  if(token()){
+    try{ const f = await gh("/contents/painel.json?ref=main"); painelSha=f.sha; return JSON.parse(b64dec(f.content)); }
+    catch(e){ toast(e.message); }
+  }
+  const r = await fetch("painel.json?"+Date.now()); return r.json();
+}
+async function salvarPainel(msg){
+  if(!token()){ toast("Informe o token do GitHub em Ajustes"); return false; }
+  try{
+    if(!painelSha){ const f = await gh("/contents/painel.json?ref=main"); painelSha=f.sha; }
+    const body = {message:msg, content:b64enc(JSON.stringify(PAINEL,null,2)+"\n"), sha:painelSha, branch:"main"};
+    const r = await gh("/contents/painel.json",{method:"PUT",body:JSON.stringify(body)});
+    painelSha = r.content.sha; return true;
+  }catch(e){ toast(e.message, 5000); return false; }
+}
+
+/* mesma regra do backend (avaliacao.casa) */
+function casa(l, f){
+  if(f.ativo===false) return false;
+  if(f.tipos?.length && !f.tipos.includes(l.tipo)) return false;
+  if(f.montas?.length && !f.montas.includes(l.monta||"nao_informada")) return false;
+  if((f.excluir_flags||[]).some(x=>l.flags.includes(x))) return false;
+  if(f.marcas?.length && !f.marcas.some(m=>norm(l.marca).includes(norm(m)))) return false;
+  if(f.modelos?.length && !f.modelos.some(m=>norm(l.titulo).includes(norm(m)))) return false;
+  const lance = l.lance_atual || l.lance_inicial;
+  if(f.lance_max && (!lance || lance > f.lance_max)) return false;
+  if(f.ano_min && (l.ano_mod||0) < f.ano_min) return false;
+  if(f.km_max && l.km && l.km > f.km_max) return false;
+  if(f.custo_max && (l.custo_total ?? 1e12) > f.custo_max) return false;
+  if(f.desconto_min != null){
+    if(l.desconto == null) return !!f.aceitar_sem_fipe;
+    if(l.desconto < f.desconto_min) return false;
+  }
+  return true;
+}
+
+function renderLotes(){
+  const mostrar=$("#fMostrar").value, ordem=$("#fOrdem").value, tipo=$("#fTipo").value, busca=norm($("#fBusca").value.trim());
+  const fs = PAINEL?.filtros || [];
+  let ls = DADOS.lotes.map(l=>({...l, _mons: fs.filter(f=>casa(l,f)).map(f=>f.nome)}));
+  if(mostrar==="mon") ls = ls.filter(l=>l._mons.length);
+  if(tipo) ls = ls.filter(l=>l.tipo===tipo);
+  if(busca) ls = ls.filter(l=>norm(l.titulo).includes(busca));
+  const key = {desc:l=>-(l.desconto ?? -9), custo:l=>l.custo_total ?? 1e12, data:l=>l.leilao_data, novo:l=>-Date.parse(l.primeira_vez)}[ordem];
+  ls.sort((a,b)=>{const x=key(a),y=key(b); return x<y?-1:x>y?1:0});
+  $("#count").textContent = `${ls.length} ${ls.length===1?"lote":"lotes"}`;
+  if(!ls.length){
+    $("#lista").innerHTML = `<p class="note">${mostrar==="mon" ? "Nenhum lote atende aos seus monitoramentos agora. Veja todos os lotes ou ajuste os monitoramentos." : "Nenhum lote encontrado."}</p>`;
+    return;
+  }
+  $("#lista").innerHTML = ls.map(l=>{
+    const d=l.desconto, lance=l.lance_atual||l.lance_inicial;
+    const placa = d==null ? `<div class="placa sem"><i>FIPE</i><b>s/ ref.</b></div>`
+      : `<div class="placa${d<0.15?" fraco":""}"><i>DESCONTO</i><b>${Math.round(d*100)}%</b></div>`;
+    const quando = new Date(l.leilao_data).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+    const hist = (l.historico||[]).map(([t,v])=>`${new Date(t).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}: ${brl(v)}`).join("<br>");
+    return `<article class="lote${abertos.has(l.id)?" aberto":""}" data-id="${esc(l.id)}">
+      ${l.foto?`<img src="${esc(l.foto)}" alt="" loading="lazy">`:`<div></div>`}
+      <div>
+        <h2>${esc(l.titulo)}</h2>
+        <div class="meta"><span class="tag ${esc(l.monta)}">${esc(NOME_MONTA[l.monta]||"Não informada")}</span>${l.km?`, ${l.km.toLocaleString("pt-BR")} km`:""}. Pregão ${quando}</div>
+        <div class="nums">${l.tem_lance?"Lance atual":"Lance inicial"} ${brl(lance)}. Custo real ${brl(l.custo_total)}</div>
+        ${l._mons.length?`<div class="mon">${l._mons.map(esc).join(", ")}</div>`:""}
+      </div>
+      ${placa}
+      <div class="det">
+        <dl>
+          <dt>FIPE</dt><dd>${brl(l.fipe_valor)}${l.fipe_modelo?` (${esc(l.fipe_modelo)})`:""}</dd>
+          <dt>Referência</dt><dd>${brl(l.preco_ref)} (FIPE ajustada pela monta)</dd>
+          <dt>Frete</dt><dd>${brl(l.frete)} desde ${esc(l.cidade||"?")}/${esc(l.uf||"?")}</dd>
+          <dt>Origem</dt><dd>${esc(l.origem||"—")}</dd>
+          ${l.flags.length?`<dt>Alertas</dt><dd>${l.flags.map(f=>esc((FLAGS.find(x=>x[0]===f)||[,f])[1])).join(", ")}</dd>`:""}
+          ${l.observacoes?`<dt>Observações</dt><dd>${esc(l.observacoes)}</dd>`:""}
+          ${hist?`<dt>Lances</dt><dd>${hist}</dd>`:""}
+        </dl>
+        <a href="${esc(l.url)}" target="_blank" rel="noopener">Abrir no site do leiloeiro</a>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+/* ---------- editor de monitoramentos ---------- */
+function sugestoes(){
+  const set = new Set();
+  DADOS.lotes.forEach(l=>{ const w=(l.modelo||"").split(" ").filter(Boolean); if(w[0]) set.add(w[0]); if(w[1]) set.add(w[0]+" "+w[1]); });
+  return [...set].sort();
+}
+function renderMons(){
+  const fs = PAINEL.filtros;
+  $("#mons").innerHTML = fs.map((f,i)=>`
+    <div class="mf" data-i="${i}">
+      <div class="mf-head">
+        <input type="text" data-k="nome" value="${esc(f.nome)}" aria-label="Nome do monitoramento">
+        <label class="sw"><input type="checkbox" data-k="ativo" ${f.ativo!==false?"checked":""}> Ativo</label>
+      </div>
+      <label class="f"><span>Tipo</span>
+        <select data-k="tipos">
+          <option value="" ${!f.tipos?.length||f.tipos.length===2?"selected":""}>Carros e motos</option>
+          <option value="moto" ${f.tipos?.length===1&&f.tipos[0]==="moto"?"selected":""}>Motos</option>
+          <option value="carro" ${f.tipos?.length===1&&f.tipos[0]==="carro"?"selected":""}>Carros</option>
+        </select></label>
+      <div class="f"><span>Modelos (qualquer um; vazio = todos)</span>
+        <div class="addrow"><input type="text" list="dlModelos" data-add="modelos" placeholder="ex.: Ninja 400, Jimny"><button class="btn ghost" data-addbtn="modelos">Incluir</button></div>
+        <div class="chips">${(f.modelos||[]).map((m,j)=>`<span class="chip">${esc(m)}<button data-del="modelos" data-j="${j}" aria-label="Remover ${esc(m)}">×</button></span>`).join("")}</div>
+      </div>
+      <div class="f"><span>Marcas (vazio = todas)</span>
+        <div class="addrow"><input type="text" data-add="marcas" placeholder="ex.: Honda"><button class="btn ghost" data-addbtn="marcas">Incluir</button></div>
+        <div class="chips">${(f.marcas||[]).map((m,j)=>`<span class="chip">${esc(m)}<button data-del="marcas" data-j="${j}" aria-label="Remover ${esc(m)}">×</button></span>`).join("")}</div>
+      </div>
+      <div class="grid2">
+        <label class="f"><span>Lance máximo (R$)</span><input type="number" data-k="lance_max" value="${f.lance_max??""}" inputmode="numeric"></label>
+        <label class="f"><span>Custo real máximo (R$)</span><input type="number" data-k="custo_max" value="${f.custo_max??""}" inputmode="numeric"></label>
+        <label class="f"><span>Ano mínimo</span><input type="number" data-k="ano_min" value="${f.ano_min??""}" inputmode="numeric"></label>
+        <label class="f"><span>Km máximo</span><input type="number" data-k="km_max" value="${f.km_max??""}" inputmode="numeric"></label>
+        <label class="f"><span>Desconto mínimo (%)</span><input type="number" data-k="desconto_min" value="${f.desconto_min!=null?Math.round(f.desconto_min*100):""}" inputmode="numeric"></label>
+      </div>
+      <div class="f"><span>Condições aceitas</span>
+        <div class="checks">${MONTAS.map(([k,n])=>`<label><input type="checkbox" data-set="montas" value="${k}" ${(f.montas||[]).includes(k)?"checked":""}>${n}</label>`).join("")}</div></div>
+      <div class="f"><span>Descartar lotes com</span>
+        <div class="checks">${FLAGS.map(([k,n])=>`<label><input type="checkbox" data-set="excluir_flags" value="${k}" ${(f.excluir_flags||[]).includes(k)?"checked":""}>${n}</label>`).join("")}</div></div>
+      <div class="checks" style="margin-top:10px"><label><input type="checkbox" data-k="aceitar_sem_fipe" ${f.aceitar_sem_fipe?"checked":""}>Incluir lotes sem cotação FIPE</label></div>
+      <div class="actions"><button class="btn danger" data-rm>Excluir monitoramento</button></div>
+    </div>`).join("") + `<datalist id="dlModelos">${sugestoes().map(s=>`<option value="${esc(s)}">`).join("")}</datalist>`;
+  $("#semToken1").hidden = !!token();
+}
+function lerMon(el){
+  const f = PAINEL.filtros[+el.dataset.i];
+  const num = k => { const v=el.querySelector(`[data-k="${k}"]`).value; return v===""?null:+v; };
+  f.nome = el.querySelector('[data-k="nome"]').value.trim() || "sem nome";
+  f.ativo = el.querySelector('[data-k="ativo"]').checked;
+  const t = el.querySelector('[data-k="tipos"]').value; f.tipos = t ? [t] : ["carro","moto"];
+  ["lance_max","custo_max","ano_min","km_max"].forEach(k=>{ const v=num(k); if(v==null) delete f[k]; else f[k]=v; });
+  const d = num("desconto_min"); if(d==null) delete f.desconto_min; else f.desconto_min = d/100;
+  f.aceitar_sem_fipe = el.querySelector('[data-k="aceitar_sem_fipe"]').checked;
+  ["montas","excluir_flags"].forEach(k=>f[k]=[...el.querySelectorAll(`[data-set="${k}"]:checked`)].map(x=>x.value));
+}
+$("#mons").addEventListener("click", e=>{
+  const el = e.target.closest(".mf"); if(!el) return;
+  const f = PAINEL.filtros[+el.dataset.i];
+  if(e.target.dataset.addbtn){
+    e.preventDefault(); lerMon(el);
+    const k=e.target.dataset.addbtn, inp=el.querySelector(`[data-add="${k}"]`), v=inp.value.trim();
+    if(v){ f[k]=[...(f[k]||[]), v]; renderMons(); renderLotes(); }
+  } else if(e.target.dataset.del){
+    e.preventDefault(); lerMon(el); f[e.target.dataset.del].splice(+e.target.dataset.j,1); renderMons(); renderLotes();
+  } else if(e.target.hasAttribute("data-rm")){
+    if(confirm(`Excluir "${f.nome}"?`)){ PAINEL.filtros.splice(+el.dataset.i,1); renderMons(); renderLotes(); }
+  }
+});
+$("#mons").addEventListener("keydown", e=>{ if(e.key==="Enter" && e.target.dataset.add){ e.preventDefault(); e.target.closest(".addrow").querySelector("button").click(); }});
+$("#mons").addEventListener("change", e=>{ const el=e.target.closest(".mf"); if(el){ lerMon(el); renderLotes(); }});
+$("#addMon").onclick = ()=>{
+  PAINEL.filtros.push({nome:"novo monitoramento", ativo:true, tipos:["carro","moto"], modelos:[], marcas:[],
+    montas:["conservado","nao_informada","pequena","media"], excluir_flags:["remarcado","sem_documento","incendio","enchente"]});
+  renderMons(); document.querySelector(".mf:last-of-type input")?.focus();
+};
+$("#salvarMon").onclick = async e=>{
+  document.querySelectorAll(".mf").forEach(lerMon);
+  e.target.disabled=true;
+  if(await salvarPainel("painel: monitoramentos")) toast("Monitoramentos salvos. Valem na próxima execução.");
+  e.target.disabled=false; renderLotes();
+};
+
+/* ---------- ajustes ---------- */
+function renderAj(){
+  $("#dNome").value = PAINEL.destino?.nome||""; $("#dLat").value = PAINEL.destino?.lat??""; $("#dLon").value = PAINEL.destino?.lon??"";
+  $("#wDesc").value = Math.round((PAINEL.whatsapp?.desconto_min??0.35)*100); $("#wHoras").value = PAINEL.whatsapp?.lembrete_horas??24;
+  $("#tok").value = token() ? "••••••••" : "";
+}
+$("#geo").onclick = ()=>{
+  if(!navigator.geolocation){ toast("Localização indisponível neste navegador"); return; }
+  navigator.geolocation.getCurrentPosition(p=>{ $("#dLat").value=p.coords.latitude.toFixed(4); $("#dLon").value=p.coords.longitude.toFixed(4); if(!$("#dNome").value) $("#dNome").value="Minha localização"; toast("Localização preenchida. Toque em Salvar ajustes."); },
+    ()=>toast("Não foi possível obter a localização"));
+};
+$("#salvarAj").onclick = async e=>{
+  PAINEL.destino = {nome:$("#dNome").value.trim(), lat:+$("#dLat").value, lon:+$("#dLon").value};
+  PAINEL.whatsapp = {desconto_min:(+$("#wDesc").value||35)/100, lembrete_horas:+$("#wHoras").value||24};
+  e.target.disabled=true;
+  if(await salvarPainel("painel: ajustes")) toast("Ajustes salvos. Valem na próxima execução.");
+  e.target.disabled=false;
+};
+$("#rodar").onclick = async e=>{
+  if(!token()){ toast("Informe o token do GitHub abaixo"); return; }
+  e.target.disabled=true;
+  try{ await gh("/actions/workflows/leilaomon.yml/dispatches",{method:"POST",body:JSON.stringify({ref:"main",inputs:{seco:false}})}); toast("Execução iniciada. Atualize a página em cerca de 5 minutos."); }
+  catch(err){ toast(err.message,5000); }
+  e.target.disabled=false;
+};
+$("#salvarTok").onclick = async ()=>{
+  const v=$("#tok").value.trim(); if(!v || v.startsWith("•")) return;
+  store.set("gh_token", v);
+  try{ await gh(""); toast("Token guardado neste aparelho"); PAINEL = await carregarPainel(); renderMons(); renderAj(); }
+  catch(err){ store.del("gh_token"); toast(err.message,5000); }
+};
+$("#apagarTok").onclick = ()=>{ store.del("gh_token"); painelSha=null; renderAj(); renderMons(); toast("Token apagado deste aparelho"); };
+
+/* ---------- navegação e carga ---------- */
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.setAttribute("aria-selected", x===b));
+  document.querySelectorAll("main>section").forEach(s=>s.hidden = s.id!=="tab-"+b.dataset.tab);
+  window.scrollTo(0,0);
+});
+$("#lista").addEventListener("click", e=>{
+  if(e.target.closest("a")) return;
+  const a=e.target.closest(".lote"); if(!a) return;
+  a.classList.toggle("aberto"); a.classList.contains("aberto") ? abertos.add(a.dataset.id) : abertos.delete(a.dataset.id);
+});
+["#fMostrar","#fOrdem","#fTipo"].forEach(s=>$(s).onchange=()=>{ store.set("pref"+s,$(s).value); renderLotes(); });
+$("#fBusca").oninput = renderLotes;
+["#fMostrar","#fOrdem","#fTipo"].forEach(s=>{ const v=store.get("pref"+s); if(v) $(s).value=v; });
+
+(async ()=>{
+  try{
+    const [dados, painel] = await Promise.all([fetch("lotes.json?"+Date.now()).then(r=>r.json()), carregarPainel()]);
+    DADOS = dados; PAINEL = painel;
+    $("#upd").textContent = "Atualizado " + new Date(dados.gerado).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+    renderLotes(); renderMons(); renderAj();
+  }catch(e){
+    $("#upd").textContent = "";
+    $("#lista").innerHTML = `<p class="note">Não foi possível carregar os dados (${esc(e.message)}). Tente atualizar a página; se persistir, rode o sistema em Ajustes.</p>`;
+  }
+})();
+</script>
+</body>
+</html>

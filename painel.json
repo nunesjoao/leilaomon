@@ -1,0 +1,60 @@
+{
+  "destino": {
+    "lat": -22.9068,
+    "lon": -43.1729,
+    "nome": "Provisório (centro do Rio)"
+  },
+  "whatsapp": {
+    "desconto_min": 0.35,
+    "lembrete_horas": 24
+  },
+  "filtros": [
+    {
+      "nome": "motos-geral",
+      "tipos": [
+        "moto"
+      ],
+      "montas": [
+        "conservado",
+        "nao_informada",
+        "pequena",
+        "media"
+      ],
+      "excluir_flags": [
+        "remarcado",
+        "sem_documento",
+        "incendio",
+        "enchente"
+      ],
+      "ano_min": 2018,
+      "desconto_min": 0.2,
+      "ativo": true,
+      "modelos": [],
+      "marcas": []
+    },
+    {
+      "nome": "carros-geral",
+      "tipos": [
+        "carro"
+      ],
+      "montas": [
+        "conservado",
+        "nao_informada",
+        "pequena",
+        "media"
+      ],
+      "excluir_flags": [
+        "remarcado",
+        "sem_documento",
+        "incendio",
+        "enchente"
+      ],
+      "ano_min": 2016,
+      "custo_max": 120000,
+      "desconto_min": 0.25,
+      "ativo": true,
+      "modelos": [],
+      "marcas": []
+    }
+  ]
+}

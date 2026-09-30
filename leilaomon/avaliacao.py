@@ -1,6 +1,8 @@
 import json
 import math
 import re
+
+from .parsing import norm
 from datetime import datetime
 
 
@@ -49,7 +51,12 @@ def casa(lote, f: dict) -> bool:
     flags = set(json.loads(lote["flags"] or "[]"))
     if flags & set(f.get("excluir_flags", [])):
         return False
-    if f.get("marcas") and not any(m.upper() in (lote["marca"] or "") for m in f["marcas"]):
+    if f.get("marcas") and not any(norm(m) in norm(lote["marca"]) for m in f["marcas"]):
+        return False
+    if f.get("modelos") and not any(norm(m) in norm(lote["titulo"]) for m in f["modelos"]):
+        return False
+    lance = lote["lance_atual"] or lote["lance_inicial"]
+    if f.get("lance_max") and (not lance or lance > f["lance_max"]):
         return False
     if f.get("modelo_regex") and not re.search(f["modelo_regex"], lote["titulo"] or "", re.I):
         return False

@@ -7,6 +7,7 @@
   python -m leilaomon teste-notificacao
 """
 import argparse
+import json
 import logging
 import os
 import sys
@@ -106,6 +107,33 @@ def notificar(db, cfg, seco=False):
     log.info("notificados: %d no digest, %d urgentes", len(digest), len(urgentes))
 
 
+CAMPOS_EXPORT = ["id", "url", "foto", "titulo", "tipo", "marca", "modelo", "ano_fab", "ano_mod", "km",
+                 "monta", "flags", "origem", "leilao_data", "lance_inicial", "lance_atual", "tem_lance",
+                 "cidade", "uf", "fipe_valor", "fipe_modelo", "frete", "custo_total", "preco_ref", "desconto",
+                 "observacoes", "primeira_vez"]
+
+
+def exportar(db, cfg, destino="site"):
+    """Gera site/lotes.json + copia web/ para publicação no GitHub Pages."""
+    import shutil
+    from datetime import datetime
+    os.makedirs(destino, exist_ok=True)
+    lotes = []
+    for l in db.ativos():
+        d = {k: l[k] for k in CAMPOS_EXPORT}
+        d["flags"] = json.loads(d["flags"] or "[]")
+        hist = db.con.execute("SELECT ts, valor FROM historico_lances WHERE lote_id=? ORDER BY ts", (l["id"],))
+        d["historico"] = [[t, v] for t, v in hist]
+        lotes.append(d)
+    json.dump({"gerado": datetime.now().isoformat(timespec="minutes"), "lotes": lotes},
+              open(f"{destino}/lotes.json", "w", encoding="utf-8"), ensure_ascii=False)
+    for f in os.listdir("web"):
+        shutil.copy(os.path.join("web", f), destino)
+    if os.path.exists("painel.json"):
+        shutil.copy("painel.json", destino)
+    log.info("exportados %d lotes para %s/", len(lotes), destino)
+
+
 def top(db, n):
     rows = [l for l in db.ativos() if l["desconto"] is not None]
     rows.sort(key=lambda l: -l["desconto"])
@@ -116,13 +144,16 @@ def top(db, n):
 
 def main():
     p = argparse.ArgumentParser(prog="leilaomon")
-    p.add_argument("cmd", choices=["run", "coletar", "avaliar", "notificar", "top", "teste-notificacao"])
+    p.add_argument("cmd", choices=["run", "coletar", "avaliar", "notificar", "top", "teste-notificacao", "exportar"])
     p.add_argument("-c", "--config", default="config.yaml")
     p.add_argument("-n", type=int, default=20)
     p.add_argument("--seco", action="store_true", help="não envia, só imprime")
     a = p.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     cfg = yaml.safe_load(open(a.config, encoding="utf-8"))
+    if os.path.exists("painel.json"):
+        cfg.update(json.load(open("painel.json", encoding="utf-8")))
+    cfg["filtros"] = [f for f in cfg.get("filtros", []) if f.get("ativo", True)]
     db = DB(cfg.get("db", "leiloes.db"))
 
     if a.cmd in ("run", "coletar"):
@@ -131,6 +162,8 @@ def main():
         avaliar_todos(db, cfg)
     if a.cmd in ("run", "notificar"):
         notificar(db, cfg, seco=a.seco)
+    if a.cmd == "exportar":
+        exportar(db, cfg)
     if a.cmd == "top":
         top(db, a.n)
     if a.cmd == "teste-notificacao":

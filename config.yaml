@@ -1,8 +1,6 @@
 db: leiloes.db
 fontes: [rogeriomenezes]
 
-# Onde você vai receber o veículo (frete é calculado até aqui)
-destino: {lat: -22.9068, lon: -43.1729}   # AJUSTE
 
 frete:
   fator_rodoviario: 1.3      # distância em linha reta -> estrada
@@ -26,21 +24,4 @@ custos:
     media: 0.30
     grande: 1.00
 
-whatsapp:
-  desconto_min: 0.35         # WhatsApp imediato se desconto >= 35%
-  lembrete_horas: 24         # lembrete antes do pregão para lotes nos filtros
-
-filtros:
-  - nome: motos-geral
-    tipos: [moto]
-    montas: [conservado, nao_informada, pequena, media]
-    excluir_flags: [remarcado, sem_documento, incendio, enchente]
-    ano_min: 2018
-    desconto_min: 0.20
-  - nome: carros-geral
-    tipos: [carro]
-    montas: [conservado, nao_informada, pequena, media]
-    excluir_flags: [remarcado, sem_documento, incendio, enchente]
-    ano_min: 2016
-    custo_max: 120000
-    desconto_min: 0.25
+# destino, whatsapp e filtros ficam em painel.json (editados pela página)
