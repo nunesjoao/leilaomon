@@ -1,117 +1,35 @@
-2026-09-30 02:55:00,819 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/ "HTTP/1.1 200 OK"
-2026-09-30 02:55:02,363 INFO rogeriomenezes: 10 leilões de veículos na agenda
-2026-09-30 02:55:02,440 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:04,066 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=2 "HTTP/1.1 200 OK"
-2026-09-30 02:55:05,713 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=3 "HTTP/1.1 200 OK"
-2026-09-30 02:55:07,326 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=4 "HTTP/1.1 200 OK"
-2026-09-30 02:55:08,941 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=5 "HTTP/1.1 200 OK"
-2026-09-30 02:55:10,576 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=6 "HTTP/1.1 200 OK"
-2026-09-30 02:55:12,197 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=7 "HTTP/1.1 200 OK"
-2026-09-30 02:55:13,809 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=8 "HTTP/1.1 200 OK"
-2026-09-30 02:55:15,413 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=9 "HTTP/1.1 200 OK"
-2026-09-30 02:55:16,927 INFO   leilão 1626 (2026-10-01T13:00): 152 lotes
-2026-09-30 02:55:17,146 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:18,753 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=2 "HTTP/1.1 200 OK"
-2026-09-30 02:55:20,345 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=3 "HTTP/1.1 200 OK"
-2026-09-30 02:55:21,859 INFO   leilão 1627 (2026-10-05T13:00): 32 lotes
-2026-09-30 02:55:21,954 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/753?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:23,467 INFO   leilão 753 (2026-10-07T13:00): 0 lotes
-2026-09-30 02:55:23,531 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1443?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:25,043 INFO   leilão 1443 (2026-10-08T13:00): 0 lotes
-2026-09-30 02:55:25,117 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/779?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:26,630 INFO   leilão 779 (2026-10-14T13:00): 0 lotes
-2026-09-30 02:55:26,699 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/399?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:28,212 INFO   leilão 399 (2026-10-15T13:00): 0 lotes
-2026-09-30 02:55:28,280 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1328?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:29,792 INFO   leilão 1328 (2026-10-19T13:00): 0 lotes
-2026-09-30 02:55:29,862 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1332?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:31,373 INFO   leilão 1332 (2026-10-21T13:00): 0 lotes
-2026-09-30 02:55:31,444 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/751?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:32,957 INFO   leilão 751 (2026-10-22T13:00): 0 lotes
-2026-09-30 02:55:33,027 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1270?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:34,541 INFO   leilão 1270 (2026-11-09T13:00): 0 lotes
-2026-09-30 02:55:35,699 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/31/models/10063/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:36,621 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/31/models/10063/years/2024-6 "HTTP/1.1 200 OK"
-2026-09-30 02:55:37,522 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/33/models "HTTP/1.1 200 OK"
-2026-09-30 02:55:38,590 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/33/models/11316/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:39,598 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/33/models/9348/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:40,529 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/33/models/8408/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:41,489 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/33/models/8408/years/2018-1 "HTTP/1.1 200 OK"
-2026-09-30 02:55:42,480 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/25/models/11726/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:43,380 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/25/models/11726/years/2024-5 "HTTP/1.1 200 OK"
-2026-09-30 02:55:44,275 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/21/models/12039/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:44,771 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/21/models/9493/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:45,262 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/21/models/9493/years/2025-5 "HTTP/1.1 200 OK"
-2026-09-30 02:55:45,759 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/43/models/9336/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:46,253 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/43/models/9336/years/2022-5 "HTTP/1.1 200 OK"
-2026-09-30 02:55:47,204 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/11888/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:48,142 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/11855/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:49,064 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/11856/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:49,986 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/11857/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:50,463 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/11858/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:51,409 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/6531/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:51,892 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/6531/years/2017-5 "HTTP/1.1 200 OK"
-2026-09-30 02:55:52,859 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/22/models/7371/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:53,751 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/22/models/6159/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:54,683 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/22/models/6160/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:55,179 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/9726/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:55,666 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/8934/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:56,589 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/8935/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:57,059 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/8936/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:57,560 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/8937/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:58,039 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/22/models/8006/years/2019-5 "HTTP/1.1 200 OK"
-2026-09-30 02:55:58,938 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/59/models/4690/years "HTTP/1.1 200 OK"
-2026-09-30 02:55:59,875 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/59/models/4930/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:00,390 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/59/models/2528/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:00,912 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/59/models/2529/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:01,890 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/59/models/2529/years/2008-1 "HTTP/1.1 200 OK"
-2026-09-30 02:56:02,396 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/9588/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:03,473 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/6584/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:03,975 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/6585/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:04,911 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/7456/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:05,832 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/7257/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:06,314 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/21/models/524/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:06,791 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/21/models/524/years/2007-1 "HTTP/1.1 200 OK"
-2026-09-30 02:56:07,301 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/995/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:07,786 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/995/years/2012-5 "HTTP/1.1 200 OK"
-2026-09-30 02:56:08,725 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/59/models/4689/years/2011-5 "HTTP/1.1 200 OK"
-2026-09-30 02:56:09,210 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/44/models/6545/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:10,183 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/44/models/6545/years/2013-5 "HTTP/1.1 200 OK"
-2026-09-30 02:56:10,689 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/22/models/6914/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:11,604 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/13/models/6835/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:12,508 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/13/models/7585/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:14,441 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/13/models/6152/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:16,385 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/21/models/10837/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:18,354 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/21/models/10837/years/2024-5 "HTTP/1.1 200 OK"
-2026-09-30 02:56:20,279 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/26/models/8858/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:22,244 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/26/models/8858/years/2022-5 "HTTP/1.1 200 OK"
-2026-09-30 02:56:24,202 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/5194/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:26,120 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/5194/years/2016-5 "HTTP/1.1 200 OK"
-2026-09-30 02:56:28,072 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/59/models/8070/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:29,569 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/59/models/2527/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:31,047 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/59/models/10107/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:32,961 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/59/models/10107/years/2024-5 "HTTP/1.1 200 OK"
-2026-09-30 02:56:34,451 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/43/models/1823/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:35,961 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/43/models/1824/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:37,882 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/43/models/1825/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:39,368 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/43/models/10572/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:40,880 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/43/models/10572/years/2025-1 "HTTP/1.1 200 OK"
-2026-09-30 02:56:42,366 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/13/models/11217/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:44,322 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/13/models/11217/years/2025-5 "HTTP/1.1 200 OK"
-2026-09-30 02:56:45,821 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/9300/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:47,303 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/56/models/9300/years/2022-5 "HTTP/1.1 200 OK"
-2026-09-30 02:56:49,267 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/1096/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:50,734 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/10401/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:52,217 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/4383/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:53,716 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/1097/years "HTTP/1.1 200 OK"
-2026-09-30 02:56:55,201 INFO HTTP Request: GET https://fipe.parallelum.com.br/api/v2/cars/brands/23/models/5107/years "HTTP/1.1 200 OK"
-[carros-geral]   99%     R$ 1.100  CITROëN JUMPY FURGAO PK 2020/2021 DIESEL
-[carros-geral]   99%     R$ 1.100  GM - CHEVROLET TRACKER T A 2022/2022 FLEX
-[carros-geral]   98%     R$ 2.300  BYD SONG PRO GL DM 1.5 2024/2025 HíBRIDO
-[carros-geral]   98%     R$ 2.300  HYUNDAI CRETA 1TF NLINE 2024/2025 FLEX
-[carros-geral]   98%     R$ 1.100  PEUGEOT 2008 ALLURE AT 1.6 2016/2017 FLEX
-[carros-geral]   95%     R$ 2.300  JEEP RENEGADE LNGTD AT 1.8 2017/2018 FLEX
-[carros-geral]   92%     R$ 2.300  RENAULT KWID INTENS 1.0MT 2018/2019 FLEX
+2026-09-30 02:59:13,643 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/ "HTTP/1.1 200 OK"
+2026-09-30 02:59:15,200 INFO rogeriomenezes: 10 leilões de veículos na agenda
+2026-09-30 02:59:15,275 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:59:16,878 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=2 "HTTP/1.1 200 OK"
+2026-09-30 02:59:18,480 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=3 "HTTP/1.1 200 OK"
+2026-09-30 02:59:20,077 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=4 "HTTP/1.1 200 OK"
+2026-09-30 02:59:21,676 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=5 "HTTP/1.1 200 OK"
+2026-09-30 02:59:23,291 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=6 "HTTP/1.1 200 OK"
+2026-09-30 02:59:24,887 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=7 "HTTP/1.1 200 OK"
+2026-09-30 02:59:26,485 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=8 "HTTP/1.1 200 OK"
+2026-09-30 02:59:28,075 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=9 "HTTP/1.1 200 OK"
+2026-09-30 02:59:29,584 INFO   leilão 1626 (2026-10-01T13:00): 152 lotes
+2026-09-30 02:59:29,823 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:59:31,421 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=2 "HTTP/1.1 200 OK"
+2026-09-30 02:59:33,008 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=3 "HTTP/1.1 200 OK"
+2026-09-30 02:59:34,518 INFO   leilão 1627 (2026-10-05T13:00): 32 lotes
+2026-09-30 02:59:34,616 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/753?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:59:36,124 INFO   leilão 753 (2026-10-07T13:00): 0 lotes
+2026-09-30 02:59:36,191 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1443?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:59:37,700 INFO   leilão 1443 (2026-10-08T13:00): 0 lotes
+2026-09-30 02:59:37,766 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/779?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:59:39,276 INFO   leilão 779 (2026-10-14T13:00): 0 lotes
+2026-09-30 02:59:39,335 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/399?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:59:40,845 INFO   leilão 399 (2026-10-15T13:00): 0 lotes
+2026-09-30 02:59:40,909 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1328?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:59:42,418 INFO   leilão 1328 (2026-10-19T13:00): 0 lotes
+2026-09-30 02:59:42,479 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1332?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:59:43,987 INFO   leilão 1332 (2026-10-21T13:00): 0 lotes
+2026-09-30 02:59:44,055 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/751?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:59:45,564 INFO   leilão 751 (2026-10-22T13:00): 0 lotes
+2026-09-30 02:59:45,626 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1270?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:59:47,135 INFO   leilão 1270 (2026-11-09T13:00): 0 lotes
 [carros-geral]   52%    R$ 33.800  BMW X1 S 2.0 I ACTIVE 2016/2016 FLEX
 [carros-geral]   47%    R$ 22.040  FIAT ARGO DRIVE 1.0 2022/2022 FLEX
 [motos-geral]   47%    R$ 13.910  MOTO KAWASAKI NINJA 500 2026/2026 GASOLINA
@@ -171,34 +89,34 @@
 [motos-geral]   22%    R$ 12.710  MOTO HONDA PCX 160 DLX ABS 2024/2024 GASOLINA
 [motos-geral]   21%    R$ 14.960  MOTO ROYAL ENFIELD HIMALAYAN 450 2025/2026 GASOLINA
 [motos-geral]   21%     R$ 8.660  MOTO HONDA CG 160 START 2022/2023 GASOLINA
-32 alertas urgentes pendentes
-  99%  custo    R$ 1.100  FIPE  R$ 112.316  pequena       CITROëN JUMPY FURGAO PK 2020/2021 DIESEL
-       https://www.rogeriomenezes.com.br/lote/143801/citroen-jumpy-furgao-pk-2020-2021-diesel
-  99%  custo    R$ 1.100  FIPE   R$ 89.556  pequena       GM - CHEVROLET TRACKER T A 2022/2022 FLEX
-       https://www.rogeriomenezes.com.br/lote/143855/gm-chevrolet-tracker-t-a-2022-2022-flex
-  98%  custo    R$ 1.100  FIPE   R$ 60.020  pequena       FIAT STRADA WORKING 1.4 2015/2015 FLEX
-       https://www.rogeriomenezes.com.br/lote/143854/fiat-strada-working-1-4-2015-2015-flex
-  98%  custo    R$ 2.300  FIPE  R$ 149.843  media         BYD SONG PRO GL DM 1.5 2024/2025 HíBRIDO
-       https://www.rogeriomenezes.com.br/lote/143802/byd-song-pro-gl-dm-1-5-2024-2025-hibrido
-  98%  custo    R$ 2.300  FIPE  R$ 147.427  media         HYUNDAI CRETA 1TF NLINE 2024/2025 FLEX
-       https://www.rogeriomenezes.com.br/lote/143853/hyundai-creta-1tf-nline-2024-2025-flex
-  98%  custo    R$ 1.100  FIPE   R$ 52.161  pequena       PEUGEOT 2008 ALLURE AT 1.6 2016/2017 FLEX
-       https://www.rogeriomenezes.com.br/lote/143799/peugeot-2008-allure-at-1-6-2016-2017-flex
-  96%  custo    R$ 1.100  FIPE   R$ 34.594  pequena       FORD KA SE 1.0 SD 2015/2015 FLEX
-       https://www.rogeriomenezes.com.br/lote/143858/ford-ka-se-1-0-sd-2015-2015-flex
-  96%  custo    R$ 1.100  FIPE   R$ 32.549  pequena       FIAT SIENA EL 1.4 2011/2012 FLEX
-       https://www.rogeriomenezes.com.br/lote/143803/fiat-siena-el-1-4-2011-2012-flex
-  95%  custo    R$ 2.300  FIPE   R$ 66.973  media         JEEP RENEGADE LNGTD AT 1.8 2017/2018 FLEX
-       https://www.rogeriomenezes.com.br/lote/143856/jeep-renegade-lngtd-at-1-8-2017-2018-flex
-  93%  custo    R$ 2.300  FIPE   R$ 50.452  media         FORD ECOSPORT FSL 1.6 2012/2013 FLEX
-       https://www.rogeriomenezes.com.br/lote/143798/ford-ecosport-fsl-1-6-2012-2013-flex
-  93%  custo    R$ 2.300  FIPE   R$ 44.293  media         HONDA CIVIC LXS 1.8 2008/2008 FLEX
-       https://www.rogeriomenezes.com.br/lote/143876/honda-civic-lxs-1-8-2008-2008-flex
-  92%  custo    R$ 2.300  FIPE   R$ 39.116  media         RENAULT KWID INTENS 1.0MT 2018/2019 FLEX
-       https://www.rogeriomenezes.com.br/lote/143859/renault-kwid-intens-1-0mt-2018-2019-flex
-  91%  custo    R$ 2.300  FIPE   R$ 34.753  media         GM - CHEVROLET COBALT 1.4 LT 2011/2012 FLEX
-       https://www.rogeriomenezes.com.br/lote/143877/gm-chevrolet-cobalt-1-4-lt-2011-2012-flex
-  90%  custo    R$ 2.300  FIPE   R$ 32.789  media         FIAT PUNTO ESSEN 1.6 DL 2011/2012 FLEX
-       https://www.rogeriomenezes.com.br/lote/143860/fiat-punto-essen-1-6-dl-2011-2012-flex
-  89%  custo      R$ 950  FIPE    R$ 9.886  pequena       MOTO HONDA CG 150 TITAN MIX EX 2010/2010 FLEX
-       https://www.rogeriomenezes.com.br/lote/143930/moto-honda-cg-150-titan-mix-ex-2010-2010-flex
+25 alertas urgentes pendentes
+  63%  custo    R$ 8.450  FIPE   R$ 26.572  pequena       FORD ECOSPORT XLS 1.6 2005/2006 FLEX
+       https://www.rogeriomenezes.com.br/lote/143776/ford-ecosport-xls-1-6-2005-2006-flex
+  60%  custo  R$ 132.500  FIPE  R$ 468.195  media         CAMINHÃO MERCEDES-BENZ ACTROS 2548S 2021/2021 DIESEL
+       https://www.rogeriomenezes.com.br/lote/143734/caminhao-mercedes-benz-actros-2548s-2021-2021-diesel
+  54%  custo    R$ 6.920  FIPE   R$ 21.285  media         MERCEDES-BENZ A 190 2004/2005 GASOLINA
+       https://www.rogeriomenezes.com.br/lote/143773/mercedes-benz-a-190-2004-2005-gasolina
+  54%  custo   R$ 13.700  FIPE   R$ 34.702  pequena       FORD FIESTA SE HA 1.6 2012/2013 FLEX
+       https://www.rogeriomenezes.com.br/lote/143779/ford-fiesta-se-ha-1-6-2012-2013-flex
+  52%  custo   R$ 33.800  FIPE  R$ 100.972  media         BMW X1 S 2.0 I ACTIVE 2016/2016 FLEX
+       https://www.rogeriomenezes.com.br/lote/143738/bmw-x1-s-2-0-i-active-2016-2016-flex
+  52%  custo   R$ 11.750  FIPE   R$ 34.673  media         CITROëN C3 PICASSO EXC A 1.6 2013/2013 FLEX
+       https://www.rogeriomenezes.com.br/lote/143780/citroen-c3-picasso-exc-a-1-6-2013-2013-flex
+  50%  custo   R$ 13.280  FIPE   R$ 31.427  pequena       VW - VOLKSWAGEN SPACEFOX ROUTE 1.6 2009/2010 FLEX
+       https://www.rogeriomenezes.com.br/lote/143884/vw-volkswagen-spacefox-route-1-6-2009-2010-flex
+  48%  custo   R$ 19.520  FIPE   R$ 53.352  media         FORD ECOSPORT FSL 1.6 2014/2015 FLEX
+       https://www.rogeriomenezes.com.br/lote/143735/ford-ecosport-fsl-1-6-2014-2015-flex
+  47%  custo   R$ 22.040  FIPE   R$ 59.921  media         FIAT ARGO DRIVE 1.0 2022/2022 FLEX
+       https://www.rogeriomenezes.com.br/lote/143883/fiat-argo-drive-1-0-2022-2022-flex
+  47%  custo   R$ 13.910  FIPE   R$ 37.733  media         MOTO KAWASAKI NINJA 500 2026/2026 GASOLINA
+       https://www.rogeriomenezes.com.br/lote/143808/moto-kawasaki-ninja-500-2026-2026-gasolina
+  47%  custo    R$ 5.780  FIPE   R$ 12.183  nao_informada MOTO YAMAHA YS 150 2015/2016 FLEX
+       https://www.rogeriomenezes.com.br/lote/143937/moto-yamaha-ys-150-2015-2016-flex
+  47%  custo   R$ 14.270  FIPE   R$ 38.419  media         FORD FIESTA SEDAN 1.6 2013/2014 FLEX
+       https://www.rogeriomenezes.com.br/lote/143764/ford-fiesta-sedan-1-6-2013-2014-flex
+  46%  custo   R$ 27.500  FIPE   R$ 73.246  media         SUZUKI JIMNY 4 ALL 1.3 2017/2017 GASOLINA
+       https://www.rogeriomenezes.com.br/lote/143739/suzuki-jimny-4-all-1-3-2017-2017-gasolina
+  46%  custo   R$ 23.930  FIPE   R$ 63.713  media         TOYOTA ETIOS SD PLT 1.5 AT 2017/2018 FLEX
+       https://www.rogeriomenezes.com.br/lote/143754/toyota-etios-sd-plt-1-5-at-2017-2018-flex
+  46%  custo   R$ 17.060  FIPE   R$ 37.023  pequena       RENAULT KWID INTENS 1.0MT 2018/2018 FLEX
+       https://www.rogeriomenezes.com.br/lote/143755/renault-kwid-intens-1-0mt-2018-2018-flex
