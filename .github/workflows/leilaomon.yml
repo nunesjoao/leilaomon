@@ -36,6 +36,9 @@ jobs:
           CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
           FIPE_TOKEN: ${{ secrets.FIPE_TOKEN }}
         run: |
+          set -o pipefail
+          exec > >(tee ultimo_run.log) 2>&1
+          python -m leilaomon.diag
           python -m leilaomon coletar
           python -m leilaomon avaliar
           if [ "${{ inputs.seco }}" = "true" ]; then python -m leilaomon notificar --seco; else python -m leilaomon notificar; fi
@@ -45,6 +48,6 @@ jobs:
         run: |
           git config user.name "leilaomon-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add -f leiloes.db
+          git add -f leiloes.db ultimo_run.log diag || true
           git diff --cached --quiet || git commit -m "db $(date -u +%F_%H%M)"
           git push
