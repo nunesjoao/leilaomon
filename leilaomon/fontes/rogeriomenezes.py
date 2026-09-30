@@ -83,33 +83,32 @@ class RogerioMenezes:
 
     def _cards(self, soup: BeautifulSoup, leilao: dict) -> list[dict]:
         out = []
-        for h in soup.find_all(["h2", "h3", "h4"]):
-            a = h.find("a", href=RE_LOTE)
-            if not a:
+        for card in soup.select("div.lote-item"):
+            a = card.find("a", href=RE_LOTE)
+            h = card.find(["h3", "h2", "h4"])
+            if not a or not h:
                 continue
             lote_id = RE_LOTE.search(a["href"]).group(1)
-            card = h
-            # sobe até o container que tem o preço, sem englobar outro lote
-            while card.parent is not None:
-                card = card.parent
-                ids = {RE_LOTE.search(x["href"]).group(1) for x in card.find_all("a", href=RE_LOTE)}
-                if len(ids) > 1:
-                    card = None
-                    break
-                if "R$" in card.get_text():
-                    break
-            texto = card.get_text(" ", strip=True) if card else ""
-            titulo = a.get_text(" ", strip=True)
-            valor = brl(texto)
-            tem_lance = bool(re.search(r"\bPor:\s*\S", texto))
+            titulo = h.get_text(" ", strip=True)
+            selo = card.select_one("div.img span")
+            selo = selo.get_text(" ", strip=True) if selo else ""
+            preco = card.select_one(".lance-atual")
+            quem = card.select_one(".lance-atual-usuario")
+            quem = quem.get_text(" ", strip=True) if quem else ""
+            valor = brl(preco.get_text() if preco else card.get_text())
+            tem_lance = quem.startswith("Por")
+            texto = card.get_text(" ", strip=True)
+            monta, flags = classificar(f"{selo} {titulo}", leilao["origem"])
             d = {
                 "id": f"rm:{lote_id}", "fonte": self.nome, "leilao_id": leilao["id"],
                 "leilao_titulo": leilao["texto"][:200], "origem": leilao["origem"],
                 "leilao_data": leilao["data"], "url": BASE + a["href"].replace(BASE, ""),
                 "titulo": titulo, "km": parse_km(texto), "tem_lance": int(tem_lance),
-                "lance_inicial": None if tem_lance else valor, "lance_atual": valor if tem_lance else None,
+                "lance_inicial": valor, "lance_atual": valor,
                 **PATIO, **parse_titulo(titulo),
             }
+            if monta == "grande":  # selo/título "sucata" já define; detalhe pode refinar
+                d["monta"] = monta
             # não sobrescreve com None o campo que a listagem não mostra
             d.pop("lance_inicial" if tem_lance else "lance_atual")
             out.append(d)
@@ -136,7 +135,7 @@ class RogerioMenezes:
         descricao = bloco("Descrição", {"Observações", "Valor inicial"})
         obs = bloco("Observações", {"Valor inicial", "Visitação:"})
         num = re.search(r"Lote:\s*(\d+)", corrido)
-        monta, flags = classificar(f"{descricao} {obs}", lote.get("origem", ""))
+        monta, flags = classificar(f"{lote.get('titulo', '')} {descricao} {obs}", lote.get("origem", ""))
         m_ini = re.search(r"Lance inicial:\s*\|?\s*R\$\s*([\d\.]+,\d{2})", corrido)
         d = {
             "descricao": descricao, "observacoes": obs, "monta": monta, "flags": flags,

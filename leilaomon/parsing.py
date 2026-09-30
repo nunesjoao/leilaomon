@@ -28,9 +28,10 @@ def norm(s: str) -> str:
 def parse_titulo(titulo: str) -> dict:
     t = norm(titulo)
     tipo = "carro"
+    t = re.sub(r"^SUCATA\s+(DE\s+|DA\s+|DO\s+)?", "", t)
     if t.startswith("MOTO "):
         tipo, t = "moto", t[5:]
-    elif t.startswith(("CAMINHAO ", "ONIBUS ")):
+    elif t.startswith(("CAMINHAO ", "ONIBUS ", "CAVALO MECANICO ")):
         tipo, t = "caminhao", t.split(" ", 1)[1]
 
     out = {"tipo": tipo, "marca": None, "modelo": None, "ano_fab": None, "ano_mod": None, "combustivel": None}
@@ -50,6 +51,9 @@ def parse_titulo(titulo: str) -> dict:
     modelo = re.sub(r"\b(19|20)\d{2}\b", "", modelo)
     for c in COMBUSTIVEIS:
         modelo = re.sub(rf"\b{c}\b", "", modelo)
+    modelo = modelo.lstrip("/- ")
+    if re.search(r"REBOQUE|CARRETA|DOLLY", modelo):
+        tipo = out["tipo"] = "outro"
     out["marca"] = marca
     out["modelo"] = re.sub(r"\s+", " ", modelo).strip()
     return out

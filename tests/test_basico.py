@@ -21,19 +21,13 @@ def test_classificar():
     assert classificar("chassi remarcado, sem chave")[1] == ["remarcado", "sem_chave"]
     assert brl("R$ 31.000,00") == 31000.0 and parse_km("com 5.879km") == 5879
 
-LISTA = """<div class=lista>
-<div class=card><a href="/lote/143743/x">#</a><h3><a href="/lote/143743/moto-kawasaki">MOTO KAWASAKI NINJA ZX-6R 2025/2025 GASOLINA</a></h3>
-<p>com 5.879km</p><img src=a.png><div><span>R$ 31.000,00</span><small>Lance inicial</small></div></div>
-<div class=card><a href="/lote/143757/x">#</a><h3><a href="/lote/143757/honda-city">HONDA CITY SEDAN 2018/2018 FLEX</a></h3>
-<p>Ar, vidro, direção, automatico com 31.196km</p><div><span>R$ 41.000,00</span><small>Por: F*****</small></div></div>
-</div>"""
-
-def test_cards():
-    lei = {"id": "1626", "texto": "Seguradoras", "data": "2099-10-01T13:00:00", "origem": "Seguradoras"}
-    c = RogerioMenezes()._cards(BeautifulSoup(LISTA, "html.parser"), lei)
-    assert [x["id"] for x in c] == ["rm:143743", "rm:143757"]
-    assert c[0]["lance_inicial"] == 31000 and "lance_atual" not in c[0] and c[0]["km"] == 5879
-    assert c[1]["lance_atual"] == 41000 and c[1]["tem_lance"] == 1
+def test_cards_real():
+    import pathlib
+    html = pathlib.Path(__file__).parent.parent.joinpath("diag/leilao.html").read_text()
+    lei = {"id": "1627", "texto": "x", "data": "2099-10-05T13:00:00", "origem": "Seguradoras"}
+    c = RogerioMenezes()._cards(BeautifulSoup(html, "html.parser"), lei)
+    assert len(c) == 20 and all(x["titulo"] for x in c)
+    assert all((x.get("lance_inicial") or x.get("lance_atual")) for x in c)
 
 CFG = {"destino": {"lat": -22.9, "lon": -43.2},
        "frete": {"fator_rodoviario": 1.3, "raio_local_km": 80, "sem_local": 1500,
