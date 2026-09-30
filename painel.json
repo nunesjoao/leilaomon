@@ -6,7 +6,8 @@
   },
   "whatsapp": {
     "desconto_min": 0.35,
-    "lembrete_horas": 24
+    "lembrete_horas": 24,
+    "max_por_execucao": 5
   },
   "filtros": [
     {

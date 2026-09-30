@@ -11,6 +11,7 @@ import json
 import logging
 import os
 import sys
+import time
 
 import yaml
 
@@ -95,7 +96,11 @@ def notificar(db, cfg, seco=False):
         email.enviar(f"Leilões: {len(digest)} lote(s) novo(s) nos seus filtros", html_digest(digest))
         for n, l in digest:
             db.marcar(l["id"], n, "email")
-    for n, l, tipo in urgentes:
+    # os melhores primeiro; limite por execução para não inundar o WhatsApp
+    urgentes.sort(key=lambda x: -(x[1]["desconto"] or -1))
+    limite = wcfg.get("max_por_execucao", 5)
+    excedentes = urgentes[limite:] if whats else []
+    for n, l, tipo in urgentes[:limite] if whats else urgentes:
         canal = whats or email
         if not canal:
             break
@@ -104,6 +109,11 @@ def notificar(db, cfg, seco=False):
         else:
             email.enviar(f"[{tipo}] {l['titulo']}", html_digest([(n, l)]))
         db.marcar(l["id"], n, tipo)
+        time.sleep(3)
+    if excedentes:
+        whats.enviar(f"+{len(excedentes)} lotes nos seus monitoramentos. Veja em https://nunesjoao.github.io/leilaomon/")
+        for n, l, tipo in excedentes:
+            db.marcar(l["id"], n, tipo)
     log.info("notificados: %d no digest, %d urgentes", len(digest), len(urgentes))
 
 
