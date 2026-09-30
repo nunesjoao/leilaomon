@@ -34,7 +34,7 @@ def avaliar(lote, cfg) -> dict:
     if lote["fipe_valor"]:
         ref = lote["fipe_valor"] * (1 - c["desagio_mercado"].get(monta, 0))
         out["preco_ref"] = round(ref, 2)
-        out["desconto"] = round(1 - custo / ref, 4)
+        out["desconto"] = round(1 - custo / ref, 4) if ref > 0 else None
     return out
 
 

@@ -28,6 +28,7 @@ def norm(s: str) -> str:
 def parse_titulo(titulo: str) -> dict:
     t = norm(titulo)
     tipo = "carro"
+    t = re.sub(r"(?<=[A-Z])/(?=[A-Z])", " ", t)
     t = re.sub(r"^SUCATA\s+(DE\s+|DA\s+|DO\s+)?", "", t)
     if t.startswith("MOTO "):
         tipo, t = "moto", t[5:]
