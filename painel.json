@@ -17,20 +17,20 @@
       "montas": [
         "conservado",
         "nao_informada",
-        "pequena",
-        "media"
+        "pequena"
       ],
       "excluir_flags": [
         "remarcado",
         "sem_documento",
-        "incendio",
-        "enchente"
+        "enchente",
+        "incendio"
       ],
       "ano_min": 2018,
-      "desconto_min": 0.2,
+      "desconto_min": 0.05,
       "ativo": true,
       "modelos": [],
-      "marcas": []
+      "marcas": [],
+      "aceitar_sem_fipe": false
     },
     {
       "nome": "carros-geral",
@@ -46,15 +46,16 @@
       "excluir_flags": [
         "remarcado",
         "sem_documento",
-        "incendio",
-        "enchente"
+        "enchente",
+        "incendio"
       ],
       "ano_min": 2016,
       "custo_max": 120000,
       "desconto_min": 0.25,
-      "ativo": true,
+      "ativo": false,
       "modelos": [],
-      "marcas": []
+      "marcas": [],
+      "aceitar_sem_fipe": false
     }
   ]
 }
