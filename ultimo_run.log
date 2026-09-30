@@ -1,95 +1,190 @@
-2026-09-30 02:59:13,643 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/ "HTTP/1.1 200 OK"
-2026-09-30 02:59:15,200 INFO rogeriomenezes: 10 leilões de veículos na agenda
-2026-09-30 02:59:15,275 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:59:16,878 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=2 "HTTP/1.1 200 OK"
-2026-09-30 02:59:18,480 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=3 "HTTP/1.1 200 OK"
-2026-09-30 02:59:20,077 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=4 "HTTP/1.1 200 OK"
-2026-09-30 02:59:21,676 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=5 "HTTP/1.1 200 OK"
-2026-09-30 02:59:23,291 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=6 "HTTP/1.1 200 OK"
-2026-09-30 02:59:24,887 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=7 "HTTP/1.1 200 OK"
-2026-09-30 02:59:26,485 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=8 "HTTP/1.1 200 OK"
-2026-09-30 02:59:28,075 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=9 "HTTP/1.1 200 OK"
-2026-09-30 02:59:29,584 INFO   leilão 1626 (2026-10-01T13:00): 152 lotes
-2026-09-30 02:59:29,823 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:59:31,421 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=2 "HTTP/1.1 200 OK"
-2026-09-30 02:59:33,008 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=3 "HTTP/1.1 200 OK"
-2026-09-30 02:59:34,518 INFO   leilão 1627 (2026-10-05T13:00): 32 lotes
-2026-09-30 02:59:34,616 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/753?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:59:36,124 INFO   leilão 753 (2026-10-07T13:00): 0 lotes
-2026-09-30 02:59:36,191 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1443?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:59:37,700 INFO   leilão 1443 (2026-10-08T13:00): 0 lotes
-2026-09-30 02:59:37,766 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/779?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:59:39,276 INFO   leilão 779 (2026-10-14T13:00): 0 lotes
-2026-09-30 02:59:39,335 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/399?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:59:40,845 INFO   leilão 399 (2026-10-15T13:00): 0 lotes
-2026-09-30 02:59:40,909 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1328?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:59:42,418 INFO   leilão 1328 (2026-10-19T13:00): 0 lotes
-2026-09-30 02:59:42,479 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1332?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:59:43,987 INFO   leilão 1332 (2026-10-21T13:00): 0 lotes
-2026-09-30 02:59:44,055 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/751?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:59:45,564 INFO   leilão 751 (2026-10-22T13:00): 0 lotes
-2026-09-30 02:59:45,626 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1270?page=1 "HTTP/1.1 200 OK"
-2026-09-30 02:59:47,135 INFO   leilão 1270 (2026-11-09T13:00): 0 lotes
-[carros-geral]   52%    R$ 33.800  BMW X1 S 2.0 I ACTIVE 2016/2016 FLEX
-[carros-geral]   47%    R$ 22.040  FIAT ARGO DRIVE 1.0 2022/2022 FLEX
-[motos-geral]   47%    R$ 13.910  MOTO KAWASAKI NINJA 500 2026/2026 GASOLINA
-[carros-geral]   46%    R$ 27.500  SUZUKI JIMNY 4 ALL 1.3 2017/2017 GASOLINA
-[carros-geral]   46%    R$ 23.930  TOYOTA ETIOS SD PLT 1.5 AT 2017/2018 FLEX
-[carros-geral]   46%    R$ 17.060  RENAULT KWID INTENS 1.0MT 2018/2018 FLEX
-[motos-geral]   45%    R$ 15.440  MOTO ROYAL ENFIELD SHOTGUN 650CC ABS 2025/2026 GASOLINA
-[carros-geral]   44%    R$ 55.850  HONDA HR-V 2022/2023 FLEX
-[carros-geral]   44%    R$ 56.750  JEEP RENEGADE SPT 270 1.3 2025/2025 FLEX
-[motos-geral]   43%     R$ 9.140  MOTO YAMAHA AEROX 160 2026/2026 GASOLINA
-[motos-geral]   43%    R$ 11.240  MOTO ROYAL ENFIELD CLASSIC 350 2025/2026 GASOLINA
-[carros-geral]   43%    R$ 87.200  BYD SONG PLUS GS DM 2024/2025 HíBRIDO
-[carros-geral]   42%    R$ 64.670  FIAT TORO VOLC AT9 4X4  2.0 2024/2025 DIESEL
-[motos-geral]   42%    R$ 36.650  MOTO SUZUKI GSX 1300RA 2019/2020 GASOLINA
-[carros-geral]   42%    R$ 26.030  TOYOTA ETIOS SD X 1.5L AT 2017/2018 FLEX
-[carros-geral]   41%    R$ 45.350  CAOA CHERY TIGGO 5 X PRO 1.5 2022/2023 FLEX
-[carros-geral]   41%    R$ 47.300  GM - CHEVROLET TRACKER T A LTZ 2022/2023 FLEX
-[carros-geral]   41%    R$ 38.000  HYUNDAI CRETA  2.0 A PRESTI 2018/2019 FLEX
-[carros-geral]   39%    R$ 17.420  FIAT SIENA ESSENCE 1.6 2017/2017 FLEX
-[carros-geral]   38%    R$ 28.340  PEUGEOT 2008 ALLURE PK 1.6 2021/2022 FLEX
-[motos-geral]   38%    R$ 15.440  MOTO YAMAHA XTZ 250 LANDER 2025/2025 GASOLINA
-[motos-geral]   37%    R$ 48.350  MOTO KAWASAKI Z H2 2025/2025 GASOLINA
-[motos-geral]   37%     R$ 9.980  MOTO HONDA CG 160 CARGO 2025/2025 FLEX
-[carros-geral]   36%    R$ 26.450  FORD KA 100 ANOS AT 1.5 2019/2020 FLEX
-[motos-geral]   36%     R$ 9.560  MOTO ROYAL ENFIELD HUNTER 350 2023/2024 GASOLINA
-[motos-geral]   34%    R$ 16.220  MOTO YAMAHA YZF R3 ABS 321 2025/2026 GASOLINA
-[motos-geral]   34%    R$ 16.490  MOTO ZONTES ZONTES GK 350 2024/2025 GASOLINA
-[motos-geral]   34%    R$ 16.490  MOTO KAWASAKI NINJA 300 2026/2026 GASOLINA
-[motos-geral]   34%     R$ 7.610  MOTO YAMAHA FZ15 150 FAZER ABS 2022/2023 FLEX
-[carros-geral]   33%    R$ 28.130  RENAULT DUSTER 1.6D 4X2 2016/2017 FLEX
-[carros-geral]   33%    R$ 28.760  TOYOTA ETIOS HB PLT 1.5 AT 2016/2017 FLEX
-[motos-geral]   33%    R$ 18.380  MOTO YAMAHA MT-03 2024/2025 GASOLINA
-[carros-geral]   33%    R$ 29.810  RENAULT DUSTER 1.6 D CVT 2017/2018 FLEX
-[motos-geral]   32%    R$ 11.030  MOTO HONDA PCX 160 DLX ABS 2024/2024 GASOLINA
-[carros-geral]   31%    R$ 44.150  HONDA CITY PERSONAL 1.5 2018/2018 FLEX
-[motos-geral]   31%    R$ 11.660  MOTO YAMAHA XTZ 250 2018/2019 GASOLINA
-[motos-geral]   31%    R$ 15.020  MOTO HONDA XRE 190 ADV 2025/2025 FLEX
-[motos-geral]   31%    R$ 29.300  MOTO YAMAHA MT-09 2019/2020 GASOLINA
-[motos-geral]   31%    R$ 19.430  MOTO BMW G 310 GS 2024/2024 GASOLINA
-[carros-geral]   30%    R$ 88.460  HONDA ZR-V TOURING 2.0 2024/2024 GASOLINA
-[motos-geral]   30%    R$ 12.290  MOTO HONDA CG 160 2025/2026 FLEX
-[motos-geral]   30%     R$ 8.870  MOTO YAMAHA FZ25 FAZER 2019/2020 FLEX
-[carros-geral]   29%    R$ 39.260  HYUNDAI CRETA 1.6A PULSE 2017/2017 FLEX
-[carros-geral]   29%    R$ 27.290  FORD ECOSPORT SE AT 1.6B 2015/2016 FLEX
-[motos-geral]   29%    R$ 12.920  MOTO HONDA ADV 150 2023/2023 GASOLINA
-[motos-geral]   29%    R$ 18.590  MOTO HONDA CBR 500R 2018/2018 GASOLINA
-[carros-geral]   29%    R$ 42.050  PEUGEOT 208 ALLURE 1AT 1.6 2021/2022 FLEX
-[motos-geral]   27%    R$ 15.860  MOTO HONDA XRE 190 ADV 2025/2025 FLEX
-[motos-geral]   27%    R$ 34.700  MOTO KAWASAKI NINJA ZX-6R 2025/2025 GASOLINA
-[carros-geral]   27%    R$ 64.310  HONDA HR-V EXL CVT 1.8 2018/2019 FLEX
-[motos-geral]   26%     R$ 7.820  MOTO YAMAHA FLUO 125 2025/2026 GASOLINA
-[motos-geral]   26%     R$ 9.290  MOTO ROYAL ENFIELD HUNTER 350 2025/2025 GASOLINA
-[carros-geral]   25%    R$ 43.100  HYUNDAI HB20S 1.6  A PREM 2018/2019 FLEX
-[motos-geral]   25%    R$ 12.440  MOTO YAMAHA FZ25 250 FAZER 2025/2025 GASOLINA
-[motos-geral]   24%    R$ 23.630  MOTO KAWASAKI NINJA 650 2025/2025 GASOLINA
-[motos-geral]   23%    R$ 10.610  MOTO YAMAHA NMAX 160 2020/2021 GASOLINA
-[motos-geral]   22%    R$ 12.710  MOTO HONDA PCX 160 DLX ABS 2024/2024 GASOLINA
-[motos-geral]   21%    R$ 14.960  MOTO ROYAL ENFIELD HIMALAYAN 450 2025/2026 GASOLINA
-[motos-geral]   21%     R$ 8.660  MOTO HONDA CG 160 START 2022/2023 GASOLINA
-25 alertas urgentes pendentes
+2026-09-30 09:39:35,440 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/ "HTTP/1.1 200 OK"
+2026-09-30 09:39:36,984 INFO rogeriomenezes: 10 leilões de veículos na agenda
+2026-09-30 09:39:37,045 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=1 "HTTP/1.1 200 OK"
+2026-09-30 09:39:38,659 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=2 "HTTP/1.1 200 OK"
+2026-09-30 09:39:40,267 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=3 "HTTP/1.1 200 OK"
+2026-09-30 09:39:41,870 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=4 "HTTP/1.1 200 OK"
+2026-09-30 09:39:43,475 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=5 "HTTP/1.1 200 OK"
+2026-09-30 09:39:45,096 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=6 "HTTP/1.1 200 OK"
+2026-09-30 09:39:46,703 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=7 "HTTP/1.1 200 OK"
+2026-09-30 09:39:48,307 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=8 "HTTP/1.1 200 OK"
+2026-09-30 09:39:49,899 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=9 "HTTP/1.1 200 OK"
+2026-09-30 09:39:51,412 INFO   leilão 1626 (2026-10-01T13:00): 152 lotes
+2026-09-30 09:39:51,481 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143789/honda-fit-lx-cvt-1-5-2014-2015-flex "HTTP/1.1 200 OK"
+2026-09-30 09:39:53,069 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143851/hyundai-creta-2-0-a-presti-2018-2019-flex "HTTP/1.1 200 OK"
+2026-09-30 09:39:54,656 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143794/vw-volkswagen-novo-gol-1-6-2013-2014-flex "HTTP/1.1 200 OK"
+2026-09-30 09:39:56,245 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143767/hyundai-hb20s-1-6m-comf-2014-2015-flex "HTTP/1.1 200 OK"
+2026-09-30 09:39:57,836 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143932/fiat-toro-volc-at9-4x4-2-0-2024-2025-diesel "HTTP/1.1 200 OK"
+2026-09-30 09:39:59,433 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143769/nissan-frontier-le-4x4-2-5-2012-2013-diesel "HTTP/1.1 200 OK"
+2026-09-30 09:40:01,029 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143787/fiat-cornos-dirve-1-3-2023-2023-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:02,616 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143771/hyundai-hr-hdlwbsc-2008-2009-diesel "HTTP/1.1 200 OK"
+2026-09-30 09:40:04,205 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143772/byd-song-plus-gs-dm-2024-2025-hibrido "HTTP/1.1 200 OK"
+2026-09-30 09:40:05,799 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143785/caoa-chery-tiggo-5-x-pro-1-5-2022-2023-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:07,392 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143770/gm-chevrolet-onix-1-0-tmt-lt1-2020-2021-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:08,986 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143933/honda-hr-v-2022-2023-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:10,571 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143774/ford-ka-100-anos-at-1-5-2019-2020-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:12,155 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143790/vw-volkswagen-polo-track-ma-2025-2025-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:13,748 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143768/renault-duster-1-6d-4x2-2016-2017-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:15,339 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143793/jeep-renegade-spt-270-1-3-2025-2025-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:16,927 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143779/ford-fiesta-se-ha-1-6-2012-2013-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:18,511 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143795/kia-motors-cerato-sx3-1-6-atnb-2011-2011-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:40:20,101 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143792/fiat-toro-ranch-at9-d4-2-0-2020-2021-diesel "HTTP/1.1 200 OK"
+2026-09-30 09:40:21,681 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143781/toyota-yaris-ha-xs1-5-2024-2024-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:23,269 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143791/gm-chevrolet-tracker-t-a-ltz-2022-2023-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:24,878 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143776/ford-ecosport-xls-1-6-2005-2006-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:26,469 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143773/mercedes-benz-a-190-2004-2005-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:40:28,055 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143783/renault-duster-1-6-d-cvt-2017-2018-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:29,649 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143782/gm-chevrolet-onix-joy-2019-2020-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:31,235 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143780/citroen-c3-picasso-exc-a-1-6-2013-2013-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:32,829 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143786/fiat-siena-el-2010-2011-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:34,424 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143777/honda-hr-v-exl-cvt-1-8-2018-2019-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:36,021 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143931/renault-fluence-2011-2011-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:37,614 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143778/nissan-leaf-tekna-2022-2023-eletrico-fonte-externa "HTTP/1.1 200 OK"
+2026-09-30 09:40:39,202 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143775/gm-chevrolet-vectra-sedan-elegance-2-0-2007-2008-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:40,790 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143859/renault-kwid-intens-1-0mt-2018-2019-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:42,386 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143853/hyundai-creta-1tf-nline-2024-2025-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:43,973 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143796/vw-volkswagen-gol-mpi-2022-2023-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:45,570 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143856/jeep-renegade-lngtd-at-1-8-2017-2018-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:47,160 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143798/ford-ecosport-fsl-1-6-2012-2013-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:48,746 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143930/moto-honda-cg-150-titan-mix-ex-2010-2010-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:50,330 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143877/gm-chevrolet-cobalt-1-4-lt-2011-2012-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:51,919 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143860/fiat-punto-essen-1-6-dl-2011-2012-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:53,506 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143802/byd-song-pro-gl-dm-1-5-2024-2025-hibrido "HTTP/1.1 200 OK"
+2026-09-30 09:40:55,093 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143803/fiat-siena-el-1-4-2011-2012-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:56,677 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143875/ford-fiesta-ha-1-5l-se-2014-2015-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:58,261 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143799/peugeot-2008-allure-at-1-6-2016-2017-flex "HTTP/1.1 200 OK"
+2026-09-30 09:40:59,848 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143876/honda-civic-lxs-1-8-2008-2008-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:01,436 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143858/ford-ka-se-1-0-sd-2015-2015-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:03,023 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143874/citroen-c3-aircross-exca-1-6-2014-2015-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:04,607 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143797/moto-honda-biz-125-ex-2011-2011-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:06,201 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143854/fiat-strada-working-1-4-2015-2015-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:07,803 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143801/citroen-jumpy-furgao-pk-2020-2021-diesel "HTTP/1.1 200 OK"
+2026-09-30 09:41:09,387 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143855/gm-chevrolet-tracker-t-a-2022-2022-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:10,980 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143749/vw-volkswagen-polo-cl-ada-2017-2018-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:12,566 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143751/fiat-idea-adventure-1-8-2011-2012-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:14,165 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143755/renault-kwid-intens-1-0mt-2018-2018-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:15,754 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143757/honda-city-personal-1-5-2018-2018-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:17,347 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143758/toyota-etios-sd-x-1-5l-at-2017-2018-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:18,935 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143743/moto-kawasaki-ninja-zx-6r-2025-2025-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:41:20,525 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143744/vw-volkswagen-up-move-ma-2014-2015-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:22,114 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143850/honda-fit-lx-2014-2014-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:23,706 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143736/hyundai-creta-1-6a-pulse-2017-2017-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:25,296 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143885/gm-chevrolet-prisma-joy-1-0-2010-2011-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:26,892 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143883/fiat-argo-drive-1-0-2022-2022-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:28,486 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143881/vw-volkswagen-saveiro-1-6-ce-2010-2010-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:30,078 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143880/moto-triumph-scrambler-400x-2025-2025-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:41:31,665 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143878/bmw-x1-sdrive2-0i-vl91-2013-2014-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:41:33,251 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143887/moto-honda-cg-160-cargo-2025-2025-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:34,836 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143753/nissan-march-1-0-2011-2012-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:36,424 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143759/peugeot-308-allure-2-0-2012-2013-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:38,015 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143760/fiat-siena-el-2009-2010-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:39,605 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143734/caminhao-mercedes-benz-actros-2548s-2021-2021-diesel "HTTP/1.1 200 OK"
+2026-09-30 09:41:41,202 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143748/hyundai-tucson-gl-2-0l-2010-2010-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:41:42,788 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143733/honda-zr-v-touring-2-0-2024-2024-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:41:44,380 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143742/renault-duster-1-6-d-4x2-2013-2014-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:45,977 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143762/fiat-siena-essence-1-6-2017-2017-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:47,563 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143739/suzuki-jimny-4-all-1-3-2017-2017-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:41:49,167 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143862/honda-civic-lxl-1-8-2012-2012-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:50,755 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143738/bmw-x1-s-2-0-i-active-2016-2016-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:52,347 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143731/caoa-chery-tiggo-8-phev-1-5-2022-2023-hibrido "HTTP/1.1 200 OK"
+2026-09-30 09:41:53,936 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143888/renault-sandero-expr-1-6-2015-2015-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:55,532 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143747/peugeot-2008-allure-pk-1-6-2021-2022-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:57,119 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143864/gm-chevrolet-classic-life-2006-2007-flex "HTTP/1.1 200 OK"
+2026-09-30 09:41:58,711 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143737/volvo-xc60-2-0t5-r-des-2013-2014-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:00,304 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143886/honda-city-lx-cvt-1-5-2015-2015-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:01,889 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143732/ford-ecosport-xlt-1-6-2009-2009-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:03,477 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143766/hyundai-hb20s-1-6-a-prem-2018-2019-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:05,073 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143740/honda-fit-lxl-2011-2011-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:06,660 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143889/moto-suzuki-suzuki-bandit-650s-2011-2011-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:08,250 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143761/jeep-grand-cherokee-srt8-2006-2007-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:09,834 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143884/vw-volkswagen-spacefox-route-1-6-2009-2010-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:11,418 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143750/ford-ecosport-fsl-1-6-2014-2014-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:13,014 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143764/ford-fiesta-sedan-1-6-2013-2014-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:14,599 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143741/honda-city-ex-1-5-2012-2013-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:16,231 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143882/vw-volkswagen-novo-gol-1-0-2012-2013-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:17,820 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143735/ford-ecosport-fsl-1-6-2014-2015-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:19,408 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143754/toyota-etios-sd-plt-1-5-at-2017-2018-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:20,995 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143765/renault-master-8m3-2-5dci-2008-2009-diesel "HTTP/1.1 200 OK"
+2026-09-30 09:42:22,589 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143879/ford-ecosport-se-at-1-6b-2015-2016-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:24,183 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143746/mercedes-benz-cla-180-2018-2018-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:25,769 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143863/ford-fiesta-ha-1-6l-se-2013-2014-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:27,353 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143763/gm-chevrolet-corsa-sedan-maxx-1-8-2007-2007-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:28,940 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143752/vw-volkswagen-jetta-2-0t-2013-2013-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:30,531 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143955/renault-renault-logan-ex-1616v-a-prata-2013-2013-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:32,131 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143861/moto-honda-cb-300r-2011-2011-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:33,716 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143873/peugeot-208-allure-1at-1-6-2021-2022-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:35,302 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143869/toyota-etios-hb-plt-1-5-at-2016-2017-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:36,888 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143934/gm-chevrolet-spin-2013-2013-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:38,476 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143872/toyota-corolla-cross-xrx-hybrid-1-8-2023-2024-gasolina-alcool-eletrico "HTTP/1.1 200 OK"
+2026-09-30 09:42:40,063 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143805/nissan-tiida-1-8s-2010-2011-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:41,656 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143871/citroen-c3-glx-1-4-2010-2011-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:43,241 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143867/moto-honda-pcx-160-dlx-abs-2024-2024-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:44,833 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143825/moto-yamaha-ys150-fazer-sed-2018-2019-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:46,423 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143824/moto-honda-cg-160-start-2022-2023-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:48,015 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143827/moto-royal-enfield-himalayan-450-2025-2026-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:49,600 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143806/moto-honda-cg-160-start-2020-2020-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:51,190 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143838/moto-royal-enfield-int-650-2021-2022-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:52,783 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143835/moto-honda-xre-190-adv-2025-2025-flex "HTTP/1.1 200 OK"
+2026-09-30 09:42:54,378 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143936/moto-yamaha-mt-09-2019-2020-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:55,970 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143832/moto-royal-enfield-classic-350-2025-2026-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:57,562 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143940/moto-yamaha-xtz-250-2018-2019-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:42:59,151 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143942/moto-dafra-citycom-2015-2016-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:00,733 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143807/moto-yamaha-yzf-r3-abs-321-2025-2026-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:02,317 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143865/moto-zontes-zontes-gk-350-2024-2025-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:03,902 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143868/moto-yamaha-ys150-fazer-sed-2019-2020-flex "HTTP/1.1 200 OK"
+2026-09-30 09:43:05,486 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143938/moto-honda-cg-160-2025-2026-flex "HTTP/1.1 200 OK"
+2026-09-30 09:43:07,076 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143810/moto-yamaha-ys150-fazer-sed-2019-2020-flex "HTTP/1.1 200 OK"
+2026-09-30 09:43:08,660 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143828/moto-kawasaki-z800-abs-2013-2014-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:10,241 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143811/moto-kawasaki-z-h2-2025-2025-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:11,833 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143841/moto-royal-enfield-hunter-350-2023-2024-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:13,412 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143809/moto-yamaha-ybr150-factor-ed-2024-2024-flex "HTTP/1.1 200 OK"
+2026-09-30 09:43:14,999 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143829/moto-royal-enfield-shotgun-650cc-abs-2025-2026-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:16,601 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143839/moto-bmw-g-310-gs-2024-2024-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:18,187 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143815/moto-yamaha-nmax-2017-2017-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:19,772 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143831/moto-kawasaki-ninja-300-2026-2026-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:21,366 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143866/moto-yamaha-xtz-250-lander-2025-2025-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:22,954 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143830/moto-honda-adv-150-2023-2023-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:24,547 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143820/moto-yamaha-fz25-250-fazer-2025-2025-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:26,140 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143840/moto-suzuki-gsx-1300ra-2019-2020-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:27,730 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143837/moto-honda-pcx-160-dlx-abs-2024-2024-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:29,315 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143819/moto-yamaha-fz15-150-fazer-abs-2022-2023-flex "HTTP/1.1 200 OK"
+2026-09-30 09:43:30,897 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143833/moto-honda-cg-150-fan-esdi-2014-2014-flex "HTTP/1.1 200 OK"
+2026-09-30 09:43:32,483 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143818/moto-yamaha-fluo-125-2025-2026-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:34,077 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143814/moto-honda-cbr-500r-2018-2018-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:35,663 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143836/moto-yamaha-nmax-160-2020-2021-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:37,251 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143808/moto-kawasaki-ninja-500-2026-2026-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:38,835 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143935/moto-yamaha-mt-03-2024-2025-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:40,433 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143812/moto-honda-cbr-1000-rr-2005-2005-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:42,020 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143816/moto-kawasaki-ninja-650-2025-2025-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:43,607 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143870/moto-honda-cg-160-start-2024-2025-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:45,191 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143817/moto-yamaha-aerox-160-2026-2026-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:46,780 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143834/moto-honda-xre-190-adv-2025-2025-flex "HTTP/1.1 200 OK"
+2026-09-30 09:43:48,366 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143826/moto-yamaha-fz25-fazer-2019-2020-flex "HTTP/1.1 200 OK"
+2026-09-30 09:43:49,958 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143813/moto-royal-enfield-hunter-350-2025-2025-gasolina "HTTP/1.1 200 OK"
+2026-09-30 09:43:51,551 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/lote/143937/moto-yamaha-ys-150-2015-2016-flex "HTTP/1.1 200 OK"
+2026-09-30 09:43:53,135 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=1 "HTTP/1.1 200 OK"
+2026-09-30 09:43:54,736 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=2 "HTTP/1.1 200 OK"
+2026-09-30 09:43:56,319 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=3 "HTTP/1.1 200 OK"
+2026-09-30 09:43:57,832 INFO   leilão 1627 (2026-10-05T13:00): 32 lotes
+2026-09-30 09:43:57,919 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/753?page=1 "HTTP/1.1 200 OK"
+2026-09-30 09:43:59,448 INFO   leilão 753 (2026-10-07T13:00): 0 lotes
+2026-09-30 09:43:59,511 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1443?page=1 "HTTP/1.1 200 OK"
+2026-09-30 09:44:01,022 INFO   leilão 1443 (2026-10-08T13:00): 0 lotes
+2026-09-30 09:44:01,082 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/779?page=1 "HTTP/1.1 200 OK"
+2026-09-30 09:44:02,594 INFO   leilão 779 (2026-10-14T13:00): 0 lotes
+2026-09-30 09:44:02,654 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/399?page=1 "HTTP/1.1 200 OK"
+2026-09-30 09:44:04,165 INFO   leilão 399 (2026-10-15T13:00): 0 lotes
+2026-09-30 09:44:04,224 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1328?page=1 "HTTP/1.1 200 OK"
+2026-09-30 09:44:05,738 INFO   leilão 1328 (2026-10-19T13:00): 0 lotes
+2026-09-30 09:44:05,793 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1332?page=1 "HTTP/1.1 200 OK"
+2026-09-30 09:44:07,305 INFO   leilão 1332 (2026-10-21T13:00): 0 lotes
+2026-09-30 09:44:07,367 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/751?page=1 "HTTP/1.1 200 OK"
+2026-09-30 09:44:08,879 INFO   leilão 751 (2026-10-22T13:00): 0 lotes
+2026-09-30 09:44:08,933 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1270?page=1 "HTTP/1.1 200 OK"
+2026-09-30 09:44:10,445 INFO   leilão 1270 (2026-11-09T13:00): 0 lotes
+2026-09-30 09:44:11,012 INFO Email desativado (variável 'SMTP_USER' ausente)
+2026-09-30 09:44:11,013 INFO WhatsApp desativado (variável 'CALLMEBOT_PHONE' ausente)
+2026-09-30 09:44:11,017 INFO notificados: 59 no digest, 25 urgentes
   63%  custo    R$ 8.450  FIPE   R$ 26.572  pequena       FORD ECOSPORT XLS 1.6 2005/2006 FLEX
        https://www.rogeriomenezes.com.br/lote/143776/ford-ecosport-xls-1-6-2005-2006-flex
   60%  custo  R$ 132.500  FIPE  R$ 468.195  media         CAMINHÃO MERCEDES-BENZ ACTROS 2548S 2021/2021 DIESEL
