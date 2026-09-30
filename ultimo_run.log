@@ -1,0 +1,28 @@
+home 200 cloudflare 63925
+links /leilao/: 30 ['1270', '1328', '1332', '1443', '1598', '1599', '1617', '1622', '1624', '1626', '1627', '399', '751', '753', '779']
+leilao 200 69228 lotes: 20
+lote 200 50978 lotes: 3
+listar_leiloes -> [{'id': '1626', 'texto': '01/10/2026, às 13h Daqui a 2 dias. Online / Presencial Seguradoras 170 VEÍCULOS', 'data': '2026-10-01T13:00:00', 'origem': 'Seguradoras'}, {'id': '1627', 'texto': '05/10/2026, às 13h Daqui a 6 dias. Online Seguradoras 70 SUCATAS E VEÍCULOS', 'data': '2026-10-05T13:00:00', 'origem': 'Seguradoras'}, {'id': '753', 'texto': '07/10/2026, às 13h Daqui a 8 dias. Online / Presencial Bancos 120 VEÍCULOS', 'data': '2026-10-07T13:00:00', 'origem': 'Bancos'}, {'id': '1443', 'texto': '08/10/2026, às 13h Daqui a 9 dias. Online / Presencial Seguradoras 130 VEÍCULOS', 'data': '2026-10-08T13:00:00', 'origem': 'Seguradoras'}, {'id': '779', 'texto': '14/10/2026, às 13h Daqui a 15 dias. Online / Presencial Bancos 110 VEÍCULOS', 'data': '2026-10-14T13:00:00', 'origem': 'Bancos'}, {'id': '399', 'texto': '15/10/2026, às 13h Daqui a 16 dias. Online / Presencial Seguradoras 130 VEÍCULOS', 'data': '2026-10-15T13:00:00', 'origem': 'Seguradoras'}, {'id': '1328', 'texto': '19/10/2026, às 13h Daqui a 20 dias. Online Seguradoras 80 SUCATAS E VEÍCULOS', 'data': '2026-10-19T13:00:00', 'origem': 'Seguradoras'}, {'id': '1332', 'texto': '21/10/2026, às 13h Daqui a 22 dias. Online / Presencial Bancos 130 VEÍCULOS', 'data': '2026-10-21T13:00:00', 'origem': 'Bancos'}, {'id': '751', 'texto': '22/10/2026, às 13h Daqui a 23 dias. Online / Presencial Seguradoras 120 VEÍCULOS', 'data': '2026-10-22T13:00:00', 'origem': 'Seguradoras'}, {'id': '1270', 'texto': '09/11/2026, às 13h Daqui a 41 dias. Online Seguradoras 70 SUCATAS E VEÍCULOS', 'data': '2026-11-09T13:00:00', 'origem': 'Seguradoras'}]
+2026-09-30 02:39:36,321 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/ "HTTP/1.1 200 OK"
+2026-09-30 02:39:37,865 INFO rogeriomenezes: 10 leilões de veículos na agenda
+2026-09-30 02:39:37,980 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1626?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:39:39,514 INFO   leilão 1626 (2026-10-01T13:00): 0 lotes
+2026-09-30 02:39:39,629 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1627?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:39:41,161 INFO   leilão 1627 (2026-10-05T13:00): 0 lotes
+2026-09-30 02:39:41,271 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/753?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:39:42,783 INFO   leilão 753 (2026-10-07T13:00): 0 lotes
+2026-09-30 02:39:42,888 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1443?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:39:44,401 INFO   leilão 1443 (2026-10-08T13:00): 0 lotes
+2026-09-30 02:39:44,506 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/779?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:39:46,019 INFO   leilão 779 (2026-10-14T13:00): 0 lotes
+2026-09-30 02:39:46,128 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/399?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:39:47,640 INFO   leilão 399 (2026-10-15T13:00): 0 lotes
+2026-09-30 02:39:47,750 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1328?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:39:49,266 INFO   leilão 1328 (2026-10-19T13:00): 0 lotes
+2026-09-30 02:39:49,371 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1332?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:39:50,883 INFO   leilão 1332 (2026-10-21T13:00): 0 lotes
+2026-09-30 02:39:50,990 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/751?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:39:52,503 INFO   leilão 751 (2026-10-22T13:00): 0 lotes
+2026-09-30 02:39:52,613 INFO HTTP Request: GET https://www.rogeriomenezes.com.br/leilao/1270?page=1 "HTTP/1.1 200 OK"
+2026-09-30 02:39:54,124 INFO   leilão 1270 (2026-11-09T13:00): 0 lotes
+0 alertas urgentes pendentes

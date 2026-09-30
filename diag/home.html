@@ -1,0 +1,1224 @@
+<!doctype html>
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Ads: AW-867848012 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-867848012"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-867848012');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-N9Z7PPH');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+                <meta property="robots" content="index,follow"/>
+        <meta property="googlebot" content="index, follow"/>
+                <meta property="language" content="pt-br"/>
+        <meta property="rating" content="general"/>
+        <meta property="page-topic"
+              content="Rogério Menezes Leiloeiro Oficial"/>
+        <meta property="classification"
+              content="Rogério Menezes Leiloeiro Oficial"/>
+        <meta property="distribution" content="Global"/>
+        <meta property="author" content="Wtis"/>
+        <meta property="copyright" content="wtis"/>
+        <meta property="og:type" content="website">
+        <meta name="theme-color" content="#000000" />
+            
+    <meta name="description"
+          content="Leilões online e presencial de veículos, bens e materiais. A melhor infraestrutura de leilões do país."/>
+    <meta name="keywords"
+          content="leilões, leilão online, veículos, motos, carros, bens, leilão judicial, leilão de casas, leilão de carros, rogério menezes, leiloeiro"/>
+    <meta property="og:title" content="Rogério Menezes Leiloeiro Oficial"/>
+    <meta property="og:description"
+          content="Leilões online e presencial de veículos, bens e materiais. A melhor infraestrutura do país"/>
+    <meta property="og:url" content="https://www.rogeriomenezes.com.br/"/>
+    <meta property="og:image"
+          content="https://www.rogeriomenezes.com.br/images/facebook2021.png"/>
+    <meta property="og:image:width" content="1139">
+    <meta property="og:image:height" content="436">
+    <meta property="og:phone_number" content="(21) 3812-4300">
+            <title>Rogério Menezes - Leiloeiro Oficial</title>
+                                <link href="/css/app.min.20221017.css?version=v265p&svs=20220919" rel="stylesheet">
+                    
+    <link rel="stylesheet" type="text/css" href="/slick/slick.css?version=v265p"/>
+    <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css?version=v265p"/>
+    <link rel="stylesheet" type="text/css" href="/css/home.css?version=v265p">
+    <style type="text/css">
+        #showList .cardItem{
+            width: 100%;
+            background-color: #FFFFFF;
+            padding: 5px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 16px -6px rgba(0, 0, 0, 0.2);
+            user-select: none;
+            position: relative;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            color: grey;
+            margin: 12px auto;
+        }
+        #showList .cardItem .preco{
+            font-weight: 700;
+            margin: 5px 0;
+            text-align: right;
+        }
+        #showList .cardItem .vezes{
+            flex: 0;
+            margin-right: 10px;
+        }
+        #showList .cardItem .total{
+            padding: 5px;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            color: #4297cc;
+            margin-top: 5px;
+        }
+
+        @keyframes pulse{
+            to {
+                box-shadow: 0 0 0 10px rgba(232, 76, 61, 0);
+            }
+        }
+        .actionShow{
+            position: fixed;
+            bottom: 30px;
+            right: 10px;
+            width: 190px;
+            z-index: 9999;
+        }
+        .actionShow span{
+            position: absolute;
+            top: 50%;
+            transform: translate(-105%, -50%);
+            left: -15px;
+            white-space: nowrap;
+            height: 27px;
+            line-height: 27px;
+            padding: 0 10px;
+            border-radius: 5px;
+            background-color: #d6e5fd;
+            font-size: 14px;
+            transition: all 0.5s ease;
+            opacity: 0.8;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: #6b94d4;
+        }
+        .actionShow .clickShow{
+            color: #6b94d4;
+            display: block;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .actionShow .clickShow:hover ~ span{
+            opacity: 1;
+            transform: translate(-100%, -50%);
+        }
+        .contCalc{
+            position: fixed;
+            bottom: 120px;
+            height: max-content;
+            max-height: 350px;
+            right: 40px;
+            width: 425px;
+            background-color: #FFFFFF;
+            z-index: 9999;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 12px -7px rgb(0 0 0);
+            display: none;
+            overflow-y: scroll;
+        }
+        .contCalc::-webkit-scrollbar-track{
+            background-color: transparent;
+        }
+        .contCalc::-webkit-scrollbar{
+            width: 6px;
+            height: 2px;
+            background: transparent;
+        }
+        .contCalc::-webkit-scrollbar-thumb{
+            background: #4e4e4e;
+            border-radius: 15px;
+        }
+        .contCalc h6{
+            text-align: center;
+            font-size: 16px;
+            color: #4f4f4f;
+            font-weight: 600;
+            margin-top: 1px;
+        }
+        .contCalc form{
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .contCalc form input{
+            width: 200px;
+            padding: 0 10px;
+            height: 41px;
+            border-radius: 5px;
+            border: 2px solid #838383;
+            outline: none;
+        }
+        .contCalc form button{
+            padding: 0 18px;
+            border: 0;
+            border-radius: 5px;
+            margin-left: 12px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            background-color: #232323;
+            color: #FFFFFF;
+            outline: none;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        .contCalc form button:hover{
+            background-color: #030303;
+        }
+        @media screen and (max-width: 840px) {
+            .contCalc{
+                position: fixed;
+                bottom: 74px;
+                height: auto;
+                max-height: none;
+                left: 10px;
+                right: 10px;
+                top: 10px;
+                width: auto;
+                background-color: #FFFFFF;
+                z-index: 9999;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0px 0px 12px -7px rgb(0 0 0);
+                overflow-y: scroll;
+            }
+        }
+        .consent{
+            position: fixed;
+            z-index: 9999;
+            bottom: 0;
+            left: 0;
+            padding: 32px 0;
+            width: 100%;
+            overflow: auto;
+            background-color: rgba(38,41,44,.88);
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        .consent svg{
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+            fill: rgb(185, 186, 187);
+        }
+        .consent .consent-form{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            padding: 0 40px;
+            grid-template-columns: auto auto;
+            grid-column-gap: 20px;
+        }
+        .consent .consent-form .consent-text{
+            font-size: 15px;
+            line-height: 1.5;
+            font-weight: 500;
+            color: white;
+            display: block;
+        }
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KPBL85W');</script>
+
+    <!-- End Google Tag Manager -->
+
+
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9Z7PPH"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Modals -->
+<!-- Incluir Aqui -->
+
+<!-- HEADER -->
+<header class="header">
+    <nav class="row1">
+        <div class="center-1200">
+            <a href="#showMenu" class="menu-mobile menu-mobile-btn"><i class="fa fa-bars" aria-hidden="true"></i></a>
+            <a href="/" class="logo-mobile"></a>
+            <ul class="menu">
+                                <li><a href="/leiloes">Leilões</a></li>
+                                <li><a href="/sobre-nos">Sobre nós</a></li>
+                                                <li><a href="/como-funciona">Como funciona</a></li>
+                                                                <li class="no-div"><a href="https://blog.rogeriomenezes.com.br/" target="_blank">Blog</a></li>
+                                <li class="right documento-chegou-top"><a href="/documento">Meu documento chegou?</a></li>
+            </ul>
+        </div><!-- Fim Center -->
+    </nav>
+    <div class="row2">
+        <div class="row2-content center-1200">
+            <div class="flex-item flex-logo trintaAnos"><a href="/" class="logo" style="background: url(/images/logo.png?version=v265p) left no-repeat !important;">Rogério Menezes</a></div>
+            <div class="home-search flex-item">
+                <form action="/busca" method="get" class="input-group">
+                    <input name="interesse" class="form-control" type="text" tabindex="1" placeholder="O que você está buscando?"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </span>
+                </form>
+            </div>
+            <div class="header-user-actions flex-item">
+                                    <a href="https://cadastro.rogeriomenezes.com.br/" class="btn btn-header-cadastro">CADASTRE-SE</a>
+                    <a href="/login" class="btn btn-header-login">ENTRAR</a>
+                            </div>
+        </div>
+    </div>
+</header><div class="clearfloat"></div>
+<!--/ HEADER -->
+<!-- CONTENT -->
+<div class="content-overflow">
+                <div class="tmp-popup" style="z-index: 99999">
+            <div class="popup-content" onclick="$('.tmp-popup').hide()" style="cursor:pointer;">
+                                                    <img src="https://cdn.rogeriomenezes.com.br/images/slides/505538d0abad8e6fa964a9e999f6a6f3.png">
+                            </div>
+        </div>
+        <div class="home">
+        <div class="center-1200 content-1200">
+
+            
+            <div class="slide slide-home">
+                                    <div>
+                                                    <img src="https://cdn.rogeriomenezes.com.br/images/slides/6b53f03844018c407c2d62161fd11eaa.png"
+                                 class="img-responsive"
+                                 alt="Banner 2074"/>
+                                            </div>
+                                    <div>
+                                                    <img src="https://cdn.rogeriomenezes.com.br/images/slides/832401c424bb591fe4f47e658a7070c3.png"
+                                 class="img-responsive"
+                                 alt="Banner 1834"/>
+                                            </div>
+                                    <div>
+                                                    <img src="https://cdn.rogeriomenezes.com.br/images/slides/eaeca1bb34b45b4eb5f43a49ee622d3d.png"
+                                 class="img-responsive"
+                                 alt="Banner 784"/>
+                                            </div>
+                                    <div>
+                                                    <a href="https://www.youtube.com/channel/UCgXueFpxtIkW6_QRyoy-vxg?sub_confirmation=1" target="_blank">
+                                <img src="https://cdn.rogeriomenezes.com.br/images/slides/e4f308127c8b1bb666439e66bbc90f0a.png"
+                                     class="img-responsive"
+                                     alt="Banner 1384"/>
+                            </a>
+                                            </div>
+                                    <div>
+                                                    <img src="https://cdn.rogeriomenezes.com.br/images/slides/ade5edf72f89d29ff749d80f3dca4165.png"
+                                 class="img-responsive"
+                                 alt="Banner 2051"/>
+                                            </div>
+                                    <div>
+                                                    <a href="https://cadastro.rogeriomenezes.com.br/#/" target="_blank">
+                                <img src="https://cdn.rogeriomenezes.com.br/images/slides/9bce3f48cf14da01f93f4245797df5d0.png"
+                                     class="img-responsive"
+                                     alt="Banner 257"/>
+                            </a>
+                                            </div>
+                
+            </div>
+
+            <div class="clearfloat"></div>
+        </div><!-- Fim Center -->
+
+        <div class="center-1200">
+            <div class="show-rss">
+                <ul>
+                    <li>Acompanhe nossas redes sociais e seja atualizado diariamente!</li>
+                    <li>
+                        <a href="https://www.instagram.com/rogeriomenezesleiloeiro/" target="_blank">
+                            <img src="/images/insta.png?version=v265p" alt="Instagram">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.facebook.com/rogeriomenezesleiloeiro/" target="_blank">
+                            <img src="/images/face.png?version=v265p" alt="Facebook">
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://www.youtube.com/rogeriomenezesleiloeiro" target="_blank">
+                            <img src="/images/youtube.png?version=v265p" alt="Youtube">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.linkedin.com/company/leiloeiro-rog%C3%A9rio-menezes/" target="_blank">
+                            <img src="/images/linkdin.png?version=v265p" alt="linkedin">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+                    <div class="agenda">
+                <div class="center-1200 content-1200 agenda-title">
+                    <strong>Agenda</strong> de Leilões
+                </div><!-- Fim Center -->
+                <div class="agenda-content" style="background-color: #ddddddfc !important;">
+                    <div class="center-1200">
+                        <ul class="leiloes">
+                        
+
+                            <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1624">
+                <div class="leilao-header">
+                                            <span class="data">30/09/2026, às 09h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 1 dia.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-0">Online</span>
+                                                <span class="titulo">MATERIAIS E EQUIPAMENTOS DIVERSOS</span>
+                    </div>
+                                                            <div class="leilao-comitentes">
+                                                    <div id="comitente-anim1"
+                                 class="leilao-comitente-images">
+                                                                    <img alt="Comitente" class="show"
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/22.png">
+                                                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/1624"
+                   class="btn-leilao btn-status-4">
+                                            Aberto para Lances
+                                    </a>
+            </div>
+        </li>
+                                        
+                        <li class="judiciais">
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1599">
+                <div class="leilao-judicial-header">
+                    <span class="titulo">Leilão Judicial</span>
+                    <span class="titulo2" style="line-height: 1 !important;">Apartamento 303 - 89,08 M² -  São Francisco – Curitiba – PR</span>
+                    <div class="ldata1"></div>
+                    <div class="ldata2 ativo">2ª Praça: 30/09/2026 às 11:30h - Avaliação R$ 567.000,00</div>
+                </div>
+                <div class="leilao-info text-center">
+                                            <span class="tipo tipo-0">Online</span>
+                                    </div>
+                    <div id="comitente-anim-lote-1599" class="lote-anim">
+                                                                                <img class="show" id="lote-anim-1599-1" src="https://static.suporteleiloes.com.br/rogeriomenezescombr/bens/109645/arquivos/6a75f06c36917-6a75f06c393fc.jpg" alt="#" height="170"/>
+                                            </div>
+                <div class="leilao-comitentes">
+                    <div id="comitente-anim22"
+                         class="leilao-comitente-images">
+                                                    <img alt="Comitente" class="show"
+                                 src="https://cdn.rogeriomenezes.com.br/comitentes/49786ebf5573646a638f9a53a4650cd3.png">
+                                            </div>
+                </div>
+                </a>
+                <a href="/leilao/1599"
+                   class="btn-leilao btn-status-4">
+                                            Aberto para Lances
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1622">
+                <div class="leilao-header">
+                                            <span class="data">01/10/2026, às 10h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 2 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-0">Online</span>
+                                                <span class="titulo">VENDA DIRETA</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 22px; color: #383838;">IMÓVEIS COMERCIAIS SANTANDER | SALAS E LOJAS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div id="comitente-anim3"
+                                 class="leilao-comitente-images">
+                                                                    <img alt="Comitente" class="show"
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/3b764fb5219dc503e00deb6f29693bcc.png">
+                                                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/1622"
+                   class="btn-leilao btn-status-5">
+                                            Aberto para Propostas
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1626">
+                <div class="leilao-header">
+                                            <span class="data">01/10/2026, às 13h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 2 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-2"><span>Online</span> / Presencial</span>
+                                                <span class="titulo">Seguradoras</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 35px; color: #383838;">170 VEÍCULOS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div id="comitente-anim4"
+                                 class="leilao-comitente-images">
+                                                                    <img alt="Comitente" class="show"
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/177a4f040587a00802543d8e777bc2b0.png">
+                                                                    <img alt="Comitente" class=""
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/931f65047f881bb89568051f91a6eed1.png">
+                                                                    <img alt="Comitente" class=""
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/9cef599e2fa61e9ed62975d9ed696bf1.png">
+                                                                    <img alt="Comitente" class=""
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/d3604abfc8ca29672146ac955fb1c2ee.jpg">
+                                                                    <img alt="Comitente" class=""
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/3b764fb5219dc503e00deb6f29693bcc.png">
+                                                                    <img alt="Comitente" class=""
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/242d4dc2561935f6ba005aced8ebb72f.png">
+                                                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/1626"
+                   class="btn-leilao btn-status-4">
+                                            Aberto para Lances
+                                    </a>
+            </div>
+        </li>
+                                        
+                        <li class="judiciais">
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1617">
+                <div class="leilao-judicial-header">
+                    <span class="titulo">Leilão Judicial</span>
+                    <span class="titulo2" style="line-height: 1 !important;">Direito e Ação Apartamento – área construída de 47 m² - Higienópolis – Rio de Janeiro – RJ</span>
+                    <div class="ldata1 ativo">1ª Praça: 02/10/2026 às 12:00h - Avaliação R$ 146.495,40</div>
+                    <div class="ldata2"></div>
+                </div>
+                <div class="leilao-info text-center">
+                                            <span class="tipo tipo-0">Online</span>
+                                    </div>
+                    <div id="comitente-anim-lote-1617" class="lote-anim">
+                                                                                <img class="show" id="lote-anim-1617-1" src="https://static.suporteleiloes.com.br/rogeriomenezescombr/bens/110719/arquivos/6aa3e9ea80943-6aa3e9ea83f5b.jpg" alt="#" height="170"/>
+                                            </div>
+                <div class="leilao-comitentes">
+                    <div id="comitente-anim25"
+                         class="leilao-comitente-images">
+                                                    <img alt="Comitente" class="show"
+                                 src="https://cdn.rogeriomenezes.com.br/comitentes/49786ebf5573646a638f9a53a4650cd3.png">
+                                            </div>
+                </div>
+                </a>
+                <a href="/leilao/1617"
+                   class="btn-leilao btn-status-4">
+                                            Aberto para Lances
+                                    </a>
+            </div>
+        </li>
+                                        
+                        <li class="judiciais">
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1598">
+                <div class="leilao-judicial-header">
+                    <span class="titulo">Leilão Judicial</span>
+                    <span class="titulo2" style="line-height: 1 !important;">Área de terreno com 7.669,55 M² - Imbetiba – Macaé – RJ (entre o edifício Macaé Trade Center e Hotel Royal Ocean)</span>
+                    <div class="ldata1 ativo">1ª Praça: 05/10/2026 às 11:30h - Avaliação R$ 6.976.652,60</div>
+                    <div class="ldata2"></div>
+                </div>
+                <div class="leilao-info text-center">
+                                            <span class="tipo tipo-0">Online</span>
+                                    </div>
+                    <div id="comitente-anim-lote-1598" class="lote-anim">
+                                                                                <img class="show" id="lote-anim-1598-1" src="https://static.suporteleiloes.com.br/rogeriomenezescombr/bens/109643/arquivos/6a75e868d4d43-6a75e868d72d5.jpg" alt="#" height="170"/>
+                                            </div>
+                <div class="leilao-comitentes">
+                    <div id="comitente-anim26"
+                         class="leilao-comitente-images">
+                                                    <img alt="Comitente" class="show"
+                                 src="https://cdn.rogeriomenezes.com.br/comitentes/49786ebf5573646a638f9a53a4650cd3.png">
+                                            </div>
+                </div>
+                </a>
+                <a href="/leilao/1598"
+                   class="btn-leilao btn-status-4">
+                                            Aberto para Lances
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1627">
+                <div class="leilao-header">
+                                            <span class="data">05/10/2026, às 13h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 6 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-0">Online</span>
+                                                <span class="titulo">Seguradoras</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 34px; color: #383838;">70 SUCATAS E VEÍCULOS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div id="comitente-anim7"
+                                 class="leilao-comitente-images">
+                                                                    <img alt="Comitente" class="show"
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/931f65047f881bb89568051f91a6eed1.png">
+                                                                    <img alt="Comitente" class=""
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/177a4f040587a00802543d8e777bc2b0.png">
+                                                                    <img alt="Comitente" class=""
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/55c791a7ad33cdb88c7ceea3a6b86d53.jpg">
+                                                                    <img alt="Comitente" class=""
+                                         src="https://cdn.rogeriomenezes.com.br/comitentes/9cef599e2fa61e9ed62975d9ed696bf1.png">
+                                                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/1627"
+                   class="btn-leilao btn-status-4">
+                                            Aberto para Lances
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/753">
+                <div class="leilao-header">
+                                            <span class="data">07/10/2026, às 13h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 8 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-2"><span>Online</span> / Presencial</span>
+                                                <span class="titulo">Bancos</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 35px; color: #383838;">120 VEÍCULOS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div class="text-center">
+                                <img alt="Bancos" style="margin: auto"
+                                     src="https://cdn.rogeriomenezes.com.br/leiloes/753/c65afcd44021fbd1281bee80d0cdabda.gif">
+                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/753"
+                   class="btn-leilao btn-status-1">
+                                            Em Breve
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1443">
+                <div class="leilao-header">
+                                            <span class="data">08/10/2026, às 13h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 9 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-2"><span>Online</span> / Presencial</span>
+                                                <span class="titulo">Seguradoras</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 35px; color: #383838;">130 VEÍCULOS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div class="text-center">
+                                <img alt="Seguradoras" style="margin: auto"
+                                     src="https://cdn.rogeriomenezes.com.br/leiloes/1443/1e79931a4fbb72aac68f0460fb9e4e8c.gif">
+                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/1443"
+                   class="btn-leilao btn-status-1">
+                                            Em Breve
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/779">
+                <div class="leilao-header">
+                                            <span class="data">14/10/2026, às 13h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 15 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-2"><span>Online</span> / Presencial</span>
+                                                <span class="titulo">Bancos</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 35px; color: #383838;">110 VEÍCULOS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div class="text-center">
+                                <img alt="Bancos" style="margin: auto"
+                                     src="https://cdn.rogeriomenezes.com.br/leiloes/779/56cab73833a4a91380329b142484c7dc.gif">
+                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/779"
+                   class="btn-leilao btn-status-1">
+                                            Em Breve
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/399">
+                <div class="leilao-header">
+                                            <span class="data">15/10/2026, às 13h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 16 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-2"><span>Online</span> / Presencial</span>
+                                                <span class="titulo">Seguradoras</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 35px; color: #383838;">130 VEÍCULOS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div class="text-center">
+                                <img alt="Seguradoras" style="margin: auto"
+                                     src="https://cdn.rogeriomenezes.com.br/leiloes/399/f11083ebbc1c8cf030748fd0cb28d68c.png">
+                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/399"
+                   class="btn-leilao btn-status-1">
+                                            Em Breve
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1328">
+                <div class="leilao-header">
+                                            <span class="data">19/10/2026, às 13h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 20 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-0">Online</span>
+                                                <span class="titulo">Seguradoras</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 34px; color: #383838;">80 SUCATAS E VEÍCULOS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div class="text-center">
+                                <img alt="Seguradoras" style="margin: auto"
+                                     src="https://cdn.rogeriomenezes.com.br/leiloes/1328/77c7f643c1d684313575edfdf768ce94.gif">
+                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/1328"
+                   class="btn-leilao btn-status-1">
+                                            Em Breve
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1332">
+                <div class="leilao-header">
+                                            <span class="data">21/10/2026, às 13h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 22 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-2"><span>Online</span> / Presencial</span>
+                                                <span class="titulo">Bancos</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 35px; color: #383838;">130 VEÍCULOS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div class="text-center">
+                                <img alt="Bancos" style="margin: auto"
+                                     src="https://cdn.rogeriomenezes.com.br/leiloes/1332/da11f9b0dcbab09fa1f539be375ab9bf.gif">
+                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/1332"
+                   class="btn-leilao btn-status-1">
+                                            Em Breve
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/751">
+                <div class="leilao-header">
+                                            <span class="data">22/10/2026, às 13h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 23 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-2"><span>Online</span> / Presencial</span>
+                                                <span class="titulo">Seguradoras</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 35px; color: #383838;">120 VEÍCULOS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div class="text-center">
+                                <img alt="Seguradoras" style="margin: auto"
+                                     src="https://cdn.rogeriomenezes.com.br/leiloes/751/27350d9931c2fb3b5328f35e71928a56.gif">
+                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/751"
+                   class="btn-leilao btn-status-1">
+                                            Em Breve
+                                    </a>
+            </div>
+        </li>
+                                    <li>
+            <div class="leilao-content">
+                <a class="leilao-link-info" href="/leilao/1270">
+                <div class="leilao-header">
+                                            <span class="data">09/11/2026, às 13h</span>
+                                                <span class="previsao">
+                                                                                    Daqui a 41 dias.
+                        </span>
+                                    </div>
+                                    <div class="leilao-info text-center">
+                                                    <span class="tipo tipo-0">Online</span>
+                                                <span class="titulo">Seguradoras</span>
+                    </div>
+                                            <div class="leilao-mdesc" style="font-size: 34px; color: #383838;">70 SUCATAS E VEÍCULOS</div>
+                                                            <div class="leilao-comitentes">
+                                                    <div class="text-center">
+                                <img alt="Seguradoras" style="margin: auto"
+                                     src="https://cdn.rogeriomenezes.com.br/leiloes/1270/ed665daf88268072282f57a6f1ba5d58.png">
+                            </div>
+                                            </div>
+                                                </a>
+                <a href="/leilao/1270"
+                   class="btn-leilao btn-status-1">
+                                            Em Breve
+                                    </a>
+            </div>
+        </li>
+                <li>
+        <div class="leilao-content">
+            <div class="text-center">
+                <img src="/images/AnimCardLeilaoC.gif?version=v265p" style="width: 90%;">
+            </div>
+        </div>
+    </li>
+                        </ul>
+                    </div><!-- Fim Center -->
+                </div>
+            </div><!-- Fim Agenda -->
+        
+
+            
+
+        <div class="blog hide">
+            <div class="center-1200">
+                <h2>Acompanhe nosso blog</h2>
+                <ul class="lista-blog">
+                    <li>
+                        <div class="cont-img-blog">
+                            <a href="">
+                                <img src="/images/blog/post1.png?version=v265p" alt="Blog Post">
+                            </a>
+                        </div>
+                        <div class="cont-info-blog">
+                            <h3>
+                                <a href="">Novo Chevrolet Camaro chega por R$ 297 mil</a>
+                            </h3>
+                            <p>por <span>André Borges</span></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cont-img-blog">
+                            <a href="">
+                                <img src="/images/blog/post2.png?version=v265p" alt="Blog Post">
+                            </a>
+                        </div>
+                        <div class="cont-info-blog">
+                            <h3>
+                                <a href="">Novo Chevrolet Camaro chega por R$ 297 mil</a>
+                            </h3>
+                            <p>por <span>André Borges</span></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cont-img-blog">
+                            <a href="">
+                                <img src="/images/blog/post3.png?version=v265p" alt="Blog Post">
+                            </a>
+                        </div>
+                        <div class="cont-info-blog">
+                            <h3>
+                                <a href="">Novo Chevrolet Camaro chega por R$ 297 mil</a>
+                            </h3>
+                            <p>por <span>André Borges</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- Fim Center -->
+        </div><!-- Fim Blog -->
+        <div class="clearfloat"></div>
+        <div class="referencia">
+            <div class="overlay"></div>
+            <div class="referencia-content center-1200">
+                <h3>36 anos de referência em leilões</h3>
+                <p>Infraestrutura moderna, pátios totalmente pavimentados com 70 mil m².<br>
+                    Maior público da leiloaria brasileira, num auditório para 1.200 pessoas sentadas. Leilões online com
+                    grande
+                    disputa para alavancar as vendas de bens específicos.</p>
+                <a href="/contato/" class="btn btn-referencia-contato">fale conosco</a>
+                <a href="/sobre-nos" class="btn btn-referencia-conheca">conheça mais sobre nós</a>
+            </div><!-- Fim Center -->
+        </div><!-- Fim Referência -->
+        <div class="mapa">
+            <iframe marginheight="0"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1837.87922067952!2d-43.64714388759272!3d-22.88538007992868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bfb5a1cb5aba1%3A0x42dd35e3aa4e7372!2sAv.+Brasil%2C+51467+-+Campo+Grande%2C+Rio+de+Janeiro+-+RJ!5e0!3m2!1spt-BR!2sbr!4v1511296469888"
+                    width="100%" height="490" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div><!-- Fim Mapa -->
+
+        <!-- SIMULADOR -->
+                <!-- FIM SIMULADOR -->
+
+                <!-- CONSENT -->
+        <div class="consent" id="consent">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#b9babb" class="close-btn"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.477 2.487c-.649-.65-1.7-.65-2.349 0L12 9.63 4.872 2.487c-.649-.65-1.7-.65-2.349 0a1.666 1.666 0 000 2.353l7.129 7.142-7.166 7.178a1.666 1.666 0 000 2.353c.649.65 1.7.65 2.349 0L12 14.334l7.165 7.179c.649.65 1.7.65 2.349 0a1.666 1.666 0 000-2.353l-7.166-7.178 7.129-7.142a1.666 1.666 0 000-2.353z"></path></svg>
+            <div class="consent-form"><span class="consent-text" style="color: white;">A gente usa cookies para personalizar anúncios e melhorar a sua experiência no site. Ao continuar navegando, você concorda com o nosso <a href="/aviso-lpgd" style="color: #FFFFFF; text-decoration: underline!important">Aviso de Privacidade</a>.</span> <a id="consent-confirm" class="btn btn-success"><span>Aceitar</span></a></div>
+        </div>
+            </div>
+</div>
+<!--//// CONTENT -->
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="center-1200 content-1200">
+        <div class="row menu">
+            <ul class="footer-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/leiloes">Leilões</a></li>
+                                <li><a href="/sobre-nos">Sobre Nós</a></li>
+                                <li><a href="/como-funciona">Como Funciona</a></li>
+                <li><a href="/aviso-lpgd">Aviso de Privacidade</a></li>
+                <li><a href="/trabalhe-conosco">Trabalhe Conosco</a></li>
+                <li><a href="https://blog.rogeriomenezes.com.br/" target="_blank">Blog</a></li>
+                            </ul>
+        </div><!-- Fim Colunas -->
+
+        <div class="btn-imgs" style="margin-bottom: 20px; margin-top: -30px">
+            <div>
+                <a href="https://cadastro.rogeriomenezes.com.br">
+                    <img src="/images/footer-btn-cadastro.png?version=v265p" alt="Card Cadastro">
+                </a>
+            </div>
+            <div>
+                <a href="https://api.whatsapp.com/send?phone=+5521999230393" target="_blank">
+                    <img src="/images/footer-btn-comprovante.png?version=v265p" alt="Card Comprovante">
+                </a>
+            </div>
+            <div>
+                <a href="/documento">
+                    <img src="/images/footer-btn-documento.png?version=v265p" alt="Card Documento">
+                </a>
+            </div>
+                    </div>
+
+        <div class="row frow2">
+            <div class="col-sm-5">
+                <div class="footer-copyright">
+                    <p class="copy">&copy; 2018-present todos os direitos reservados</p>
+                    <p class="contatos">Telefone: (21) 3812-4300
+                        <br>
+                        E-mail: <a href="/cdn-cgi/l/email-protection#9efdf1f0eaffeaf1deecf1f9fbecf7f1f3fbf0fbe4fbedb0fdf1f3b0fcec" style="color: #FFFFFF; font-weight: bold"><span class="__cf_email__" data-cfemail="beddd1d0cadfcad1feccd1d9dbccd7d1d3dbd0dbc4dbcd90ddd1d390dccc">[email&#160;protected]</span></a></p>
+                    <p class="localizacao">Av. Brasil, 51.467 - Campo Grande - Rio de Janeiro - RJ - CEP: 23065-480</p>
+                    <p class="dev">Desenvolvido pela <a href="https://www.wtis.com.br">Wtis</a></p>
+                </div>
+            </div>
+
+            <div class="col-sm-4 google-s" style="display: flex; justify-content: space-between; align-items: center">
+                <a target="_blank" href="https://transparencyreport.google.com/safe-browsing/search?url=https:%2F%2Fwww.rogeriomenezes.com.br%2F&hl=pt_BR"><img src="/images/google-safebrowsing.png?version=v265p" alt="Google Safebrowsing" class="img-responsive" style="width: 80%;"></a>
+                <a target="_blank" href="https://www.atriumcompany.com.br" style="margin-right: 38px"><img src="/images/Selo-Atrium-Adequado-LGPD.png?version=v265p" alt="LGPD" class="img-responsive" style="width: 100%;"></a>
+                <div id="ra-verified-seal"><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" id="ra-embed-verified-seal" src="https://s3.amazonaws.com/raichu-beta/ra-verified/bundle.js" data-id="NDQzMTM6cm9nZXJpby1tZW5lemVzLWxlaWxvZWlyby1vZmljaWFs" data-target="ra-verified-seal" data-model="1"></script></div>
+            </div>
+
+            <div class="col-sm-3 col-rss">
+                <p>Acompanhe nossas redes sociais e seja atualizado diariamente!</p>
+                <ul class="rss">
+                    <li>
+                        <a href="https://www.instagram.com/rogeriomenezesleiloeiro/" target="_blank">
+                            <img src="/images/insta.png?version=v265p" alt="Instagram">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.facebook.com/rogeriomenezesleiloeiro/" target="_blank">
+                            <img src="/images/face.png?version=v265p" alt="Facebook">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.youtube.com/rogeriomenezesleiloeiro" target="_blank">
+                            <img src="/images/youtube.png?version=v265p" alt="Youtube">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.linkedin.com/company/leiloeiro-rog%C3%A9rio-menezes/" target="_blank">
+                            <img src="/images/linkdin.png?version=v265p" alt="linkedin">
+                        </a>
+                    </li>
+                </ul>
+                            </div>
+        </div>
+
+    </div><!-- Fim Center -->
+</footer>
+<!--//// FOOTER -->
+
+<!-- History Bar -->
+<div id="history-bar" class="history-bar">
+    <div class="history-content">
+        <div class="wrapper-items">
+            <history-item :itens="lotesFavoritos">
+                <span slot="number" class="number">
+                    <strong>${lotesFavoritos.length}</strong>
+                    <i class="fa fa-heart hide"></i>
+                </span>
+                <span class="title" slot="title">Lotes Favoritos</span>
+                <div slot-scope="props" class="item-content">
+                    <div v-if="props.itens.length > 0">
+                        <a :href="lote.url" v-for="lote in props.itens" class="hitem-item">
+                            <img class="item-img" :src="lote.image" :alt="lote.descricao">
+                            <div class="item-text">
+                                <div class="item-text-title">${ lote.descricao }</div>
+                                <div class="item-text-desc">${ lote.acessorios }</div>
+                            </div>
+                            <div class="item-options">
+                                ${ data(lote.leilaoData) }
+                            </div>
+                        </a>
+                    </div>
+                    <div class="hitem-item min" v-else>
+                        <div class="item-text no-margin">
+                            <div class="item-text-desc">Nenhum lote nos favoritos.</div>
+                        </div>
+                    </div>
+                </div>
+            </history-item>
+
+            <history-item :itens="leiloesFavoritos">
+                <span slot="number" class="number">
+                    <strong>${leiloesFavoritos.length}</strong>
+                    <i class="fa fa-briefcase hide"></i>
+                </span>
+                <span class="title" slot="title">Leilões Favoritos</span>
+                <div slot-scope="props" class="item-content">
+                    <div v-if="props.itens.length > 0">
+                        <a :href="leilao.url" v-for="leilao in props.itens" class="hitem-item min">
+                            <div class="item-text no-margin">
+                                <div class="item-text-title">${ leilao.titulo }</div>
+                                <div class="item-text-desc"></div>
+                            </div>
+                            <div class="item-options">
+                                ${ data(leilao.leilaoData) }
+                            </div>
+                        </a>
+                    </div>
+                    <div class="hitem-item min" v-else>
+                        <div class="item-text no-margin">
+                            <div class="item-text-desc">Nenhum leilão nos favoritos.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </history-item>
+
+            <history-item :itens="[]">
+                <span slot="number" class="number">
+                    <strong>${[].length}</strong>
+                    <i class="fa fa-book hide"></i>
+                </span>
+                <span class="title" slot="title">Documentos</span>
+                <div slot-scope="props" class="item-content">
+                    <div class="hitem-item min">
+                        <div class="item-text no-margin">
+                            <div class="item-text-desc">Nenhum documento disponível.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </history-item>
+
+            <history-item :itens="[]">
+                <span slot="number" class="number">
+                    <strong>${[].length}</strong>
+                    <i class="fa fa-bell hide"></i>
+                </span>
+                <span class="title" slot="title">Avisos</span>
+                <div slot-scope="props" class="item-content">
+                    <div class="hitem-item min">
+                        <div class="item-text no-margin">
+                            <div class="item-text-desc">Nenhum aviso no momento.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </history-item>
+
+        </div>
+    </div>
+</div>
+
+<!-- VUE COMPONENTS -->
+<div style="display: none">
+    <div id="history-item">
+        <div class="hitem" v-clickout="close" :class="{'opened': opened}">
+                <span class="hpanel" @click="popoverItem()">
+					<slot name="number"></slot> <slot name="title">Item</slot>
+                    <i class="fa" :class="bindArrow"></i>
+				</span>
+            <!-- Menu -->
+            <div class="hpopover-extended">
+                <div class="hpopover-content">
+                    <slot :itens="itens"></slot>
+                </div>
+            </div>
+            <!-- / MENU -->
+        </div>
+    </div>
+</div>
+        <script type="text/javascript">
+      var services = {};
+      services.FavoritosListar = {
+        lote: "/uapi/public/history/favoritos/lotes",
+        leilao: "/uapi/public/history/favoritos/leiloes"
+      };
+      services.FavoritosUrl = {
+        lote: "/uapi/public/history/favoritos/add/lote/__ID__",
+        leilao: "/uapi/public/history/favoritos/add/leilao/__ID__"
+      };
+            var __USERID__ = null;
+                  var __WSSERVER__ = "wss://ws.rogeriomenezes.com.br:8443/ws";
+          </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/vendor/php-js/number_format.js?version=v265p"></script>
+        <script type="javascript">var env = 'prod';</script>
+    <script src="/js/app.min.js?version=v265p"></script>
+            <script type="text/javascript">
+        // TODO: Move in next assets update
+        $(document).ready(function () {
+            $(".mask-celphone").mask("(00) 0 0000-00009")
+        });
+    </script>
+
+    <script type="text/javascript" src="/slick/slick.min.js?version=v265p"></script>
+    <script src="/js/pages/home.js?version=v265p"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/plentz/jquery-maskmoney/master/dist/jquery.maskMoney.min.js"></script>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        $(document).ready(function(){
+            $('.money').maskMoney();
+            $('.clickShow').click(function(){
+                $('.contCalc').toggle();
+                window.setTimeout(function (){
+                    $('#insertValue').focus()
+                }, 100)
+            });
+
+            var objInstallment = { p0: 4.8620, p1: 7.76, p2: 9.1630, p3: 10.1670, p4: 11.1240, p5: 12.1000, p6: 13.1220, p7: 14.3850, p8: 15.4130, p9: 16.4100, p10: 17.4710, p11: 18.1720, p12: 19.5300}
+
+            $('#calcInstallment').submit(function(e){
+                e.preventDefault();
+                $("#showList").html('');
+                var insertValue = $('#calcInstallment #insertValue').val();
+                insertValue = Number(String(insertValue).replace(/\D/gi, '')) / 100
+
+                for(var i = 0; i < Object.keys(objInstallment).length; i++){
+                    var total = insertValue * (1+(objInstallment['p' + i] / 100));
+
+                    var createList = "<div class='cardItem'>";
+                    createList += "<span class='vezes'>";
+                    if (i === 0) {
+                        createList += 'Débito';
+                    } else {
+                        createList += [i] + 'x';
+                    }
+                    createList += "</span>";
+
+                    createList += "<span class='preco'>";
+                    if (i === 0) {
+                        createList += total.toLocaleString("pt-BR", { style: "currency" , currency:"BRL"});
+                    } else {
+                        createList += (total / [i]).toLocaleString("pt-BR", { style: "currency" , currency:"BRL"});
+                    }
+                    createList += "</span>";
+
+                    createList += "<span class='juros'>";
+                    createList += objInstallment['p' + i] + "%";
+                    createList += "</span>";
+
+                    createList += "<span class='total'>";
+                    createList += total.toLocaleString("pt-BR", { style: "currency" , currency:"BRL"});
+                    createList += "</span>";
+
+                    createList += "</div>";
+
+                    $("#showList").append(createList);
+                }
+            });
+
+            $('.consent .close-btn').click(function () {
+                $('.consent').hide()
+            })
+            $('#consent-confirm').click(function () {
+                setCookie('CONSENT', 'CONFIRM', 365)
+                $('.consent').hide()
+            })
+
+        });
+    </script>
+<!-- BV Whatsapp -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBH3M3P" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</body>
+</html>
