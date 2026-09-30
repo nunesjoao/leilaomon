@@ -3,3 +3,5 @@ __pycache__/
 .pytest_cache/
 .venv/
 site/
+-e ultimo_run.log
+diag/

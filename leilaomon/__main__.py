@@ -150,6 +150,7 @@ def main():
     p.add_argument("--seco", action="store_true", help="não envia, só imprime")
     a = p.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+    logging.getLogger("httpx").setLevel(logging.WARNING)  # URLs do CallMeBot contêm a apikey
     cfg = yaml.safe_load(open(a.config, encoding="utf-8"))
     if os.path.exists("painel.json"):
         cfg.update(json.load(open("painel.json", encoding="utf-8")))
