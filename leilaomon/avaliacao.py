@@ -25,7 +25,9 @@ def frete(lote, cfg) -> float:
 
 def avaliar(lote, cfg) -> dict:
     c = cfg["custos"]
-    lance = lote["lance_atual"] or lote["lance_inicial"] or 0
+    lance = lote["lance_atual"] or lote["lance_inicial"]
+    if not lance:  # lote ainda sem valor publicado
+        return {"frete": None, "custo_total": None, "preco_ref": None, "desconto": None}
     monta = lote["monta"] or "nao_informada"
     fr = frete(lote, cfg)
     custo = (lance * (1 + c["comissao_pct"] / 100) + c["taxa_adm"] + fr
