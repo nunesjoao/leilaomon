@@ -21,3 +21,21 @@ def test_joaoemilio():
     je._soup = lambda url, **kw: sp("je_detalhe.html")
     d = je.detalhar({"url": "x"})
     assert d["lance_atual"] == 45500 and d["despesas"] == 2200 
+
+
+def test_apl():
+    from leilaomon.fontes.apl import APL
+    a = APL(); a._soup = lambda url, **kw: sp("apl_home.html")
+    L = a.listar_leiloes()
+    assert len(L) >= 10 and L[0]["data"]
+    c = a._cards(sp("apl_leilao.html"), L[0])
+    assert len(c) == 46 and c[1]["marca"] == "HONDA" and c[1]["monta"] == "conservado" and c[1]["cidade"] == "Teresópolis"
+
+def test_edgar():
+    from leilaomon.fontes.edgarcarvalho import EdgarCarvalho
+    e = EdgarCarvalho()
+    e._soup = lambda url, **kw: sp("ec_oferta.html" if "/oferta/" in url else "ec_leiloes.html")
+    L = e.listar_leiloes()
+    assert len(L) == 1 and L[0]["avulso"]
+    l = e.listar_lotes(L[0])[0]
+    assert l["lance_inicial"] == 20000 and l["ano_mod"] == 2010 and l["leilao_data"].startswith("2026-10-12")

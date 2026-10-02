@@ -141,6 +141,8 @@ h3{font-size:20px;margin:22px 0 4px}
       <option value="rogeriomenezes">Rogério Menezes</option>
       <option value="joaoemilio">João Emílio</option>
       <option value="freitas">Freitas</option>
+      <option value="apl">APL (apreendidos RJ)</option>
+      <option value="edgarcarvalho">Edgar Carvalho</option>
     </select>
   </div>
   <input type="text" id="fBusca" placeholder="Buscar modelo, marca…" autocomplete="off">
@@ -196,7 +198,7 @@ const REPO = "nunesjoao/leilaomon";
 const API = `https://api.github.com/repos/${REPO}`;
 const MONTAS = [["conservado","Conservado"],["nao_informada","Não informada"],["pequena","Pequena monta"],["media","Média monta"]];
 const FLAGS = [["remarcado","Chassi remarcado"],["sem_documento","Sem documento"],["sem_chave","Sem chave"],["nao_funciona","Não funciona"],["enchente","Enchente"],["incendio","Incêndio"],["roubo_furto","Roubo/furto"]];
-const NOME_FONTE = {rogeriomenezes:"Rogério Menezes", joaoemilio:"João Emílio", freitas:"Freitas"};
+const NOME_FONTE = {rogeriomenezes:"Rogério Menezes", joaoemilio:"João Emílio", freitas:"Freitas", apl:"APL", edgarcarvalho:"Edgar Carvalho"};
 const NOME_MONTA = Object.fromEntries([...MONTAS,["grande","Grande monta"]]);
 const $ = s => document.querySelector(s);
 const brl = v => v == null ? "—" : v.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});

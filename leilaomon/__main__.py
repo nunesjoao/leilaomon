@@ -19,6 +19,8 @@ from .avaliacao import avaliar, casa, horas_ate
 from .db import DB
 from .fipe import Fipe
 from .db import importar
+from .fontes.apl import APL
+from .fontes.edgarcarvalho import EdgarCarvalho
 from .fontes.freitas import Freitas
 from .fontes.joaoemilio import JoaoEmilio
 from .fontes.rogeriomenezes import RogerioMenezes
@@ -26,7 +28,8 @@ from .geo import geocodificar
 from .notificar import Email, WhatsApp, fmt_brl, fmt_pct, html_digest, texto_whats
 
 log = logging.getLogger("leilaomon")
-FONTES = {"rogeriomenezes": RogerioMenezes, "joaoemilio": JoaoEmilio, "freitas": Freitas}
+FONTES = {"rogeriomenezes": RogerioMenezes, "joaoemilio": JoaoEmilio, "freitas": Freitas,
+          "apl": APL, "edgarcarvalho": EdgarCarvalho}
 
 
 def coletar(db, cfg, fontes=None):

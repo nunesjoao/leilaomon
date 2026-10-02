@@ -85,6 +85,8 @@ FLAGS = {
 def classificar(texto: str, origem: str = "") -> tuple[str, list[str]]:
     t = sem_acento(texto or "").lower()
     monta = next((nome for nome, rx in MONTAS if re.search(sem_acento(rx), t)), None)
+    if monta is None and re.search(r"\bconservad", t):
+        monta = "conservado"
     if monta is None:
         conservado = re.search(r"banco|financ|frota|locadora|empresa", sem_acento(f"{origem} {t}").lower())
         monta = "conservado" if conservado and "sinistr" not in t else "nao_informada"
@@ -119,10 +121,12 @@ def eh_moto(marca: str, modelo: str) -> bool:
 
 def combustivel_de(texto: str):
     t = norm(texto)
-    if "ALCOOL" in t and "GASOLINA" in t or "FLEX" in t:
+    if "ALC" in t and "GASOL" in t or "FLEX" in t:
         return "flex"
     if "ELETRICO" in t and "GASOLINA" in t or "HIBRIDO" in t:
         return "hibrido"
+    if "GASOL" in t:
+        return "gasolina"
     return next((v for k, v in COMBUSTIVEIS.items() if k in t), None)
 
 
