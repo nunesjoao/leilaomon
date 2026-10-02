@@ -231,7 +231,7 @@ function casa(l, f){
   if(f.km_max && l.km && l.km > f.km_max) return false;
   if(f.custo_max && (l.custo_total ?? 1e12) > f.custo_max) return false;
   if(f.desconto_min != null){
-    if(l.desconto == null) return !!f.aceitar_sem_fipe;
+    if(l.desconto == null) return !f.exigir_fipe;
     if(l.desconto < f.desconto_min) return false;
   }
   return true;
@@ -323,7 +323,7 @@ function renderMons(){
         <div class="checks">${MONTAS.map(([k,n])=>`<label><input type="checkbox" data-set="montas" value="${k}" ${(f.montas||[]).includes(k)?"checked":""}>${n}</label>`).join("")}</div></div>
       <div class="f"><span>Descartar lotes com</span>
         <div class="checks">${FLAGS.map(([k,n])=>`<label><input type="checkbox" data-set="excluir_flags" value="${k}" ${(f.excluir_flags||[]).includes(k)?"checked":""}>${n}</label>`).join("")}</div></div>
-      <div class="checks" style="margin-top:10px"><label><input type="checkbox" data-k="aceitar_sem_fipe" ${f.aceitar_sem_fipe?"checked":""}>Incluir lotes sem cotação FIPE</label></div>
+      <div class="checks" style="margin-top:10px"><label><input type="checkbox" data-k="exigir_fipe" ${f.exigir_fipe?"checked":""}>Só lotes com cotação FIPE</label></div>
       <div class="actions"><button class="btn danger" data-rm>Excluir monitoramento</button></div>
     </div>`).join("") + `<datalist id="dlModelos">${sugestoes().map(s=>`<option value="${esc(s)}">`).join("")}</datalist>`;
   $("#semToken1").hidden = !!token();
@@ -336,7 +336,7 @@ function lerMon(el){
   const t = el.querySelector('[data-k="tipos"]').value; f.tipos = t ? [t] : ["carro","moto"];
   ["lance_max","custo_max","ano_min","km_max"].forEach(k=>{ const v=num(k); if(v==null) delete f[k]; else f[k]=v; });
   const d = num("desconto_min"); if(d==null) delete f.desconto_min; else f.desconto_min = d/100;
-  f.aceitar_sem_fipe = el.querySelector('[data-k="aceitar_sem_fipe"]').checked;
+  f.exigir_fipe = el.querySelector('[data-k="exigir_fipe"]').checked; delete f.aceitar_sem_fipe;
   ["montas","excluir_flags"].forEach(k=>f[k]=[...el.querySelectorAll(`[data-set="${k}"]:checked`)].map(x=>x.value));
 }
 $("#mons").addEventListener("click", e=>{

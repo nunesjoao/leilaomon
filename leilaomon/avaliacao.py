@@ -69,8 +69,8 @@ def casa(lote, f: dict) -> bool:
     if f.get("custo_max") and (lote["custo_total"] or 1e12) > f["custo_max"]:
         return False
     if f.get("desconto_min") is not None:
-        if lote["desconto"] is None:
-            return bool(f.get("aceitar_sem_fipe"))
+        if lote["desconto"] is None:  # sem cotação FIPE: entra, a menos que o filtro exija FIPE
+            return not f.get("exigir_fipe")
         if lote["desconto"] < f["desconto_min"]:
             return False
     return True

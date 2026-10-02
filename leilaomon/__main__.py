@@ -57,17 +57,18 @@ def coletar(db, cfg, fontes=None):
 
 def avaliar_todos(db, cfg):
     fipe = Fipe(db, os.getenv("FIPE_TOKEN") or None)
+    fipe_ok = True
     for l in db.ativos():
         upd = {"id": l["id"]}
         if l["lat"] is None and l["uf"]:
             upd["lat"], upd["lon"] = geocodificar(db, l["cidade"], l["uf"])
-        if not l["fipe_tentado"]:
+        if not l["fipe_tentado"] and fipe_ok:
             try:
                 upd.update(fipe.cotar(l["tipo"], l["marca"], l["modelo"], l["ano_mod"], l["combustivel"]) or {})
                 upd["fipe_tentado"] = 1
-            except RuntimeError as e:
+            except RuntimeError as e:  # cota esgotada: segue calculando custo sem FIPE
                 log.error("%s", e)
-                break
+                fipe_ok = False
             except Exception as e:  # noqa: BLE001
                 log.warning("FIPE falhou para %s: %s", l["titulo"], e)
         db.upsert(upd)

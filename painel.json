@@ -29,8 +29,7 @@
       "desconto_min": 0.05,
       "ativo": true,
       "modelos": [],
-      "marcas": [],
-      "aceitar_sem_fipe": false
+      "marcas": []
     },
     {
       "nome": "carros-geral",
@@ -54,8 +53,7 @@
       "desconto_min": 0.25,
       "ativo": false,
       "modelos": [],
-      "marcas": [],
-      "aceitar_sem_fipe": false
+      "marcas": []
     }
   ]
 }
