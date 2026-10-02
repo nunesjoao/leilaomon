@@ -24,5 +24,6 @@ print("\n".join(linhas))
 
 g = lambda *a: subprocess.run(["git", *a], check=True)
 g("config", "user.name", "leilaomon-bot"); g("config", "user.email", "bot@users.noreply.github.com")
+subprocess.run(["git", "branch", "-D", "diag-tmp"])  # workspace persiste no executor residencial
 g("checkout", "--orphan", "diag-tmp"); g("rm", "-rq", "--cached", ".")
 g("add", "-f", "diag"); g("commit", "-qm", "diag"); g("push", "-f", "origin", "HEAD:diag")
