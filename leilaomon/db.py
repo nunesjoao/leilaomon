@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS lotes (
   descricao TEXT, observacoes TEXT, monta TEXT, flags TEXT,
   lance_inicial REAL, lance_atual REAL, tem_lance INT,
   foto TEXT, comissao_pct REAL, despesas REAL, cidade TEXT, uf TEXT, lat REAL, lon REAL,
-  fipe_tentado INT DEFAULT 0, fipe_valor REAL, fipe_codigo TEXT, fipe_modelo TEXT, fipe_score REAL,
+  fipe_tentado INT DEFAULT 0, fipe_valor REAL, fipe_codigo TEXT, fipe_modelo TEXT, fipe_score REAL, fipe_marca_cod TEXT, fipe_modelo_cod TEXT,
   frete REAL, custo_total REAL, preco_ref REAL, desconto REAL,
   detalhe_ok INT DEFAULT 0, primeira_vez TEXT, atualizado TEXT
 );
@@ -31,7 +31,8 @@ class DB:
         self.con.row_factory = sqlite3.Row
         self.con.executescript(SCHEMA)
         cols = {r[1] for r in self.con.execute("PRAGMA table_info(lotes)")}
-        for c, t in [("foto", "TEXT"), ("comissao_pct", "REAL"), ("despesas", "REAL")]:
+        for c, t in [("foto", "TEXT"), ("comissao_pct", "REAL"), ("despesas", "REAL"),
+                     ("fipe_marca_cod", "TEXT"), ("fipe_modelo_cod", "TEXT")]:
             if c not in cols:
                 self.con.execute(f"ALTER TABLE lotes ADD COLUMN {c} {t}")
         self.con.commit()

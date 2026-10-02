@@ -75,6 +75,8 @@ dialog .corpo{padding:12px 16px 16px}
 dialog h2{font-size:20px;margin:0 0 4px;line-height:1.2}
 dialog dl{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;margin:10px 0 14px;font-size:15px}
 dialog dt{color:var(--muted)} dialog dd{margin:0;font-variant-numeric:tabular-nums}
+#picker{width:min(480px,94vw)}
+#picker select{width:100%}
 dialog .fechar{position:absolute;top:8px;left:8px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(20,24,30,.7);color:#fff;font-size:22px;cursor:pointer}
 
 /* monitoramentos */
@@ -152,6 +154,11 @@ h3{font-size:20px;margin:22px 0 4px}
 
 <section id="tab-mon" hidden>
   <p class="note">Cada monitoramento define o que chega por e-mail e WhatsApp. Um lote entra se atender a todos os campos preenchidos; campo vazio não restringe.</p>
+  <h3>Excluir sempre</h3>
+  <p class="note">Veículos que nunca devem aparecer, em nenhum monitoramento. Escolha pela tabela FIPE: a marca inteira, uma família (ex.: Honda CG) ou uma versão exata.</p>
+  <div class="chips" id="globalBl"></div>
+  <div class="actions" style="margin-top:8px"><button class="btn ghost" data-pick="global">Adicionar veículo</button></div>
+  <h3>Monitoramentos</h3>
   <div id="mons"></div>
   <div class="actions">
     <button class="btn ghost" id="addMon">Adicionar monitoramento</button>
@@ -191,6 +198,21 @@ h3{font-size:20px;margin:22px 0 4px}
 </section>
 </main>
 <dialog id="dlg" aria-label="Detalhes do lote"></dialog>
+<dialog id="picker" aria-label="Escolher veículo na tabela FIPE">
+  <div class="corpo">
+    <h2 id="pkTitulo">Adicionar veículo</h2>
+    <label class="f"><span>Tipo</span>
+      <select id="pkTipo"><option value="moto">Moto</option><option value="carro">Carro</option></select></label>
+    <label class="f"><span>Marca (FIPE)</span><select id="pkMarca"><option value="">Carregando…</option></select></label>
+    <label class="f"><span>Família</span><select id="pkFam" disabled><option value="">Marca inteira</option></select></label>
+    <label class="f"><span>Versão</span><select id="pkVer" disabled><option value="">Todas as versões da família</option></select></label>
+    <p class="note" id="pkMsg"></p>
+    <div class="actions">
+      <button class="btn" id="pkOk" disabled>Adicionar</button>
+      <button class="btn ghost" id="pkCancel">Cancelar</button>
+    </div>
+  </div>
+</dialog>
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script>
@@ -236,8 +258,24 @@ async function salvarPainel(msg){
 }
 
 /* mesma regra do backend (avaliacao.casa) */
+const tokens = s => new Set(norm(s).split(/[\s\-\/]+/).filter(t=>t.length>=2));
+const familia = n => (norm(n).trim().split(/[\s\/]+/)[0]||"");
+function casaVeic(l, e){
+  if(e.tipo && l.tipo!==e.tipo) return false;
+  if(l.fipe_marca_cod && e.marca_cod){ if(String(l.fipe_marca_cod)!==String(e.marca_cod)) return false; }
+  else { const a=tokens(e.marca), b=tokens(l.marca); if(![...a].some(t=>b.has(t))) return false; }
+  if(e.modelo_cod){
+    if(l.fipe_modelo_cod) return String(l.fipe_modelo_cod)===String(e.modelo_cod);
+    return !!e.modelo && norm(l.titulo).includes(norm(e.modelo));
+  }
+  const fam=norm(e.familia||""); if(!fam) return true;
+  const rx=new RegExp("\\b"+fam.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b");
+  return fam===familia(l.fipe_modelo||"") || rx.test(norm(l.modelo||l.titulo));
+}
 function casa(l, f){
   if(f.ativo===false) return false;
+  if([...(PAINEL?.excluir_sempre||[]), ...(f.excluir_veiculos||[])].some(e=>casaVeic(l,e))) return false;
+  if(f.permitir_veiculos?.length && !f.permitir_veiculos.some(e=>casaVeic(l,e))) return false;
   if(f.tipos?.length && !f.tipos.includes(l.tipo)) return false;
   if(f.montas?.length && !f.montas.includes(l.monta||"nao_informada")) return false;
   if((f.excluir_flags||[]).some(x=>l.flags.includes(x))) return false;
@@ -345,13 +383,13 @@ function renderMons(){
           <option value="moto" ${f.tipos?.length===1&&f.tipos[0]==="moto"?"selected":""}>Motos</option>
           <option value="carro" ${f.tipos?.length===1&&f.tipos[0]==="carro"?"selected":""}>Carros</option>
         </select></label>
-      <div class="f"><span>Modelos (qualquer um; vazio = todos)</span>
-        <div class="addrow"><input type="text" list="dlModelos" data-add="modelos" placeholder="ex.: Ninja 400, Jimny"><button class="btn ghost" data-addbtn="modelos">Incluir</button></div>
-        <div class="chips">${(f.modelos||[]).map((m,j)=>`<span class="chip">${esc(m)}<button data-del="modelos" data-j="${j}" aria-label="Remover ${esc(m)}">×</button></span>`).join("")}</div>
+      <div class="f"><span>Permitir apenas estes veículos (vazio = todos)</span>
+        <div class="chips">${chipsVeic(f.permitir_veiculos, "permitir_veiculos")}</div>
+        <div class="actions" style="margin:6px 0 0"><button class="btn ghost" data-pick="permitir_veiculos">Adicionar veículo</button></div>
       </div>
-      <div class="f"><span>Marcas (vazio = todas)</span>
-        <div class="addrow"><input type="text" data-add="marcas" placeholder="ex.: Honda"><button class="btn ghost" data-addbtn="marcas">Incluir</button></div>
-        <div class="chips">${(f.marcas||[]).map((m,j)=>`<span class="chip">${esc(m)}<button data-del="marcas" data-j="${j}" aria-label="Remover ${esc(m)}">×</button></span>`).join("")}</div>
+      <div class="f"><span>Excluir estes veículos</span>
+        <div class="chips">${chipsVeic(f.excluir_veiculos, "excluir_veiculos")}</div>
+        <div class="actions" style="margin:6px 0 0"><button class="btn ghost" data-pick="excluir_veiculos">Adicionar veículo</button></div>
       </div>
       <div class="grid2">
         <label class="f"><span>Lance máximo (R$)</span><input type="number" data-k="lance_max" value="${f.lance_max??""}" inputmode="numeric"></label>
@@ -366,7 +404,8 @@ function renderMons(){
         <div class="checks">${FLAGS.map(([k,n])=>`<label><input type="checkbox" data-set="excluir_flags" value="${k}" ${(f.excluir_flags||[]).includes(k)?"checked":""}>${n}</label>`).join("")}</div></div>
       <div class="checks" style="margin-top:10px"><label><input type="checkbox" data-k="exigir_fipe" ${f.exigir_fipe?"checked":""}>Só lotes com cotação FIPE</label></div>
       <div class="actions"><button class="btn danger" data-rm>Excluir monitoramento</button></div>
-    </div>`).join("") + `<datalist id="dlModelos">${sugestoes().map(s=>`<option value="${esc(s)}">`).join("")}</datalist>`;
+    </div>`).join("");
+  $("#globalBl").innerHTML = chipsVeic(PAINEL.excluir_sempre, "global") || `<span class="note">Nenhum.</span>`;
   $("#semToken1").hidden = !!token();
 }
 function lerMon(el){
@@ -380,6 +419,79 @@ function lerMon(el){
   f.exigir_fipe = el.querySelector('[data-k="exigir_fipe"]').checked; delete f.aceitar_sem_fipe;
   ["montas","excluir_flags"].forEach(k=>f[k]=[...el.querySelectorAll(`[data-set="${k}"]:checked`)].map(x=>x.value));
 }
+function chipsVeic(lista, alvo){
+  return (lista||[]).map((v,j)=>`<span class="chip">${esc(rotuloVeic(v))}<button data-delv="${alvo}" data-j="${j}" aria-label="Remover">×</button></span>`).join("");
+}
+function rotuloVeic(v){
+  return `${v.tipo==="moto"?"Moto":"Carro"} · ${v.marca}${v.modelo?` · ${v.modelo}`:v.familia?` · ${v.familia}`:" (marca inteira)"}`;
+}
+document.querySelector("#tab-mon").addEventListener("click", e=>{
+  const b = e.target.closest("[data-pick],[data-delv]"); if(!b) return;
+  e.preventDefault();
+  const el = b.closest(".mf");
+  if(el) lerMon(el);
+  const alvoDe = k => k==="global" ? (PAINEL.excluir_sempre ||= []) : (PAINEL.filtros[+el.dataset.i][k] ||= []);
+  if(b.dataset.delv){ alvoDe(b.dataset.delv).splice(+b.dataset.j,1); renderMons(); renderLotes(); return; }
+  abrirPicker(v=>{ alvoDe(b.dataset.pick).push(v); renderMons(); renderLotes(); },
+    b.dataset.pick==="global" ? "Excluir sempre" : b.dataset.pick==="permitir_veiculos" ? "Permitir veículo" : "Excluir veículo",
+    el ? (PAINEL.filtros[+el.dataset.i].tipos?.length===1 ? PAINEL.filtros[+el.dataset.i].tipos[0] : null) : null);
+});
+
+/* ---------- seletor pela tabela FIPE (API pública, cache no aparelho) ---------- */
+const FIPE_API = "https://fipe.parallelum.com.br/api/v2";
+const FIPE_TIPO = {carro:"cars", moto:"motorcycles"};
+async function fipeGet(path){
+  const k="fipe:"+path, c=store.get(k);
+  if(c){ try{ const o=JSON.parse(c); if(Date.now()-o.t < 30*864e5) return o.v; }catch{} }
+  const r = await fetch(FIPE_API+path);
+  if(!r.ok) throw new Error(r.status===429 ? "limite diário da FIPE atingido; tente amanhã" : "FIPE respondeu "+r.status);
+  const v = await r.json(); store.set(k, JSON.stringify({t:Date.now(), v})); return v;
+}
+let pkCb=null, pkModelos=[];
+function opt(v,t){ return `<option value="${esc(v)}">${esc(t)}</option>`; }
+async function pkCarregarMarcas(){
+  const tipo=$("#pkTipo").value;
+  $("#pkMarca").innerHTML=opt("","Carregando…"); $("#pkFam").innerHTML=opt("","Marca inteira"); $("#pkVer").innerHTML=opt("","Todas as versões da família");
+  $("#pkFam").disabled=$("#pkVer").disabled=true; $("#pkOk").disabled=true; $("#pkMsg").textContent="";
+  try{
+    const ms = await fipeGet(`/${FIPE_TIPO[tipo]}/brands`);
+    $("#pkMarca").innerHTML = opt("","Escolha a marca") + ms.map(m=>opt(m.code, m.name)).join("");
+  }catch(err){ $("#pkMarca").innerHTML=opt("","Indisponível"); $("#pkMsg").textContent="Não foi possível acessar a tabela FIPE: "+err.message; }
+}
+async function pkCarregarModelos(){
+  const tipo=$("#pkTipo").value, marca=$("#pkMarca").value;
+  $("#pkOk").disabled=!marca; $("#pkFam").disabled=$("#pkVer").disabled=true;
+  $("#pkFam").innerHTML=opt("","Marca inteira"); $("#pkVer").innerHTML=opt("","Todas as versões da família");
+  if(!marca) return;
+  try{
+    pkModelos = await fipeGet(`/${FIPE_TIPO[tipo]}/brands/${marca}/models`);
+    const fams={}; pkModelos.forEach(m=>{ const f=familia(m.name); if(f) fams[f]=(fams[f]||0)+1; });
+    $("#pkFam").innerHTML = opt("","Marca inteira") + Object.keys(fams).sort().map(f=>opt(f, `${f} (${fams[f]} versões)`)).join("");
+    $("#pkFam").disabled=false;
+  }catch(err){ $("#pkMsg").textContent="Não foi possível carregar os modelos: "+err.message; }
+}
+function pkCarregarVersoes(){
+  const fam=$("#pkFam").value;
+  $("#pkVer").innerHTML = opt("","Todas as versões da família") +
+    (fam ? pkModelos.filter(m=>familia(m.name)===fam).map(m=>opt(m.code, m.name)).join("") : "");
+  $("#pkVer").disabled=!fam;
+}
+function abrirPicker(cb, titulo, tipo){
+  pkCb=cb; $("#pkTitulo").textContent=titulo; if(tipo) $("#pkTipo").value=tipo;
+  $("#picker").showModal(); pkCarregarMarcas();
+}
+$("#pkTipo").onchange=pkCarregarMarcas;
+$("#pkMarca").onchange=pkCarregarModelos;
+$("#pkFam").onchange=pkCarregarVersoes;
+$("#pkCancel").onclick=()=>$("#picker").close();
+$("#pkOk").onclick=()=>{
+  const m=$("#pkMarca"), ver=$("#pkVer");
+  const v={tipo:$("#pkTipo").value, marca:m.options[m.selectedIndex].text, marca_cod:m.value};
+  if($("#pkFam").value) v.familia=$("#pkFam").value;
+  if(ver.value){ v.modelo_cod=ver.value; v.modelo=ver.options[ver.selectedIndex].text; }
+  $("#picker").close(); pkCb && pkCb(v);
+};
+
 $("#mons").addEventListener("click", e=>{
   const el = e.target.closest(".mf"); if(!el) return;
   const f = PAINEL.filtros[+el.dataset.i];

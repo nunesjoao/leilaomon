@@ -82,5 +82,6 @@ class Fipe:
             ano = next((a for a in anos if a["code"].endswith(f"-{pref}")), anos[0])
             p = self._get(f"{base}/{ano['code']}", 7)
             return {"fipe_valor": brl(p.get("price", "")), "fipe_codigo": p.get("codeFipe"),
-                    "fipe_modelo": p.get("model"), "fipe_score": score}
+                    "fipe_modelo": p.get("model"), "fipe_score": score,
+                    "fipe_marca_cod": str(cod_marca), "fipe_modelo_cod": str(m["code"])}
         return None

@@ -44,8 +44,41 @@ def avaliar(lote, cfg) -> dict:
     return out
 
 
-def casa(lote, f: dict) -> bool:
+def _tokens(s) -> set:
+    return {t for t in re.split(r"[\s\-/]+", norm(s)) if len(t) >= 2}
+
+
+def _familia(nome) -> str:
+    t = re.split(r"[\s/]+", norm(nome).strip())
+    return t[0] if t and t[0] else ""
+
+
+def casa_veiculo(lote, e: dict) -> bool:
+    """Lote corresponde a uma entrada da lista (referência FIPE).
+    e = {tipo, marca, marca_cod, familia?, modelo?, modelo_cod?}. Sem família/modelo = marca inteira."""
+    if e.get("tipo") and lote["tipo"] != e["tipo"]:
+        return False
+    if lote["fipe_marca_cod"] and e.get("marca_cod"):
+        if str(lote["fipe_marca_cod"]) != str(e["marca_cod"]):
+            return False
+    elif not (_tokens(e.get("marca")) & _tokens(lote["marca"])):
+        return False
+    if e.get("modelo_cod"):
+        if lote["fipe_modelo_cod"]:
+            return str(lote["fipe_modelo_cod"]) == str(e["modelo_cod"])
+        return bool(e.get("modelo")) and norm(e["modelo"]) in norm(lote["titulo"])
+    fam = norm(e.get("familia") or "")
+    if not fam:
+        return True
+    return fam == _familia(lote["fipe_modelo"] or "") or re.search(rf"\b{re.escape(fam)}\b", norm(lote["modelo"] or lote["titulo"])) is not None
+
+
+def casa(lote, f: dict, excluir_sempre=None) -> bool:
     """Retorna True se o lote atende ao filtro (chaves ausentes = sem restrição)."""
+    if any(casa_veiculo(lote, e) for e in (excluir_sempre or []) + (f.get("excluir_veiculos") or [])):
+        return False
+    if f.get("permitir_veiculos") and not any(casa_veiculo(lote, e) for e in f["permitir_veiculos"]):
+        return False
     if f.get("tipos") and lote["tipo"] not in f["tipos"]:
         return False
     if f.get("montas") and (lote["monta"] or "nao_informada") not in f["montas"]:

@@ -65,7 +65,8 @@ def avaliar_todos(db, cfg):
         upd = {"id": l["id"]}
         if l["lat"] is None and l["uf"]:
             upd["lat"], upd["lon"] = geocodificar(db, l["cidade"], l["uf"])
-        if not l["fipe_tentado"] and fipe_ok:
+        sem_cod = l["fipe_valor"] is not None and l["fipe_marca_cod"] is None  # migração: respostas já em cache
+        if (not l["fipe_tentado"] or sem_cod) and fipe_ok:
             try:
                 upd.update(fipe.cotar(l["tipo"], l["marca"], l["modelo"], l["ano_mod"], l["combustivel"]) or {})
                 upd["fipe_tentado"] = 1
@@ -93,7 +94,7 @@ def notificar(db, cfg, seco=False):
     digest, urgentes = [], []
     for l in db.ativos():
         for f in cfg["filtros"]:
-            if not casa(l, f):
+            if not casa(l, f, cfg.get("excluir_sempre")):
                 continue
             n = f["nome"]
             if not db.ja_notificado(l["id"], n, "email"):
@@ -135,7 +136,7 @@ def notificar(db, cfg, seco=False):
     log.info("notificados: %d no digest, %d urgentes", len(digest), len(urgentes))
 
 
-CAMPOS_EXPORT = ["id", "fonte", "comissao_pct", "despesas", "url", "foto", "titulo", "tipo", "marca", "modelo", "ano_fab", "ano_mod", "km",
+CAMPOS_EXPORT = ["id", "fonte", "fipe_marca_cod", "fipe_modelo_cod", "comissao_pct", "despesas", "url", "foto", "titulo", "tipo", "marca", "modelo", "ano_fab", "ano_mod", "km",
                  "monta", "flags", "origem", "leilao_data", "lance_inicial", "lance_atual", "tem_lance",
                  "cidade", "uf", "fipe_valor", "fipe_modelo", "frete", "custo_total", "preco_ref", "desconto",
                  "observacoes", "primeira_vez"]
