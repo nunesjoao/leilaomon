@@ -1,7 +1,7 @@
 name: leilaomon
 on:
   schedule:
-    - cron: "15 */3 * * *"   # a cada 3 h (UTC), 30 min após a coleta residencial
+    - cron: "0 10 * * *"   # diário 07:00 BRT
   workflow_dispatch:
     inputs:
       seco:

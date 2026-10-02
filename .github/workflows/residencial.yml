@@ -4,7 +4,7 @@ name: residencial
 # ficam no workflow principal, que importa este banco.
 on:
   schedule:
-    - cron: "45 2-23/3 * * *"   # 30 min antes do principal (UTC)
+    - cron: "30 9 * * *"   # diário 06:30 BRT, 30 min antes do principal
   workflow_dispatch:
 
 permissions:
