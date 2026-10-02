@@ -1,6 +1,11 @@
 """Baixa HTML bruto de URLs e publica na branch 'diag' (para inspeção remota)."""
 import os, subprocess, sys, time
 import httpx
+try:
+    import truststore  # usa o repositório de certificados do sistema (completa cadeia incompleta)
+    truststore.inject_into_ssl()
+except ImportError:
+    pass
 
 UA = "Mozilla/5.0 (compatible; leilaomon/0.1; monitor pessoal)"
 os.makedirs("diag", exist_ok=True)

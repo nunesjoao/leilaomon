@@ -19,5 +19,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python -m pip install httpx
+      - run: python -m pip install httpx truststore
       - run: python tools/diag_urls.py "${{ inputs.urls }}"
