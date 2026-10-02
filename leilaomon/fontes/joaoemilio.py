@@ -13,6 +13,8 @@ from ..parsing import ano4, brl, classificar, combustivel_de, eh_moto, norm
 from .base import Fonte
 
 BASE = "https://www.joaoemilio.com.br"
+# a cidade que aparece na página do lote é a do licitante, não do veículo; usa o pátio
+PATIO = {"cidade": "Rio de Janeiro", "uf": "RJ", "lat": -22.985, "lon": -43.43}  # Estr. dos Bandeirantes
 INCLUI = re.compile(r"VEIC|VEÍC|MULTIMARCA|MOTO|SINISTR|SEGUR|FROTA|CARRO|AUTOM|SUCATA|RECUPERAD|FINANC", re.I)
 EXCLUI = re.compile(r"EMPILHADEIRA|M[OÓ]VEIS|MOBILI|EQUIPAMENTO|IM[OÓ]VE|AERON|TRANSFORMADOR|CAMINH|PESADOS", re.I)
 STATUS_FORA = ("vendido", "sustado", "retirado", "cancelado", "condicional", "encerrado", "nao_vendido")
@@ -90,7 +92,7 @@ class JoaoEmilio(Fonte):
                 "ano_fab": ano4(anos.group(1)) if anos else None, "ano_mod": ano4(anos.group(2)) if anos else None,
                 "combustivel": combustivel_de(comb.group(1)) if comb else None,
                 "foto": foto.group(1) if foto else None, "monta": monta, "flags": flags,
-                "observacoes": titulo, "_ativo": ativo,
+                "observacoes": titulo, "_ativo": ativo, **PATIO,
             })
         return out
 
@@ -113,7 +115,4 @@ class JoaoEmilio(Fonte):
         m = re.search(r"Data do Leil[aã]o:\n(\d{2}/\d{2}/\d{4} \d{1,2}:\d{2})", txt)
         if m:
             d["leilao_data"] = datetime.strptime(m.group(1), "%d/%m/%Y %H:%M").isoformat()
-        m = re.search(r"\n([A-Za-zÀ-ú .']+)-([A-Z]{2})\n", txt)
-        if m:
-            d["cidade"], d["uf"] = m.group(1).strip(), m.group(2)
         return d

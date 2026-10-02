@@ -20,4 +20,4 @@ def test_joaoemilio():
     assert len(c) == 30 and any(x["_ativo"] for x in c)
     je._soup = lambda url, **kw: sp("je_detalhe.html")
     d = je.detalhar({"url": "x"})
-    assert d["lance_atual"] == 45500 and d["despesas"] == 2200 and d["uf"] == "RJ"
+    assert d["lance_atual"] == 45500 and d["despesas"] == 2200 
