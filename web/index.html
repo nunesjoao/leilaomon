@@ -27,40 +27,55 @@ body{background:var(--bg);color:var(--ink);font:17px/1.4 var(--font);-webkit-tex
 button,input,select{font:inherit;color:inherit}
 a{color:var(--blue)}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;gap:12px;padding:12px 16px 4px;max-width:760px;margin:0 auto}
+.bar{display:flex;align-items:center;gap:12px;padding:12px 16px 4px;max-width:1280px;margin:0 auto}
 .bar h1{font-size:26px;font-weight:700;margin:0;letter-spacing:-.01em}
 .bar .upd{color:var(--muted);font-size:14px;margin-left:auto;text-align:right}
-nav{display:flex;max-width:760px;margin:0 auto;padding:0 8px}
+nav{display:flex;max-width:1280px;margin:0 auto;padding:0 8px}
 nav button{flex:1;background:none;border:0;padding:10px 4px 12px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer}
 nav button[aria-selected=true]{color:var(--ink);border-color:var(--blue)}
-main{max-width:760px;margin:0 auto;padding:8px 16px 48px}
+main{max-width:1280px;margin:0 auto;padding:8px 16px 48px}
+#tab-mon,#tab-aj{max-width:760px}
 section[hidden]{display:none}
 .controls{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
 select,input[type=text],input[type=number],input[type=password]{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 10px;min-height:42px;width:100%}
 .controls select{width:auto;flex:1 1 140px}
 .count{color:var(--muted);font-size:15px;margin:6px 0 2px}
 
-/* lista de lotes */
-.lote{display:grid;grid-template-columns:92px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
-.lote img{width:92px;height:69px;object-fit:cover;border-radius:4px;background:var(--line)}
-.lote h2{font-size:17px;font-weight:600;margin:0 0 2px;line-height:1.2}
-.meta{color:var(--muted);font-size:15px}
-.nums{font-size:15px;margin-top:2px;font-variant-numeric:tabular-nums}
-.tag{font-weight:600}
-.tag.media{color:var(--warn)} .tag.grande{color:var(--bad)} .tag.pequena,.tag.conservado{color:var(--good)}
-.mon{color:var(--blue);font-size:14px;font-weight:600}
+/* grade de lotes: foto em destaque */
+#lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:14px;margin-top:8px}
+@media (min-width:700px){#lista{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}}
+.lote{background:var(--surface);border-radius:8px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;
+  border:1px solid var(--line);transition:transform .12s ease}
+.lote:hover{transform:translateY(-2px)}
+.foto{position:relative;aspect-ratio:4/3;background:var(--line)}
+.foto img{width:100%;height:100%;object-fit:cover;display:block}
+.foto .placa{position:absolute;top:8px;right:8px;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.foto .cond{position:absolute;left:0;bottom:0;padding:3px 8px;font-size:13px;font-weight:700;color:#fff;background:rgba(20,24,30,.78);border-top-right-radius:6px}
+.foto .cond.media{background:rgba(154,100,20,.92)} .foto .cond.pequena,.foto .cond.conservado{background:rgba(23,114,69,.92)} .foto .cond.grande{background:rgba(163,58,43,.92)}
+.info{padding:8px 10px 10px;display:flex;flex-direction:column;gap:2px;flex:1}
+.lote h2{font-size:16px;font-weight:600;margin:0;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.preco{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:auto;padding-top:4px}
+.preco small{font-size:13px;font-weight:500;color:var(--muted)}
+.meta{color:var(--muted);font-size:14px;line-height:1.3}
+.mon{color:var(--blue);font-size:13px;font-weight:600}
+#lista>.note{grid-column:1/-1}
 
 /* placa Mercosul: o desconto */
-.placa{align-self:start;width:78px;border:2px solid var(--ink);border-radius:5px;background:#fff;color:#111;text-align:center;overflow:hidden;font-variant-numeric:tabular-nums}
-.placa i{display:block;background:#0A3A8C;color:#fff;font-style:normal;font-size:10px;font-weight:600;letter-spacing:.08em;padding:1px 0}
-.placa b{display:block;font-size:24px;font-weight:700;line-height:1.25;padding:1px 0 2px}
-.placa.sem b{font-size:16px;color:#666;padding:5px 0 5px}
+.placa{width:70px;border:2px solid #111;border-radius:5px;background:#fff;color:#111;text-align:center;overflow:hidden;font-variant-numeric:tabular-nums}
+.placa i{display:block;background:#0A3A8C;color:#fff;font-style:normal;font-size:9px;font-weight:600;letter-spacing:.08em;padding:1px 0}
+.placa b{display:block;font-size:22px;font-weight:700;line-height:1.2;padding:1px 0 2px}
+.placa.sem b{font-size:14px;color:#666;padding:4px 0}
 .placa.fraco b{color:#666}
 
-.det{grid-column:1/-1;display:none;font-size:15px;padding-top:4px}
-.lote.aberto .det{display:block}
-.det dl{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;margin:0 0 8px}
-.det dt{color:var(--muted)} .det dd{margin:0;font-variant-numeric:tabular-nums}
+/* detalhe do lote */
+dialog{border:0;padding:0;border-radius:10px;width:min(560px,94vw);max-height:90vh;background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog .foto{aspect-ratio:4/3}
+dialog .corpo{padding:12px 16px 16px}
+dialog h2{font-size:20px;margin:0 0 4px;line-height:1.2}
+dialog dl{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;margin:10px 0 14px;font-size:15px}
+dialog dt{color:var(--muted)} dialog dd{margin:0;font-variant-numeric:tabular-nums}
+dialog .fechar{position:absolute;top:8px;left:8px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(20,24,30,.7);color:#fff;font-size:22px;cursor:pointer}
 
 /* monitoramentos */
 .mf{border-bottom:1px solid var(--line);padding:16px 0}
@@ -173,6 +188,7 @@ h3{font-size:20px;margin:22px 0 4px}
   </div>
 </section>
 </main>
+<dialog id="dlg" aria-label="Detalhes do lote"></dialog>
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script>
@@ -188,7 +204,7 @@ const norm = s => (s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUppe
 const esc = s => String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const store = { get(k){try{return localStorage.getItem(k)}catch{return null}}, set(k,v){try{localStorage.setItem(k,v)}catch{}}, del(k){try{localStorage.removeItem(k)}catch{}} };
 
-let DADOS = {lotes:[]}, PAINEL = null, painelSha = null, abertos = new Set();
+let DADOS = {lotes:[]}, PAINEL = null, painelSha = null;
 
 function toast(msg, ms=3200){ const t=$("#toast"); t.textContent=msg; t.hidden=false; clearTimeout(t._h); t._h=setTimeout(()=>t.hidden=true, ms); }
 function token(){ return store.get("gh_token") || ""; }
@@ -252,36 +268,59 @@ function renderLotes(){
     $("#lista").innerHTML = `<p class="note">${mostrar==="mon" ? "Nenhum lote atende aos seus monitoramentos agora. Veja todos os lotes ou ajuste os monitoramentos." : "Nenhum lote encontrado."}</p>`;
     return;
   }
+  VIS = Object.fromEntries(ls.map(l=>[l.id,l]));
   $("#lista").innerHTML = ls.map(l=>{
-    const d=l.desconto, lance=l.lance_atual||l.lance_inicial;
-    const placa = d==null ? `<div class="placa sem"><i>FIPE</i><b>s/ ref.</b></div>`
-      : `<div class="placa${d<0.15?" fraco":""}"><i>DESCONTO</i><b>${Math.round(d*100)}%</b></div>`;
-    const quando = new Date(l.leilao_data).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
-    const hist = (l.historico||[]).map(([t,v])=>`${new Date(t).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}: ${brl(v)}`).join("<br>");
-    return `<article class="lote${abertos.has(l.id)?" aberto":""}" data-id="${esc(l.id)}">
-      ${l.foto?`<img src="${esc(l.foto)}" alt="" loading="lazy">`:`<div></div>`}
-      <div>
-        <h2>${esc(l.titulo)}</h2>
-        <div class="meta"><span class="tag ${esc(l.monta)}">${esc(NOME_MONTA[l.monta]||"Não informada")}</span>${l.km?`, ${l.km.toLocaleString("pt-BR")} km`:""}. Pregão ${quando}. ${esc(NOME_FONTE[l.fonte]||l.fonte||"")}${l.uf?`, ${esc(l.cidade||"")}/${esc(l.uf)}`:""}</div>
-        <div class="nums">${l.tem_lance?"Lance atual":"Lance inicial"} ${brl(lance)}. Custo real ${brl(l.custo_total)}</div>
-        ${l._mons.length?`<div class="mon">${l._mons.map(esc).join(", ")}</div>`:""}
+    const lance=l.lance_atual||l.lance_inicial;
+    return `<article class="lote" data-id="${esc(l.id)}" tabindex="0">
+      <div class="foto">
+        ${l.foto?`<img src="${esc(l.foto)}" alt="" loading="lazy">`:""}
+        ${placa(l)}
+        <span class="cond ${esc(l.monta)}">${esc(NOME_MONTA[l.monta]||"Não informada")}</span>
       </div>
-      ${placa}
-      <div class="det">
-        <dl>
-          <dt>FIPE</dt><dd>${brl(l.fipe_valor)}${l.fipe_modelo?` (${esc(l.fipe_modelo)})`:""}</dd>
-          <dt>Referência</dt><dd>${brl(l.preco_ref)} (FIPE ajustada pela monta)</dd>
-          ${l.comissao_pct!=null||l.despesas!=null?`<dt>Taxas</dt><dd>comissão ${l.comissao_pct ?? "?"}%, despesas ${brl(l.despesas)}</dd>`:""}
-          <dt>Frete</dt><dd>${brl(l.frete)} desde ${esc(l.cidade||"?")}/${esc(l.uf||"?")}</dd>
-          <dt>Origem</dt><dd>${esc(l.origem||"—")}</dd>
-          ${l.flags.length?`<dt>Alertas</dt><dd>${l.flags.map(f=>esc((FLAGS.find(x=>x[0]===f)||[,f])[1])).join(", ")}</dd>`:""}
-          ${l.observacoes?`<dt>Observações</dt><dd>${esc(l.observacoes)}</dd>`:""}
-          ${hist?`<dt>Lances</dt><dd>${hist}</dd>`:""}
-        </dl>
-        <a href="${esc(l.url)}" target="_blank" rel="noopener">Abrir no site do leiloeiro</a>
+      <div class="info">
+        <h2>${esc(l.titulo)}</h2>
+        <div class="meta">${l.km?`${l.km.toLocaleString("pt-BR")} km · `:""}${quando(l.leilao_data)} · ${esc(NOME_FONTE[l.fonte]||l.fonte||"")}</div>
+        ${l._mons.length?`<div class="mon">${l._mons.map(esc).join(", ")}</div>`:""}
+        <div class="preco">${brl(lance)} <small>${l.tem_lance?"lance atual":"lance inicial"}</small></div>
+        <div class="meta">Custo real ${brl(l.custo_total)}</div>
       </div>
     </article>`;
   }).join("");
+}
+let VIS = {};
+const quando = d => new Date(d).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+function placa(l){
+  const d=l.desconto;
+  return d==null ? `<div class="placa sem"><i>FIPE</i><b>s/ ref.</b></div>`
+    : `<div class="placa${d<0.15?" fraco":""}"><i>DESCONTO</i><b>${Math.round(d*100)}%</b></div>`;
+}
+function abrir(l){
+  const lance=l.lance_atual||l.lance_inicial;
+  const hist=(l.historico||[]).map(([t,v])=>`${quando(t)}: ${brl(v)}`).join("<br>");
+  const dlg=$("#dlg");
+  dlg.innerHTML = `<div class="foto">${l.foto?`<img src="${esc(l.foto)}" alt="">`:""}${placa(l)}
+      <span class="cond ${esc(l.monta)}">${esc(NOME_MONTA[l.monta]||"Não informada")}</span>
+      <button class="fechar" aria-label="Fechar">×</button></div>
+    <div class="corpo">
+      <h2>${esc(l.titulo)}</h2>
+      <div class="meta">${l.km?`${l.km.toLocaleString("pt-BR")} km · `:""}Pregão ${quando(l.leilao_data)} · ${esc(NOME_FONTE[l.fonte]||l.fonte||"")}</div>
+      <dl>
+        <dt>${l.tem_lance?"Lance atual":"Lance inicial"}</dt><dd><b>${brl(lance)}</b></dd>
+        <dt>Custo real</dt><dd>${brl(l.custo_total)}</dd>
+        <dt>FIPE</dt><dd>${brl(l.fipe_valor)}${l.fipe_modelo?` (${esc(l.fipe_modelo)})`:""}</dd>
+        <dt>Referência</dt><dd>${brl(l.preco_ref)} (FIPE ajustada pela monta)</dd>
+        ${l.comissao_pct!=null||l.despesas!=null?`<dt>Taxas</dt><dd>comissão ${l.comissao_pct ?? "?"}%, despesas ${brl(l.despesas)}</dd>`:""}
+        <dt>Frete</dt><dd>${brl(l.frete)} desde ${esc(l.cidade||"?")}/${esc(l.uf||"?")}</dd>
+        <dt>Origem</dt><dd>${esc(l.origem||"—")}</dd>
+        ${l.flags.length?`<dt>Alertas</dt><dd>${l.flags.map(f=>esc((FLAGS.find(x=>x[0]===f)||[,f])[1])).join(", ")}</dd>`:""}
+        ${l.observacoes?`<dt>Observações</dt><dd>${esc(l.observacoes)}</dd>`:""}
+        ${hist?`<dt>Lances</dt><dd>${hist}</dd>`:""}
+        ${l._mons.length?`<dt>Monitoramentos</dt><dd>${l._mons.map(esc).join(", ")}</dd>`:""}
+      </dl>
+      <a class="btn" href="${esc(l.url)}" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none">Abrir no site do leiloeiro</a>
+    </div>`;
+  dlg.querySelector(".fechar").onclick=()=>dlg.close();
+  dlg.showModal();
 }
 
 /* ---------- editor de monitoramentos ---------- */
@@ -405,11 +444,9 @@ document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
   document.querySelectorAll("main>section").forEach(s=>s.hidden = s.id!=="tab-"+b.dataset.tab);
   window.scrollTo(0,0);
 });
-$("#lista").addEventListener("click", e=>{
-  if(e.target.closest("a")) return;
-  const a=e.target.closest(".lote"); if(!a) return;
-  a.classList.toggle("aberto"); a.classList.contains("aberto") ? abertos.add(a.dataset.id) : abertos.delete(a.dataset.id);
-});
+$("#lista").addEventListener("click", e=>{ const a=e.target.closest(".lote"); if(a) abrir(VIS[a.dataset.id]); });
+$("#lista").addEventListener("keydown", e=>{ const a=e.target.closest(".lote"); if(a && (e.key==="Enter"||e.key===" ")){ e.preventDefault(); abrir(VIS[a.dataset.id]); }});
+$("#dlg").addEventListener("click", e=>{ if(e.target.id==="dlg") e.target.close(); });
 ["#fMostrar","#fOrdem","#fTipo","#fFonte"].forEach(s=>$(s).onchange=()=>{ store.set("pref"+s,$(s).value); renderLotes(); });
 $("#fBusca").oninput = renderLotes;
 ["#fMostrar","#fOrdem","#fTipo","#fFonte"].forEach(s=>{ const v=store.get("pref"+s); if(v) $(s).value=v; });
