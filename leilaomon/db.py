@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS lotes (
   tipo TEXT, marca TEXT, modelo TEXT, ano_fab INT, ano_mod INT, combustivel TEXT, km INT,
   descricao TEXT, observacoes TEXT, monta TEXT, flags TEXT,
   lance_inicial REAL, lance_atual REAL, tem_lance INT,
-  foto TEXT, cidade TEXT, uf TEXT, lat REAL, lon REAL,
+  foto TEXT, comissao_pct REAL, despesas REAL, cidade TEXT, uf TEXT, lat REAL, lon REAL,
   fipe_tentado INT DEFAULT 0, fipe_valor REAL, fipe_codigo TEXT, fipe_modelo TEXT, fipe_score REAL,
   frete REAL, custo_total REAL, preco_ref REAL, desconto REAL,
   detalhe_ok INT DEFAULT 0, primeira_vez TEXT, atualizado TEXT
@@ -31,8 +31,10 @@ class DB:
         self.con.row_factory = sqlite3.Row
         self.con.executescript(SCHEMA)
         cols = {r[1] for r in self.con.execute("PRAGMA table_info(lotes)")}
-        if "foto" not in cols:
-            self.con.execute("ALTER TABLE lotes ADD COLUMN foto TEXT")
+        for c, t in [("foto", "TEXT"), ("comissao_pct", "REAL"), ("despesas", "REAL")]:
+            if c not in cols:
+                self.con.execute(f"ALTER TABLE lotes ADD COLUMN {c} {t}")
+        self.con.commit()
 
     def get(self, lote_id: str):
         return self.con.execute("SELECT * FROM lotes WHERE id=?", (lote_id,)).fetchone()
@@ -78,3 +80,23 @@ class DB:
     def cache_set(self, chave, valor):
         self.con.execute("INSERT OR REPLACE INTO fipe_cache VALUES (?,?,?)", (chave, json.dumps(valor), agora()))
         self.con.commit()
+
+
+# campos que vêm da coleta (o resto é calculado no banco principal)
+CAMPOS_COLETA = ["id", "fonte", "leilao_id", "leilao_titulo", "origem", "leilao_data", "url", "numero", "titulo",
+                 "tipo", "marca", "modelo", "ano_fab", "ano_mod", "combustivel", "km", "descricao", "observacoes",
+                 "monta", "flags", "lance_inicial", "lance_atual", "tem_lance", "foto", "comissao_pct", "despesas",
+                 "cidade", "uf", "lat", "lon", "detalhe_ok"]
+
+
+def importar(db: "DB", caminho: str) -> int:
+    """Traz para o banco principal os lotes coletados em outro banco (executor residencial)."""
+    import os
+    if not os.path.exists(caminho):
+        return 0
+    outro = DB(caminho)
+    n = 0
+    for r in outro.ativos():
+        db.upsert({k: r[k] for k in CAMPOS_COLETA if r[k] is not None})
+        n += 1
+    return n

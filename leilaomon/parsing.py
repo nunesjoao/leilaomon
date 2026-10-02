@@ -67,9 +67,9 @@ def parse_km(texto: str):
 
 # ordem importa: a primeira que casar define a monta
 MONTAS = [
-    ("grande", r"grande\s+monta|sucata|sem\s+aproveitamento|baixa\s+definitiva|irrecuper"),
-    ("media", r"m[eé]dia\s+monta"),
-    ("pequena", r"pequena\s+monta"),
+    ("grande", r"gr(ande)?\.?\s*mont|sucata|sem\s+aproveitamento|baixa\s+definitiva|irrecuper"),
+    ("media", r"m[eé]d(ia)?\.?\s*mont"),
+    ("pequena", r"peq(uena)?\.?\s*mont"),
 ]
 FLAGS = {
     "remarcado": r"remarcad",
@@ -86,7 +86,8 @@ def classificar(texto: str, origem: str = "") -> tuple[str, list[str]]:
     t = sem_acento(texto or "").lower()
     monta = next((nome for nome, rx in MONTAS if re.search(sem_acento(rx), t)), None)
     if monta is None:
-        monta = "conservado" if "banco" in (origem or "").lower() else "nao_informada"
+        conservado = re.search(r"banco|financ|frota|locadora|empresa", sem_acento(f"{origem} {t}").lower())
+        monta = "conservado" if conservado and "sinistr" not in t else "nao_informada"
     flags = [f for f, rx in FLAGS.items() if re.search(sem_acento(rx), t)]
     return monta, flags
 
@@ -95,3 +96,36 @@ def brl(s: str):
     """'R$ 31.000,00' -> 31000.0"""
     m = re.search(r"([\d\.]+,\d{2})", s or "")
     return float(m.group(1).replace(".", "").replace(",", ".")) if m else None
+
+
+MARCAS_SO_MOTO = {"YAMAHA", "KAWASAKI", "SHINERAY", "DAFRA", "TRIUMPH", "HARLEY-DAVIDSON", "HARLEY DAVIDSON",
+                  "KTM", "ROYAL ENFIELD", "DUCATI", "HAOJUE", "BAJAJ", "MOTTU", "JTZ", "SUNDOWN", "TRAXX",
+                  "KASINSKI", "MV AGUSTA", "BENELLI", "VOLTZ", "AVELLOZ", "HUSQVARNA", "ZONTES"}
+RE_MODELO_MOTO = re.compile(
+    r"\b(CG|CB|CBR|XRE|NXR|BROS|BIZ|POP|PCX|ADV|ELITE|LEAD|SH|NC|XR|CRF|TITAN|FAN|START|CARGO|"
+    r"FAZER|YBR|FACTOR|LANDER|TENERE|CROSSER|NMAX|XMAX|NEO|CRYPTON|MT[- ]?\d|R[1-9]|"
+    r"BURGMAN|GSX|V[- ]?STROM|INTRUDER|YES|HAYABUSA|AFRICA TWIN|X[- ]?ADV|"
+    r"G\s?310|F\s?[789]\d0|R\s?1[23]\d0|S\s?1000|NINJA|Z\s?\d{3,4}|VERSYS)\b")
+
+
+def eh_moto(marca: str, modelo: str) -> bool:
+    m = norm(marca)
+    if m in MARCAS_SO_MOTO or norm(modelo).startswith("MOTO "):
+        return True
+    if m in {"HONDA", "SUZUKI", "BMW"}:
+        return bool(RE_MODELO_MOTO.search(norm(modelo)))
+    return False
+
+
+def combustivel_de(texto: str):
+    t = norm(texto)
+    if "ALCOOL" in t and "GASOLINA" in t or "FLEX" in t:
+        return "flex"
+    if "ELETRICO" in t and "GASOLINA" in t or "HIBRIDO" in t:
+        return "hibrido"
+    return next((v for k, v in COMBUSTIVEIS.items() if k in t), None)
+
+
+def ano4(a: str) -> int:
+    a = int(a)
+    return a if a > 1000 else (2000 + a if a < 60 else 1900 + a)

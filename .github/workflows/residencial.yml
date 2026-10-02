@@ -1,0 +1,35 @@
+name: residencial
+# Coleta das fontes que só respondem a IP residencial (Cloudflare/bloqueio de datacenter).
+# Roda no executor da casa e grava só leiloes_res.db; a avaliação, notificação e página
+# ficam no workflow principal, que importa este banco.
+on:
+  schedule:
+    - cron: "45 2-23/3 * * *"   # 30 min antes do principal (UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: residencial
+
+jobs:
+  coletar:
+    runs-on: [self-hosted, residencial]
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements.txt
+      - run: python -m leilaomon coletar --fontes joaoemilio freitas --db leiloes_res.db
+      - name: Persistir banco
+        if: always()
+        shell: cmd
+        run: |
+          git config user.name "leilaomon-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -f leiloes_res.db
+          git diff --cached --quiet || git commit -m "db residencial"
+          git pull --rebase -X theirs
+          git push

@@ -18,21 +18,33 @@ import yaml
 from .avaliacao import avaliar, casa, horas_ate
 from .db import DB
 from .fipe import Fipe
+from .db import importar
+from .fontes.freitas import Freitas
+from .fontes.joaoemilio import JoaoEmilio
 from .fontes.rogeriomenezes import RogerioMenezes
+from .geo import geocodificar
 from .notificar import Email, WhatsApp, fmt_brl, fmt_pct, html_digest, texto_whats
 
 log = logging.getLogger("leilaomon")
-FONTES = {"rogeriomenezes": RogerioMenezes}
+FONTES = {"rogeriomenezes": RogerioMenezes, "joaoemilio": JoaoEmilio, "freitas": Freitas}
 
 
-def coletar(db, cfg):
-    for nome in cfg["fontes"]:
+def coletar(db, cfg, fontes=None):
+    for nome in fontes or cfg["fontes"]:
         fonte = FONTES[nome]()
-        leiloes = fonte.listar_leiloes()
+        try:
+            leiloes = fonte.listar_leiloes()
+        except Exception as e:  # noqa: BLE001
+            log.error("%s: agenda indisponível (%s)", nome, e)
+            continue
         log.info("%s: %d leilões de veículos na agenda", nome, len(leiloes))
         for lei in leiloes:
-            lotes = fonte.listar_lotes(lei)
-            log.info("  leilão %s (%s): %d lotes", lei["id"], lei["data"][:16], len(lotes))
+            try:
+                lotes = fonte.listar_lotes(lei)
+            except Exception as e:  # noqa: BLE001
+                log.error("  leilão %s: falhou (%s)", lei["id"], e)
+                continue
+            log.info("  leilão %s (%s): %d lotes", lei["id"], (lei["data"] or "")[:16], len(lotes))
             for l in lotes:
                 db.upsert(l)
                 atual = db.get(l["id"])
@@ -47,6 +59,8 @@ def avaliar_todos(db, cfg):
     fipe = Fipe(db, os.getenv("FIPE_TOKEN") or None)
     for l in db.ativos():
         upd = {"id": l["id"]}
+        if l["lat"] is None and l["uf"]:
+            upd["lat"], upd["lon"] = geocodificar(db, l["cidade"], l["uf"])
         if not l["fipe_tentado"]:
             try:
                 upd.update(fipe.cotar(l["tipo"], l["marca"], l["modelo"], l["ano_mod"], l["combustivel"]) or {})
@@ -117,7 +131,7 @@ def notificar(db, cfg, seco=False):
     log.info("notificados: %d no digest, %d urgentes", len(digest), len(urgentes))
 
 
-CAMPOS_EXPORT = ["id", "url", "foto", "titulo", "tipo", "marca", "modelo", "ano_fab", "ano_mod", "km",
+CAMPOS_EXPORT = ["id", "fonte", "comissao_pct", "despesas", "url", "foto", "titulo", "tipo", "marca", "modelo", "ano_fab", "ano_mod", "km",
                  "monta", "flags", "origem", "leilao_data", "lance_inicial", "lance_atual", "tem_lance",
                  "cidade", "uf", "fipe_valor", "fipe_modelo", "frete", "custo_total", "preco_ref", "desconto",
                  "observacoes", "primeira_vez"]
@@ -158,6 +172,9 @@ def main():
     p.add_argument("-c", "--config", default="config.yaml")
     p.add_argument("-n", type=int, default=20)
     p.add_argument("--seco", action="store_true", help="não envia, só imprime")
+    p.add_argument("--fontes", nargs="*", help="limita a coleta a estas fontes")
+    p.add_argument("--db", help="banco SQLite (padrão: config)")
+    p.add_argument("--importar", default="leiloes_res.db", help="banco do executor residencial a importar")
     a = p.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     logging.getLogger("httpx").setLevel(logging.WARNING)  # URLs do CallMeBot contêm a apikey
@@ -165,10 +182,12 @@ def main():
     if os.path.exists("painel.json"):
         cfg.update(json.load(open("painel.json", encoding="utf-8")))
     cfg["filtros"] = [f for f in cfg.get("filtros", []) if f.get("ativo", True)]
-    db = DB(cfg.get("db", "leiloes.db"))
+    db = DB(a.db or cfg.get("db", "leiloes.db"))
 
     if a.cmd in ("run", "coletar"):
-        coletar(db, cfg)
+        coletar(db, cfg, a.fontes)
+    if a.cmd in ("run", "avaliar") and a.importar:
+        log.info("importados %d lotes de %s", importar(db, a.importar), a.importar)
     if a.cmd in ("run", "avaliar"):
         avaliar_todos(db, cfg)
     if a.cmd in ("run", "notificar"):

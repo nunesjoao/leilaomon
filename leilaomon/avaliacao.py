@@ -32,7 +32,9 @@ def avaliar(lote, cfg) -> dict:
         return {"frete": None, "custo_total": None, "preco_ref": None, "desconto": None}
     monta = lote["monta"] or "nao_informada"
     fr = frete(lote, cfg)
-    custo = (lance * (1 + c["comissao_pct"] / 100) + c["taxa_adm"] + fr
+    pct = lote["comissao_pct"] if lote["comissao_pct"] is not None else c["comissao_pct"]
+    taxa = lote["despesas"] if lote["despesas"] is not None else c["taxa_adm"]
+    custo = (lance * (1 + pct / 100) + taxa + fr
              + c["regularizacao"].get(monta, 0) + c["transferencia"])
     out = {"frete": round(fr, 2), "custo_total": round(custo, 2), "preco_ref": None, "desconto": None}
     if lote["fipe_valor"]:

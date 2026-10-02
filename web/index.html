@@ -121,6 +121,12 @@ h3{font-size:20px;margin:22px 0 4px}
       <option value="moto">Só motos</option>
       <option value="carro">Só carros</option>
     </select>
+    <select id="fFonte">
+      <option value="">Todos os leiloeiros</option>
+      <option value="rogeriomenezes">Rogério Menezes</option>
+      <option value="joaoemilio">João Emílio</option>
+      <option value="freitas">Freitas</option>
+    </select>
   </div>
   <input type="text" id="fBusca" placeholder="Buscar modelo, marca…" autocomplete="off">
   <div class="count" id="count"></div>
@@ -174,6 +180,7 @@ const REPO = "nunesjoao/leilaomon";
 const API = `https://api.github.com/repos/${REPO}`;
 const MONTAS = [["conservado","Conservado"],["nao_informada","Não informada"],["pequena","Pequena monta"],["media","Média monta"]];
 const FLAGS = [["remarcado","Chassi remarcado"],["sem_documento","Sem documento"],["sem_chave","Sem chave"],["nao_funciona","Não funciona"],["enchente","Enchente"],["incendio","Incêndio"],["roubo_furto","Roubo/furto"]];
+const NOME_FONTE = {rogeriomenezes:"Rogério Menezes", joaoemilio:"João Emílio", freitas:"Freitas"};
 const NOME_MONTA = Object.fromEntries([...MONTAS,["grande","Grande monta"]]);
 const $ = s => document.querySelector(s);
 const brl = v => v == null ? "—" : v.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
@@ -236,6 +243,7 @@ function renderLotes(){
   let ls = DADOS.lotes.map(l=>({...l, _mons: fs.filter(f=>casa(l,f)).map(f=>f.nome)}));
   if(mostrar==="mon") ls = ls.filter(l=>l._mons.length);
   if(tipo) ls = ls.filter(l=>l.tipo===tipo);
+  const fonte=$("#fFonte").value; if(fonte) ls = ls.filter(l=>l.fonte===fonte);
   if(busca) ls = ls.filter(l=>norm(l.titulo).includes(busca));
   const key = {desc:l=>-(l.desconto ?? -9), custo:l=>l.custo_total ?? 1e12, data:l=>l.leilao_data, novo:l=>-Date.parse(l.primeira_vez)}[ordem];
   ls.sort((a,b)=>{const x=key(a),y=key(b); return x<y?-1:x>y?1:0});
@@ -254,7 +262,7 @@ function renderLotes(){
       ${l.foto?`<img src="${esc(l.foto)}" alt="" loading="lazy">`:`<div></div>`}
       <div>
         <h2>${esc(l.titulo)}</h2>
-        <div class="meta"><span class="tag ${esc(l.monta)}">${esc(NOME_MONTA[l.monta]||"Não informada")}</span>${l.km?`, ${l.km.toLocaleString("pt-BR")} km`:""}. Pregão ${quando}</div>
+        <div class="meta"><span class="tag ${esc(l.monta)}">${esc(NOME_MONTA[l.monta]||"Não informada")}</span>${l.km?`, ${l.km.toLocaleString("pt-BR")} km`:""}. Pregão ${quando}. ${esc(NOME_FONTE[l.fonte]||l.fonte||"")}${l.uf?`, ${esc(l.cidade||"")}/${esc(l.uf)}`:""}</div>
         <div class="nums">${l.tem_lance?"Lance atual":"Lance inicial"} ${brl(lance)}. Custo real ${brl(l.custo_total)}</div>
         ${l._mons.length?`<div class="mon">${l._mons.map(esc).join(", ")}</div>`:""}
       </div>
@@ -263,6 +271,7 @@ function renderLotes(){
         <dl>
           <dt>FIPE</dt><dd>${brl(l.fipe_valor)}${l.fipe_modelo?` (${esc(l.fipe_modelo)})`:""}</dd>
           <dt>Referência</dt><dd>${brl(l.preco_ref)} (FIPE ajustada pela monta)</dd>
+          ${l.comissao_pct!=null||l.despesas!=null?`<dt>Taxas</dt><dd>comissão ${l.comissao_pct ?? "?"}%, despesas ${brl(l.despesas)}</dd>`:""}
           <dt>Frete</dt><dd>${brl(l.frete)} desde ${esc(l.cidade||"?")}/${esc(l.uf||"?")}</dd>
           <dt>Origem</dt><dd>${esc(l.origem||"—")}</dd>
           ${l.flags.length?`<dt>Alertas</dt><dd>${l.flags.map(f=>esc((FLAGS.find(x=>x[0]===f)||[,f])[1])).join(", ")}</dd>`:""}
@@ -401,9 +410,9 @@ $("#lista").addEventListener("click", e=>{
   const a=e.target.closest(".lote"); if(!a) return;
   a.classList.toggle("aberto"); a.classList.contains("aberto") ? abertos.add(a.dataset.id) : abertos.delete(a.dataset.id);
 });
-["#fMostrar","#fOrdem","#fTipo"].forEach(s=>$(s).onchange=()=>{ store.set("pref"+s,$(s).value); renderLotes(); });
+["#fMostrar","#fOrdem","#fTipo","#fFonte"].forEach(s=>$(s).onchange=()=>{ store.set("pref"+s,$(s).value); renderLotes(); });
 $("#fBusca").oninput = renderLotes;
-["#fMostrar","#fOrdem","#fTipo"].forEach(s=>{ const v=store.get("pref"+s); if(v) $(s).value=v; });
+["#fMostrar","#fOrdem","#fTipo","#fFonte"].forEach(s=>{ const v=store.get("pref"+s); if(v) $(s).value=v; });
 
 (async ()=>{
   try{
