@@ -2,6 +2,9 @@ name: leilaomon
 on:
   schedule:
     - cron: "0 10 * * *"   # diário 07:00 BRT
+  workflow_run:            # depois da coleta residencial manual (botão "Buscar agora")
+    workflows: [residencial]
+    types: [completed]
   workflow_dispatch:
     inputs:
       seco:
@@ -19,6 +22,7 @@ concurrency: leilaomon
 jobs:
   run:
     runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.event == 'workflow_dispatch'
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}

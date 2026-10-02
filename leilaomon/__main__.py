@@ -92,7 +92,10 @@ def notificar(db, cfg, seco=False):
     email, whats = (None, None) if seco else (_canal(Email), _canal(WhatsApp))
     wcfg = cfg["whatsapp"]
     digest, urgentes = [], []
+    ocultos = set(cfg.get("ocultos") or [])
     for l in db.ativos():
+        if l["id"] in ocultos:
+            continue
         for f in cfg["filtros"]:
             if not casa(l, f, cfg.get("excluir_sempre")):
                 continue

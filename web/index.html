@@ -49,6 +49,8 @@ select,input[type=text],input[type=number],input[type=password]{background:var(-
 .lote:hover{transform:translateY(-2px)}
 .foto{position:relative;aspect-ratio:4/3;background:var(--line)}
 .foto img{width:100%;height:100%;object-fit:cover;display:block}
+.ocultar{position:absolute;top:8px;left:8px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(20,24,30,.72);color:#fff;font-size:20px;line-height:1;cursor:pointer;z-index:2}
+.ocultar:hover{background:rgba(163,58,43,.95)}
 .foto .placa{position:absolute;top:8px;right:8px;box-shadow:0 1px 4px rgba(0,0,0,.35)}
 .foto .cond{position:absolute;left:0;bottom:0;padding:3px 8px;font-size:13px;font-weight:700;color:#fff;background:rgba(20,24,30,.78);border-top-right-radius:6px}
 .foto .cond.media{background:rgba(154,100,20,.92)} .foto .cond.pequena,.foto .cond.conservado{background:rgba(23,114,69,.92)} .foto .cond.grande{background:rgba(163,58,43,.92)}
@@ -126,6 +128,7 @@ h3{font-size:20px;margin:22px 0 4px}
     <select id="fMostrar">
       <option value="mon">Nos meus monitoramentos</option>
       <option value="todos">Todos os lotes</option>
+      <option value="ocultos">Removidos da lista</option>
     </select>
     <select id="fOrdem">
       <option value="desc">Maior desconto</option>
@@ -154,6 +157,10 @@ h3{font-size:20px;margin:22px 0 4px}
 
 <section id="tab-mon" hidden>
   <p class="note">Cada monitoramento define o que chega por e-mail e WhatsApp. Um lote entra se atender a todos os campos preenchidos; campo vazio não restringe.</p>
+  <div class="actions" style="margin-top:4px">
+    <button class="btn" data-buscar>Buscar agora em todos os sites</button>
+  </div>
+  <p class="note">Coleta todos os leiloeiros fora do horário (Freitas e João Emílio dependem do seu PC ligado). Os resultados aparecem em 10 a 15 minutos e as notificações saem normalmente.</p>
   <h3>Excluir sempre</h3>
   <p class="note">Veículos que nunca devem aparecer, em nenhum monitoramento. Escolha pela tabela FIPE: a marca inteira, uma família (ex.: Honda CG) ou uma versão exata.</p>
   <div class="chips" id="globalBl"></div>
@@ -186,7 +193,7 @@ h3{font-size:20px;margin:22px 0 4px}
 
   <h3>Execução</h3>
   <p class="note">O sistema roda sozinho uma vez por dia, às 7h. Use o botão para rodar agora; os dados aparecem aqui em cerca de 5 minutos.</p>
-  <div class="actions"><button class="btn" id="rodar">Rodar agora</button></div>
+  <div class="actions"><button class="btn" data-buscar>Buscar agora em todos os sites</button></div>
 
   <h3>Token do GitHub</h3>
   <p class="note">Necessário para salvar e rodar. Fica guardado só neste aparelho.</p>
@@ -297,6 +304,8 @@ function renderLotes(){
   const mostrar=$("#fMostrar").value, ordem=$("#fOrdem").value, tipo=$("#fTipo").value, busca=norm($("#fBusca").value.trim());
   const fs = PAINEL?.filtros || [];
   let ls = DADOS.lotes.map(l=>({...l, _mons: fs.filter(f=>casa(l,f)).map(f=>f.nome)}));
+  const oc = new Set(PAINEL?.ocultos||[]);
+  ls = mostrar==="ocultos" ? ls.filter(l=>oc.has(l.id)) : ls.filter(l=>!oc.has(l.id));
   if(mostrar==="mon") ls = ls.filter(l=>l._mons.length);
   if(tipo) ls = ls.filter(l=>l.tipo===tipo);
   const fonte=$("#fFonte").value; if(fonte) ls = ls.filter(l=>l.fonte===fonte);
@@ -314,6 +323,7 @@ function renderLotes(){
     return `<article class="lote" data-id="${esc(l.id)}" tabindex="0">
       <div class="foto">
         ${l.foto?`<img src="${esc(l.foto)}" alt="" loading="lazy">`:""}
+        <button class="ocultar" data-ocultar="${esc(l.id)}" aria-label="${oc.has(l.id)?"Restaurar na lista":"Remover da lista"}" title="${oc.has(l.id)?"Restaurar":"Remover da lista"}">${oc.has(l.id)?"↺":"×"}</button>
         ${placa(l)}
         <span class="cond ${esc(l.monta)}">${esc(NOME_MONTA[l.monta]||"Não informada")}</span>
       </div>
@@ -537,13 +547,19 @@ $("#salvarAj").onclick = async e=>{
   if(await salvarPainel("painel: ajustes")) toast("Ajustes salvos. Valem na próxima execução.");
   e.target.disabled=false;
 };
-$("#rodar").onclick = async e=>{
-  if(!token()){ toast("Informe o token do GitHub abaixo"); return; }
-  e.target.disabled=true;
-  try{ await gh("/actions/workflows/leilaomon.yml/dispatches",{method:"POST",body:JSON.stringify({ref:"main",inputs:{seco:false}})}); toast("Execução iniciada. Atualize a página em cerca de 5 minutos."); }
-  catch(err){ toast(err.message,5000); }
-  e.target.disabled=false;
-};
+document.addEventListener("click", async e=>{
+  const b=e.target.closest("[data-buscar]"); if(!b) return;
+  if(!token()){ toast("Informe o token do GitHub em Ajustes"); return; }
+  document.querySelectorAll("[data-buscar]").forEach(x=>x.disabled=true);
+  try{
+    // principal: Rogério Menezes, APL e Edgar Carvalho (resultado em ~5 min)
+    await gh("/actions/workflows/leilaomon.yml/dispatches",{method:"POST",body:JSON.stringify({ref:"main",inputs:{seco:false}})});
+    // residencial: Freitas e João Emílio no seu PC; ao terminar, dispara a principal de novo
+    await gh("/actions/workflows/residencial.yml/dispatches",{method:"POST",body:JSON.stringify({ref:"main"})});
+    toast("Busca iniciada em todos os sites. Atualize a página em 10 a 15 minutos.",5000);
+  }catch(err){ toast(err.message,5000); }
+  setTimeout(()=>document.querySelectorAll("[data-buscar]").forEach(x=>x.disabled=false), 60000);
+});
 $("#salvarTok").onclick = async ()=>{
   const v=$("#tok").value.trim(); if(!v || v.startsWith("•")) return;
   store.set("gh_token", v);
@@ -558,7 +574,23 @@ document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
   document.querySelectorAll("main>section").forEach(s=>s.hidden = s.id!=="tab-"+b.dataset.tab);
   window.scrollTo(0,0);
 });
-$("#lista").addEventListener("click", e=>{ const a=e.target.closest(".lote"); if(a) abrir(VIS[a.dataset.id]); });
+$("#lista").addEventListener("click", e=>{
+  const b=e.target.closest("[data-ocultar]");
+  if(b){ e.stopPropagation(); alternarOculto(b.dataset.ocultar); return; }
+  const a=e.target.closest(".lote"); if(a) abrir(VIS[a.dataset.id]);
+});
+let salvarOcultosT=null;
+function alternarOculto(id){
+  const oc = new Set(PAINEL.ocultos||[]);
+  const removendo = !oc.has(id);
+  removendo ? oc.add(id) : oc.delete(id);
+  PAINEL.ocultos=[...oc]; store.set("ocultos", JSON.stringify(PAINEL.ocultos));
+  renderLotes();
+  toast(removendo ? "Removido da lista e das notificações" : "Lote restaurado");
+  if(!token()){ toast("Removido só neste aparelho. Informe o token em Ajustes para valer também nas notificações.",5000); return; }
+  clearTimeout(salvarOcultosT);
+  salvarOcultosT=setTimeout(()=>salvarPainel("painel: lotes removidos da lista"), 2500);
+}
 $("#lista").addEventListener("keydown", e=>{ const a=e.target.closest(".lote"); if(a && (e.key==="Enter"||e.key===" ")){ e.preventDefault(); abrir(VIS[a.dataset.id]); }});
 $("#dlg").addEventListener("click", e=>{ if(e.target.id==="dlg") e.target.close(); });
 ["#fMostrar","#fOrdem","#fTipo","#fFonte"].forEach(s=>$(s).onchange=()=>{ store.set("pref"+s,$(s).value); renderLotes(); });
@@ -569,6 +601,7 @@ $("#fBusca").oninput = renderLotes;
   try{
     const [dados, painel] = await Promise.all([fetch("lotes.json?"+Date.now()).then(r=>r.json()), carregarPainel()]);
     DADOS = dados; PAINEL = painel;
+    try{ const loc=JSON.parse(store.get("ocultos")||"[]"); PAINEL.ocultos=[...new Set([...(PAINEL.ocultos||[]),...loc])]; }catch{}
     $("#upd").textContent = "Atualizado " + new Date(dados.gerado).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
     renderLotes(); renderMons(); renderAj();
   }catch(e){
