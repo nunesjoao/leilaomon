@@ -29,7 +29,8 @@
       "desconto_min": 0.05,
       "ativo": true,
       "modelos": [],
-      "marcas": []
+      "marcas": [],
+      "exigir_fipe": false
     },
     {
       "nome": "carros-geral",
@@ -72,6 +73,12 @@
           "marca": "smart",
           "marca_cod": "157",
           "familia": "FORTWO"
+        },
+        {
+          "tipo": "carro",
+          "marca": "Jeep",
+          "marca_cod": "29",
+          "familia": "COMPASS"
         }
       ]
     }
@@ -160,6 +167,7 @@
     "fr:8095-67",
     "fr:8094-27",
     "fr:8100-668",
-    "fr:8100-685"
+    "fr:8100-685",
+    "rm:144111"
   ]
 }
