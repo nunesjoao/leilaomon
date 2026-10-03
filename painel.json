@@ -51,9 +51,29 @@
       "ano_min": 2016,
       "custo_max": 120000,
       "desconto_min": 0.25,
-      "ativo": false,
+      "ativo": true,
       "modelos": [],
-      "marcas": []
+      "marcas": [],
+      "exigir_fipe": false,
+      "permitir_veiculos": [
+        {
+          "tipo": "carro",
+          "marca": "MINI",
+          "marca_cod": "156"
+        },
+        {
+          "tipo": "carro",
+          "marca": "Fiat",
+          "marca_cod": "21",
+          "familia": "500"
+        },
+        {
+          "tipo": "carro",
+          "marca": "smart",
+          "marca_cod": "157",
+          "familia": "FORTWO"
+        }
+      ]
     }
   ],
   "ocultos": [
@@ -83,6 +103,7 @@
     "rm:144186",
     "rm:144204",
     "rm:144167",
-    "rm:144170"
+    "rm:144170",
+    "rm:144030"
   ]
 }
