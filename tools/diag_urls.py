@@ -11,7 +11,7 @@ UA = "Mozilla/5.0 (compatible; leilaomon/0.1; monitor pessoal)"
 os.makedirs("diag", exist_ok=True)
 linhas = []
 with httpx.Client(follow_redirects=True, timeout=30, headers={"User-Agent": UA}) as c:
-    for i, u in enumerate(sys.argv[1].split(), 1):
+    for i, u in enumerate((sys.argv[1] if len(sys.argv) > 1 else "").split(), 1):
         try:
             r = c.get(u)
             open(f"diag/{i}.html", "w", encoding="utf-8").write(r.text)
