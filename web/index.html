@@ -333,7 +333,7 @@ function renderLotes(){
         <h2>${esc(l.titulo)}</h2>
         <div class="meta">${l.km?`${l.km.toLocaleString("pt-BR")} km · `:""}${quando(l.leilao_data)} · ${esc(NOME_FONTE[l.fonte]||l.fonte||"")}</div>
         ${l._mons.length?`<div class="mon">${l._mons.map(esc).join(", ")}</div>`:""}
-        <div class="preco">${brl(lance)} <small>${l.tem_lance?"lance atual":"lance inicial"}</small></div>
+        <div class="preco">${brl(lance)} <small>${l.fonte==="copart"?"pré-lance":l.tem_lance?"lance atual":"lance inicial"}</small></div>
         <div class="meta">Custo real ${brl(l.custo_total)}</div>
       </div>
     </article>`;

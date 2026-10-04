@@ -104,7 +104,9 @@ def notificar(db, cfg, seco=False):
             n = f["nome"]
             if not db.ja_notificado(l["id"], n, "email"):
                 digest.append((n, l))
-            quente = l["desconto"] is not None and l["desconto"] >= wcfg["desconto_min"]
+            # Copart: lance antes do pregão ao vivo é simbólico; desconto não serve de gatilho
+            quente = (l["desconto"] is not None and l["desconto"] >= wcfg["desconto_min"]
+                      and l["fonte"] != "copart")
             if quente and not db.ja_notificado(l["id"], n, "whats"):
                 urgentes.append((n, l, "whats"))
             elif horas_ate(l) <= wcfg["lembrete_horas"] and not db.ja_notificado(l["id"], n, "lembrete"):
