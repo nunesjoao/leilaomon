@@ -26,5 +26,6 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install httpx truststore
       - if: inputs.script != ''
+        continue-on-error: true
         run: python tools/${{ inputs.script }}
       - run: python tools/diag_urls.py "${{ inputs.urls }}"
