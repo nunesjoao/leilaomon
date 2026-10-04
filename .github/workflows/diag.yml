@@ -4,7 +4,12 @@ on:
     inputs:
       urls:
         description: "URLs separadas por espaço"
-        required: true
+        required: false
+        default: ""
+      script:
+        description: "Script de sonda em tools/ (opcional, roda antes)"
+        required: false
+        default: ""
       residencial:
         description: "Rodar no executor da casa"
         type: boolean
@@ -20,4 +25,6 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install httpx truststore
+      - if: inputs.script != ''
+        run: python tools/${{ inputs.script }}
       - run: python tools/diag_urls.py "${{ inputs.urls }}"
