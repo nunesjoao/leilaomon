@@ -46,3 +46,13 @@ def test_vip():
     c = VIP()._cards(sp("vip_pesquisa.html"), {"id": "carro-m3", "tipo": "carro", "monta": "3"})
     assert len(c) == 12 and c[0]["marca"] == "FIAT" and c[0]["ano_mod"] == 2025 and c[0]["uf"] == "RJ"
     assert c[0]["lance_atual"] == 23000 and c[0]["lance_inicial"] == 21000 and c[0]["monta"] == "media"
+
+
+def test_copart():
+    import json
+    from leilaomon.fontes.copart import Copart
+    itens = json.loads((F / "copart_search.json").read_text())["data"]["results"]["content"]
+    x = dict(itens[0], ad="2026-10-07 13:00:00", saleType="Leilão", damageClassification="Média Monta", hb=12500.0)
+    l = Copart()._lote(x)
+    assert l["id"] == "cp:627142" and l["monta"] == "media" and l["uf"] == "GO" and l["lance_atual"] == 12500
+    assert Copart()._lote(dict(itens[0], ad="")) is None

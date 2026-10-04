@@ -20,6 +20,7 @@ from .db import DB
 from .fipe import Fipe
 from .db import importar
 from .fontes.apl import APL
+from .fontes.copart import Copart
 from .fontes.edgarcarvalho import EdgarCarvalho
 from .fontes.freitas import Freitas
 from .fontes.joaoemilio import JoaoEmilio
@@ -30,7 +31,7 @@ from .notificar import Email, WhatsApp, fmt_brl, fmt_pct, html_digest, texto_wha
 
 log = logging.getLogger("leilaomon")
 FONTES = {"rogeriomenezes": RogerioMenezes, "joaoemilio": JoaoEmilio, "freitas": Freitas,
-          "apl": APL, "edgarcarvalho": EdgarCarvalho, "vip": VIP}
+          "apl": APL, "edgarcarvalho": EdgarCarvalho, "vip": VIP, "copart": Copart}
 
 
 def coletar(db, cfg, fontes=None):
