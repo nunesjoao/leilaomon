@@ -1,0 +1,110 @@
+{
+ "erro_filtro": {
+  "status": 200,
+  "resp": "{\"returnCode\": -1, \"returnCodeDesc\": \"Error occured\", \"data\": {\"errorMsg\": \"Unexpected error occurred on the server, Please check logs\"}}"
+ },
+ "sort_ad": {
+  "status": 200,
+  "total": 13717,
+  "n": 20,
+  "ad": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "yn": [
+   "GOIÂNIA (POLO INDUSTRIAL) - GO",
+   "ITAQUAQUECETUBA - SP",
+   "CURITIBA - PR"
+  ]
+ },
+ "sort_ad_desc": {
+  "status": 200,
+  "total": 13717,
+  "n": 20,
+  "ad": [
+   "2026-10-09 16:00:00",
+   "2026-10-09 16:00:00",
+   "2026-10-09 16:00:00",
+   "2026-10-09 15:00:00",
+   "2026-10-09 15:00:00",
+   "2026-10-09 15:00:00",
+   "2026-10-09 15:00:00",
+   "2026-10-09 15:00:00"
+  ],
+  "yn": [
+   "PIRAPORA - SP",
+   "CAÇAPAVA - SP",
+   "CAÇAPAVA - SP"
+  ]
+ },
+ "sort_type": {
+  "status": 200,
+  "resp": "{\"returnCode\": -1, \"returnCodeDesc\": \"Error occured\", \"data\": {\"errorMsg\": \"Unexpected error occurred on the server, Please check logs\"}}"
+ },
+ "order_col": {
+  "status": 200,
+  "total": 13717,
+  "n": 20,
+  "ad": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "yn": [
+   "GOIÂNIA (POLO INDUSTRIAL) - GO",
+   "ITAQUAQUECETUBA - SP",
+   "CURITIBA - PR"
+  ]
+ },
+ "upcoming_flag": {
+  "status": 200,
+  "total": 1431,
+  "n": 20,
+  "ad": [
+   "2026-10-07 13:00:00",
+   "Copart Select",
+   "Copart Select",
+   "2026-10-07 13:00:00",
+   "Copart Select",
+   "Copart Select",
+   "Copart Select",
+   "Copart Select"
+  ],
+  "yn": [
+   "EUSÉBIO - CE",
+   "GOIÂNIA - GO",
+   "CANDEIAS - BA"
+  ]
+ },
+ "filter_MISC_upcoming": {
+  "status": 200,
+  "total": 10753,
+  "n": 20,
+  "ad": [
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "yn": [
+   "GOIÂNIA (POLO INDUSTRIAL) - GO",
+   "CURITIBA - PR",
+   "EMBÚ DAS ARTES - SP"
+  ]
+ }
+}
