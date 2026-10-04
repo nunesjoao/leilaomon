@@ -24,12 +24,13 @@ from .fontes.edgarcarvalho import EdgarCarvalho
 from .fontes.freitas import Freitas
 from .fontes.joaoemilio import JoaoEmilio
 from .fontes.rogeriomenezes import RogerioMenezes
+from .fontes.vip import VIP
 from .geo import geocodificar
 from .notificar import Email, WhatsApp, fmt_brl, fmt_pct, html_digest, texto_whats
 
 log = logging.getLogger("leilaomon")
 FONTES = {"rogeriomenezes": RogerioMenezes, "joaoemilio": JoaoEmilio, "freitas": Freitas,
-          "apl": APL, "edgarcarvalho": EdgarCarvalho}
+          "apl": APL, "edgarcarvalho": EdgarCarvalho, "vip": VIP}
 
 
 def coletar(db, cfg, fontes=None):

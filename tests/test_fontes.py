@@ -39,3 +39,10 @@ def test_edgar():
     assert len(L) == 1 and L[0]["avulso"]
     l = e.listar_lotes(L[0])[0]
     assert l["lance_inicial"] == 20000 and l["ano_mod"] == 2010 and l["leilao_data"].startswith("2026-10-12")
+
+
+def test_vip():
+    from leilaomon.fontes.vip import VIP
+    c = VIP()._cards(sp("vip_pesquisa.html"), {"id": "carro-m3", "tipo": "carro", "monta": "3"})
+    assert len(c) == 12 and c[0]["marca"] == "FIAT" and c[0]["ano_mod"] == 2025 and c[0]["uf"] == "RJ"
+    assert c[0]["lance_atual"] == 23000 and c[0]["lance_inicial"] == 21000 and c[0]["monta"] == "media"
