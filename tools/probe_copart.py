@@ -1,4 +1,4 @@
-"""Sonda Copart BR v2: formato de filtro e paginação de /public/lots/search."""
+"""Sonda Copart BR v3: ordenação por data de leilão e mensagem de erro dos filtros."""
 import json, os, traceback
 import httpx
 UA = {"User-Agent": "Mozilla/5.0 (compatible; leilaomon/0.1; monitor pessoal)"}
@@ -7,16 +7,13 @@ B = "https://www.copart.com.br/public/lots/search"
 hdr = {"X-Requested-With": "XMLHttpRequest", "Accept": "application/json, text/plain, */*"}
 F = 'dataleilao:"06/10/2026 14:00:00"'
 variantes = {
-    "base": {"query": "*"},
-    "size100": {"query": "*", "size": "100"},
-    "length100": {"query": "*", "start": "0", "length": "100"},
-    "page1": {"query": "*", "page": "1"},
-    "start10": {"query": "*", "start": "10"},
-    "filtro_colchete": {"query": "*", "filter[dataleilao]": F},
-    "filtro_FILTER": {"query": "*", "filter[MISC]": F},
-    "fq": {"query": "*", "fq": F},
-    "query_facet": {"query": F},
-    "upcoming": {"query": "*", "filter[patioleilao]": '-patioleilao:"Não Preenchido"'},
+    "erro_filtro": {"query": "*", "filter[dataleilao]": F},
+    "sort_ad": {"query": "*", "size": "20", "sort": "auction_date_utc asc"},
+    "sort_ad_desc": {"query": "*", "size": "20", "sort": "auction_date_utc desc"},
+    "sort_type": {"query": "*", "size": "20", "sort": "auction_date_type desc,auction_date_utc asc"},
+    "order_col": {"query": "*", "size": "20", "order[0][column]": "8", "order[0][dir]": "asc"},
+    "upcoming_flag": {"query": "*", "size": "20", "showUpComing": "false"},
+    "filter_MISC_upcoming": {"query": "*", "size": "20", "filter[MISC]": "#VehicleTypeCode:VEHTYPE_V,#LotYear:[2018 TO 2027]"},
 }
 res = {}
 c = httpx.Client(timeout=40, headers=UA)
@@ -24,17 +21,15 @@ c.get("https://www.copart.com.br/")
 for k, data in variantes.items():
     try:
         r = c.post(B, data=data, headers=hdr)
-        j = r.json()["data"]["results"]
+        J = r.json()
+        j = J["data"].get("results")
+        if j is None:
+            res[k] = {"status": r.status_code, "resp": json.dumps(J, ensure_ascii=False)[:500]}
+            continue
         res[k] = {"status": r.status_code, "total": j["totalElements"], "n": len(j["content"]),
-                  "first": [x["ln"] for x in j["content"][:3]], "ad": [x.get("ad") for x in j["content"][:3]],
-                  "q": r.json()["data"]["query"]}
+                  "ad": [x.get("ad") or x.get("adf") or "" for x in j["content"][:8]],
+                  "yn": [x.get("yn") for x in j["content"][:3]]}
     except Exception:
         res[k] = traceback.format_exc()[-400:]
-# JSON no corpo
-try:
-    r = c.post(B, json={"query": ["*"], "filter": {"MISC": [F]}, "page": 0, "size": 100}, headers=hdr)
-    j = r.json()["data"]["results"]; res["json_body"] = {"total": j["totalElements"], "n": len(j["content"])}
-except Exception:
-    res["json_body"] = traceback.format_exc()[-300:]
-open("diag/copart_probe2.json", "w", encoding="utf-8").write(json.dumps(res, ensure_ascii=False, indent=1))
+open("diag/copart_probe3.json", "w", encoding="utf-8").write(json.dumps(res, ensure_ascii=False, indent=1))
 print(json.dumps(res, ensure_ascii=False)[:3000])
