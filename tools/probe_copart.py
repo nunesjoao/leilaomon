@@ -1,39 +1,40 @@
-"""Sonda Copart BR: descobre endpoints públicos usados pelo front (Angular) e testa a busca."""
-import json, os, re, traceback
+"""Sonda Copart BR v2: formato de filtro e paginação de /public/lots/search."""
+import json, os, traceback
 import httpx
 UA = {"User-Agent": "Mozilla/5.0 (compatible; leilaomon/0.1; monitor pessoal)"}
 os.makedirs("diag", exist_ok=True)
-B = "https://www.copart.com.br"
+B = "https://www.copart.com.br/public/lots/search"
+hdr = {"X-Requested-With": "XMLHttpRequest", "Accept": "application/json, text/plain, */*"}
+F = 'dataleilao:"06/10/2026 14:00:00"'
+variantes = {
+    "base": {"query": "*"},
+    "size100": {"query": "*", "size": "100"},
+    "length100": {"query": "*", "start": "0", "length": "100"},
+    "page1": {"query": "*", "page": "1"},
+    "start10": {"query": "*", "start": "10"},
+    "filtro_colchete": {"query": "*", "filter[dataleilao]": F},
+    "filtro_FILTER": {"query": "*", "filter[MISC]": F},
+    "fq": {"query": "*", "fq": F},
+    "query_facet": {"query": F},
+    "upcoming": {"query": "*", "filter[patioleilao]": '-patioleilao:"Não Preenchido"'},
+}
 res = {}
+c = httpx.Client(timeout=40, headers=UA)
+c.get("https://www.copart.com.br/")
+for k, data in variantes.items():
+    try:
+        r = c.post(B, data=data, headers=hdr)
+        j = r.json()["data"]["results"]
+        res[k] = {"status": r.status_code, "total": j["totalElements"], "n": len(j["content"]),
+                  "first": [x["ln"] for x in j["content"][:3]], "ad": [x.get("ad") for x in j["content"][:3]],
+                  "q": r.json()["data"]["query"]}
+    except Exception:
+        res[k] = traceback.format_exc()[-400:]
+# JSON no corpo
 try:
-    c = httpx.Client(follow_redirects=True, timeout=40, headers=UA)
-    h = c.get(B + "/")
-    res["home"] = [h.status_code, len(h.text)]
-    js = sorted(set(re.findall(r'src="(/dist/[^"]+\.js)"', h.text)))
-    res["js"] = js
-    eps = set()
-    for j in js:
-        t = c.get(B + j).text
-        eps.update(re.findall(r'["\'](/?public/[A-Za-z0-9_\-/{}]+)["\']', t))
-        eps.update(re.findall(r'["\'](/?data/[A-Za-z0-9_\-/{}]+)["\']', t))
-    res["endpoints"] = sorted(eps)[:200]
-    corpo = {"query": ["*"], "filter": {}, "sort": ["auction_date_type desc", "auction_date_utc asc"],
-             "page": 0, "size": 20, "start": 0, "watchListOnly": False, "freeFormSearch": False,
-             "hideImages": False, "defaultSort": False, "specificRowProvided": False, "displayName": "",
-             "searchName": "", "backUrl": "", "includeTagByField": {}, "rawParams": {}}
-    hdr = {"X-Requested-With": "XMLHttpRequest", "Accept": "application/json, text/plain, */*"}
-    for nome, req in {
-        "search_results_json": lambda: c.post(B + "/public/lots/search-results", json=corpo, headers=hdr),
-        "search_form": lambda: c.post(B + "/public/lots/search", data={"draw": "1", "start": "0", "length": "20", "query": "*"}, headers=hdr),
-        "vehicle_finder": lambda: c.post(B + "/public/vehicleFinder/search", data={"draw": "1", "start": "0", "length": "20"}, headers=hdr),
-    }.items():
-        try:
-            r = req()
-            res[nome] = {"status": r.status_code, "ctype": r.headers.get("content-type"), "len": len(r.text), "ini": r.text[:400]}
-            open(f"diag/copart_{nome}.txt", "w", encoding="utf-8").write(r.text)
-        except Exception as e:  # noqa: BLE001
-            res[nome] = repr(e)
+    r = c.post(B, json={"query": ["*"], "filter": {"MISC": [F]}, "page": 0, "size": 100}, headers=hdr)
+    j = r.json()["data"]["results"]; res["json_body"] = {"total": j["totalElements"], "n": len(j["content"])}
 except Exception:
-    res["erro"] = traceback.format_exc()
-open("diag/copart_probe.json", "w", encoding="utf-8").write(json.dumps(res, ensure_ascii=False, indent=1))
-print(json.dumps({k: (v if k != "endpoints" else len(v)) for k, v in res.items()}, ensure_ascii=False)[:3000])
+    res["json_body"] = traceback.format_exc()[-300:]
+open("diag/copart_probe2.json", "w", encoding="utf-8").write(json.dumps(res, ensure_ascii=False, indent=1))
+print(json.dumps(res, ensure_ascii=False)[:3000])
